@@ -5,3 +5,4 @@ WebContent/WEB-INF/classes/
 .settings
 bin
 build
+.externalToolBuilders
