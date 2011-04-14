@@ -1,0 +1,7 @@
+*.class
+WebContent/WEB-INF/classes/
+.metadata
+.DS_Store
+.settings
+bin
+build
