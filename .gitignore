@@ -3,6 +3,6 @@ WebContent/WEB-INF/classes/
 .metadata
 .DS_Store
 .settings
-.externalToolBuilders
+.externalToolBuilders/
 bin
 build
