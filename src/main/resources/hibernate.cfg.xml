@@ -16,11 +16,7 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
 
-		<!-- <mapping class="br.com.belerofonte.modelo.Arquivo" />
-		<mapping class="br.com.belerofonte.modelo.Usuario" />
-		<mapping class="br.com.belerofonte.modelo.Autenticacao" />
-		<mapping class="br.com.belerofonte.modelo.Categoria" />
-		<mapping class="br.com.belerofonte.modelo.Plataforma" /> -->
+		<mapping class="br.com.belerofonte.model.User" />
 	</session-factory>
 
 </hibernate-configuration>
