@@ -15,4 +15,11 @@ public class Given {
 		return user;
 	}
 
+	public static User invalidUser(long id, String username, String email,
+			String password, String confirmPassword) {
+		User user = user(id, username, email, password, confirmPassword);
+		
+		return user;
+	}
+
 }
