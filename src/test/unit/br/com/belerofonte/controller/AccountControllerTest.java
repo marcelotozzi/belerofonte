@@ -63,5 +63,4 @@ public class AccountControllerTest {
 		
 		Assert.assertFalse(this.account.isLogged());
 	}
-
 }

@@ -1,0 +1,62 @@
+body {
+    font: 14px / 1 "Helvetica Neue", Arial, sans-serif;
+    color: #1e3950;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+h1 {
+    font-size: 22px;
+    color: #1d3142;
+    font-family: "Helvetica Neue", arial;
+    margin: 0 0 38px;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 0 0 24px;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 20px;
+}
+
+pre {
+    white-space: pre-wrap; /* CSS-3                  */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999    */
+    white-space: -pre-wrap; /* Opera 4-6              */
+    white-space: -o-pre-wrap; /* Opera 7                */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+pre, code {
+    font-family: Fixed, monospace;
+}
+
+small {
+    font-size: 93%;
+}
+
+/* TODO: Move font-size/line-height to BODY */
+.main p, .main ul, .main ol, .main table, .main dl, .main form, .main pre, .main h1, .main h2, .main h3, .main h4, .main h5, .main h6, .main fieldset {
+    margin: 0 0 18px;
+    line-height: 20px;
+}
+
+.main ul {
+    padding-left: 18px;
+    list-style: disc;
+}
+
+.main ol {
+    padding-left: 22px;
+    list-style: decimal;
+}

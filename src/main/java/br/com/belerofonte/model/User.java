@@ -11,6 +11,7 @@ import org.hibernate.validator.NotEmpty;
 @Entity
 public class User {
 	@Id @GeneratedValue private long id;
+	@NotEmpty @Length(min = 3) private String name;
 	@NotEmpty @Length(min = 3, max = 18) private String username;
 	@NotEmpty @Email @Length(min = 10) private String email;
 	@NotEmpty @Length(min = 4) private String password;
@@ -54,5 +55,13 @@ public class User {
 
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

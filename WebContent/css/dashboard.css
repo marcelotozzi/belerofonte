@@ -1,0 +1,68 @@
+.box {
+    padding: 0;
+}
+
+h1 {
+    text-shadow: 0 1px 0 #fff;
+}
+
+#dashboard h3 {
+    text-shadow: 0 1px 0 #fff;
+    margin: 0 0 24px;
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,.7)));
+    line-height: 1.3;
+}
+
+#dashboard {
+    background: #fff url(../img/dashboard/sidebar-bg.gif) repeat-y;
+    min-height: 400px;
+}
+
+#dashboard .secondary {
+    width: 232px;
+    padding: 30px 34px;
+}
+
+#dashboard .primary {
+    width: 658px;
+    position: relative;
+}
+
+#dashboard .primary .header {
+    padding: 30px;
+    border-bottom: 1px solid #c8d1d9;
+}
+
+#dashboard .primary .header h3 {
+    margin: -2px 0 0;
+    display: inline;
+}
+
+#dashboard .message {
+    margin: -31px 0 30px -31px;
+    padding: 10px 30px;
+    width: 598px;
+    -webkit-border-radius: 0 6px 0 0;
+    -moz-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+    -webkit-box-shadow: inset 0 2px rgba(255,255,255, 1);
+    text-shadow: 0 1px rgba(255,255,255, 1);
+}
+
+#dashboard .secondary p {
+    font-size: 12px;
+}
+
+#dashboard .secondary p, p.no-data {
+    font-size: 14px;
+    line-height: 20px;
+    color: #777;
+}
+
+/* ------------------------------- User list-------------------------------
+   TODO: If user-lists are ever needed outside of dashboard, consider
+   moving to separate stylesheet. -ckj                                     */
+
+#dashboard .content {
+    padding: 30px;
+}

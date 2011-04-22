@@ -20,12 +20,12 @@ public class AccountController {
 		this.account = account;
 	}
 
-	@Path("account/login")
+	@Path("/account/login")
 	public void form() {
 	}
 
 	@Post
-	@Path("/account/authenticates")
+	@Path("/account/authenticates")	
 	public void authenticates(User user) {
 		User authenticated = this.userDAO.findByLoginAndPassword(user);
 
@@ -45,6 +45,5 @@ public class AccountController {
 
 	@Path("/account")
 	public void account() {
-
 	}
 }

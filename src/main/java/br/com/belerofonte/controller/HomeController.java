@@ -8,6 +8,5 @@ public class HomeController {
 
 	@Path("/")
 	public void home() {
-
 	}
 }
