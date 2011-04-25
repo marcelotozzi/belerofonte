@@ -26,6 +26,6 @@ public class Account {
 	}
 
 	public boolean isAdmin() {
-		return (this.user.getUsername().equals("admin")) ? true : false;
+		return ((this.user != null) ? this.user.getUsername().equals("admin") : false) ? true : false;
 	}
 }

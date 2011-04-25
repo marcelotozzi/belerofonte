@@ -13,6 +13,7 @@
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
+					<a href="user/edit/${account.user.id}">Editar Conta</a>
 				</div>
 			</div>
 		</div>

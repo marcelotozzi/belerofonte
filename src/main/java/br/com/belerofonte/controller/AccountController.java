@@ -27,7 +27,7 @@ public class AccountController {
 	@Post
 	@Path("/account/authenticates")	
 	public void authenticates(User user) {
-		User authenticated = this.userDAO.findByLoginAndPassword(user);
+		User authenticated = this.userDAO.findByUsernameAndPassword(user);
 
 		if (authenticated != null) {
 			this.account.performLogin(authenticated);

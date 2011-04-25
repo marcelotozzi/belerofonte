@@ -16,18 +16,22 @@
     	<div class="container">
         	<a href="/belerofonte" id="logo"><img src="" alt="Belerofonte" title="Belerofonte"></a>
             <ul id="account-nav" style="visibility: visible; ">
-                <c:if test="${account.logged}">
-					<li class=""><a href="<c:url value="/" />">Home</a></li>
+            	<li>Logado: ${account.logged}   |</li>
+				<li>Admin: ${account.admin}</li>
+           		<li class=""><a href="<c:url value="/" />">Home</a></li>
+				<li class=""><a href="<c:url value="/apps" />">Aplicacoes</a></li>
+				<li class=""><a href="<c:url value="/games" />">Games</a></li>
+                <c:if test="${!account.logged}">
+					<li class=""><a href="<c:url value="/user/register" />">Registrar</a></li>
+				</c:if>
+				<c:if test="${account.logged}">
 					<li class=""><a href="<c:url value="/account" />">Conta</a></li>
 					<c:if test="${account.admin}">
 						<li class=""><a href="<c:url value="/admin" />">Admin</a></li>
 					</c:if>
-				</c:if>
-				<c:if test="${!account.logged}">
-					<li class=""><a href="<c:url value="/" />">Home</a></li>
-					<li class=""><a href="<c:url value="#" />">Registrar</a></li>
-				</c:if>
+				</c:if>			
         	</ul>
+        	
     	</div>
 	</div>
 </div>

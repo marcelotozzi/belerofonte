@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import br.com.belerofonte.controller.AccountController;
 import br.com.belerofonte.controller.AdminController;
+import br.com.belerofonte.controller.UserController;
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
@@ -24,12 +25,22 @@ public class AccountInterceptor implements Interceptor {
 	}
 
 	public boolean accepts(ResourceMethod method) {
-		return method.getResource().getType().isAssignableFrom(AccountController.class) || 
-				method.getResource().getType().isAssignableFrom(AdminController.class);
+		//Intercepta se for admin
+		return method.getResource().getType().isAssignableFrom(AdminController.class) || 
+		// ou for diferente de User.form = register
+			(	
+					method.getResource().getType().isAssignableFrom(UserController.class) &&
+					method.getMethod().getName().equals("form")
+			) ||
+		// ou seja diferente de Account.form = login
+			(
+					method.getResource().getType().isAssignableFrom(AccountController.class) && 
+					method.getMethod().getName().equals("form")
+			);
 	}
 
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object resourceInstance) throws InterceptionException {
-		if (this.account.getClass() == null) {
+		if (!this.account.isAdmin()) {
 			result.include("errors", Arrays.asList(new ValidationMessage(null,"Faça o Login para acessar sua conta.")));
 
 			result.use(Results.logic()).redirectTo(AccountController.class).form();
