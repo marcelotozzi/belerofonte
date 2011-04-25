@@ -18,34 +18,42 @@ import br.com.caelum.vraptor.view.Results;
 public class AccountInterceptor implements Interceptor {
 	private Account account;
 	private Result result;
-	
+
 	public AccountInterceptor(Account account, Result result) {
 		this.account = account;
 		this.result = result;
 	}
 
 	public boolean accepts(ResourceMethod method) {
-		//Intercepta se for admin
-		return method.getResource().getType().isAssignableFrom(AdminController.class) || 
-		// ou for diferente de User.form = register
-			(	
-					method.getResource().getType().isAssignableFrom(UserController.class) &&
-					method.getMethod().getName().equals("form")
-			) ||
-		// ou seja diferente de Account.form = login
-			(
-					method.getResource().getType().isAssignableFrom(AccountController.class) && 
-					method.getMethod().getName().equals("form")
-			);
+		return method.getResource().getType().isAssignableFrom(AdminController.class) 
+		||
+		(method.getResource().getType().isAssignableFrom(UserController.class) && 
+				(
+						!(
+								method.getMethod().getName().equals("form")
+								||
+								method.getMethod().getName().equals("create")
+						)
+				)
+		)
+		||
+		(method.getResource().getType().isAssignableFrom(AccountController.class) && 
+				(
+						!(
+								method.getMethod().getName().equals("form") 
+								||
+								method.getMethod().getName().equals("authenticates") 
+						)
+				)
+		);
 	}
 
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object resourceInstance) throws InterceptionException {
-		if (!this.account.isAdmin()) {
-			result.include("errors", Arrays.asList(new ValidationMessage(null,"Faça o Login para acessar sua conta.")));
-
-			result.use(Results.logic()).redirectTo(AccountController.class).form();
-		} else {
+		if (this.account.isLogged()) {
 			stack.next(method, resourceInstance);
+		} else {
+			result.include("errors", Arrays.asList(new ValidationMessage(null, "Faça o Login para acessar sua conta.")));
+			result.use(Results.logic()).redirectTo(AccountController.class).form();
 		}
 	}
 }

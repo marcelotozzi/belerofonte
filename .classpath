@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="src" path="src/test/integration"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/test/unit"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
@@ -11,6 +10,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/test/apache-mime4j-0.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/test/commons-codec-1.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/test/commons-httpclient-3.1.jar"/>
@@ -32,6 +32,5 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/test/xalan-2.7.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/test/xerces-2.6.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/test/xercesImpl-2.9.1.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

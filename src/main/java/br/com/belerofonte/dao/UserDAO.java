@@ -38,7 +38,7 @@ public class UserDAO {
 	}
 
 	public void remove(User user) {
-		// TODO Auto-generated method stub
+		this.session.delete(user);
 	}
 
 	public User load(long id) {
