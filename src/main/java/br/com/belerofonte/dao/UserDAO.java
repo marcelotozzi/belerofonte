@@ -1,5 +1,7 @@
 package br.com.belerofonte.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -37,11 +39,16 @@ public class UserDAO {
 		this.session.update(user);
 	}
 
-	public void remove(User user) {
+	public void remove(User user) {	
 		this.session.delete(user);
 	}
 
 	public User load(long id) {
 		return (User) this.session.load(User.class, id);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> list() {
+		return this.session.createCriteria(User.class).list();
 	}
 }

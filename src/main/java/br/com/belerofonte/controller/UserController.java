@@ -61,4 +61,9 @@ public class UserController {
 	public User edit(long id) {
 		return this.userDAO.load(id);
 	}
+
+	@Path("/user/verify/username")
+	public boolean verifyUsername(String username) {
+		return (this.userDAO.findByUsername(username) != null) ? true : false;
+	}
 }

@@ -6,7 +6,7 @@
 <hibernate-configuration>
 
 	<session-factory>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/belerofonte</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/belerofonte_test</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 		<property name="hibernate.connection.username">root</property>
@@ -14,6 +14,7 @@
 
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
+		<!-- <property name="hibernate.hbm2ddl.auto">create-drop</property> -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
 

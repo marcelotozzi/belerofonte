@@ -3,11 +3,13 @@ package br.com.belerofonte.common;
 import br.com.belerofonte.model.User;
 
 public class Given {
-
-	public static User user(long id, String username, String email,
-			String password, String confirmPassword) {
+	
+	public static User user(Long id,String name, String username, String email, String password, String confirmPassword) {
 		User user = new User();
-		user.setId(id);
+		if(id != null){
+			user.setId(id);
+		}
+		user.setName(name);
 		user.setUsername(username);
 		user.setEmail(email);
 		user.setPassword(password);
@@ -15,11 +17,10 @@ public class Given {
 		return user;
 	}
 
-	public static User invalidUser(long id, String username, String email,
+	public static User invalidUser(Long id, String name, String username, String email,
 			String password, String confirmPassword) {
-		User user = user(id, username, email, password, confirmPassword);
+		User user = user(id, name, username, email, password, confirmPassword);
 		
 		return user;
 	}
-
 }

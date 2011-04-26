@@ -4,24 +4,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Index;
 import org.hibernate.validator.Email;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 
 @Entity
 public class User {
-	@Id @GeneratedValue private long id;
-	@NotEmpty @Length(min = 3) private String name;
-	@NotEmpty @Length(min = 3, max = 18) private String username;
-	@NotEmpty @Email @Length(min = 10) private String email;
-	@NotEmpty @Length(min = 4) private String password;
-	@NotEmpty private String confirmPassword;
+	@Id @GeneratedValue
+	private Long id;
+	@NotEmpty @Length(min = 3)
+	private String name;
+	@NotEmpty @Length(min = 3, max = 18) @Index(name="user_usname", columnNames="username")
+	private String username;
+	@NotEmpty @Email @Length(min = 10)
+	private String email;
+	@NotEmpty @Length(min = 4)
+	private String password;
+	@NotEmpty
+	private String confirmPassword;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -63,5 +70,10 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return "ID:["+ this.id +"] Name:["+ this.name +"] Username:["+ this.username +"] Email:["+ this.email+"]";
 	}
 }

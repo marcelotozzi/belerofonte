@@ -37,7 +37,7 @@ public class AccountControllerTest {
 
 	@Test
 	public void shouldAuthenticateTheUser() {
-		User user = Given.user(1, "username", "email", "pass", "pass");
+		User user = Given.user(1L, "Name","username", "email", "pass", "pass");
 		Mockito.when(this.userDAO.findByUsernameAndPassword(user)).thenReturn(user);
 		
 		this.controller.authenticates(user);
@@ -48,7 +48,7 @@ public class AccountControllerTest {
 	
 	@Test
 	public void shouldNotAuthenticateInvalidUser(){
-		User user = Given.invalidUser(1, "usernameinvalid", "invalid@bele.com", "pass", "pass");
+		User user = Given.invalidUser(1L, "Name","usernameinvalid", "invalid@bele.com", "pass", "pass");
 		Mockito.when(this.userDAO.findByUsernameAndPassword(user)).thenReturn(null);
 		
 		this.controller.authenticates(user);

@@ -22,21 +22,21 @@ public class AccountTest {
 
 	@Test
 	public void shouldLogin() {
-		this.account.performLogin(Given.user(1L, "username", "email@belerofonte.com", "password", "password"));
+		this.account.performLogin(Given.user(1L, "Name", "username", "email@belerofonte.com", "password", "password"));
 
 		Assert.assertNotNull(this.account.getUser());
 	}
 
 	@Test
 	public void shouldBeLogged() {
-		this.account.performLogin(Given.user(1L, "username", "email@belerofonte.com", "password", "password"));
+		this.account.performLogin(Given.user(1L, "Name", "username", "email@belerofonte.com", "password", "password"));
 
 		Assert.assertTrue(this.account.isLogged());
 	}
 
 	@Test
 	public void shouldLogOut() {
-		this.account.performLogin(Given.user(1L, "username","email@belerofonte.com", "password", "password"));
+		this.account.performLogin(Given.user(1L, "Name", "username","email@belerofonte.com", "password", "password"));
 	
 		this.account.logoff();
 		
@@ -45,16 +45,15 @@ public class AccountTest {
 
 	@Test
 	public void shouldBeLoggedInAsAdmin() {
-		this.account.performLogin(Given.user(1L, "admin","admin@belerofonte.com", "adminpass", "adminpass"));
+		this.account.performLogin(Given.user(1L, "Name", "admin","admin@belerofonte.com", "adminpass", "adminpass"));
 		
 		Assert.assertTrue(this.account.isAdmin());
 	}
 
 	@Test
 	public void thereShouldBeLoggedInAsAdmin() {
-		this.account.performLogin(Given.user(1L, "username","email@belerofonte.com", "password", "password"));
+		this.account.performLogin(Given.user(1L, "Name", "username","email@belerofonte.com", "password", "password"));
 		
 		Assert.assertFalse(this.account.isAdmin());
 	}
-
 }
