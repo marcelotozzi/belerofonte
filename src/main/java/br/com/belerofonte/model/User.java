@@ -11,18 +11,12 @@ import org.hibernate.validator.NotEmpty;
 
 @Entity
 public class User {
-	@Id @GeneratedValue
-	private Long id;
-	@NotEmpty @Length(min = 3)
-	private String name;
-	@NotEmpty @Length(min = 3, max = 18) @Index(name="user_usname", columnNames="username")
-	private String username;
-	@NotEmpty @Email @Length(min = 10)
-	private String email;
-	@NotEmpty @Length(min = 4)
-	private String password;
-	@NotEmpty
-	private String confirmPassword;
+	@Id @GeneratedValue private Long id;
+	@NotEmpty @Length(min = 3) private String name;
+	@NotEmpty @Length(min = 3, max = 18) @Index(name="user_usname", columnNames="username") private String username;
+	@NotEmpty @Length(min = 10) @Email private String email;
+	@NotEmpty @Length(min = 4) private String password;
+	@NotEmpty @Length(min = 4) private String confirmPassword;
 
 	public Long getId() {
 		return id;

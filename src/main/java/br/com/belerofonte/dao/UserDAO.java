@@ -23,7 +23,6 @@ public class UserDAO {
 				.add(Restrictions.eq("username", user.getUsername()))
 				.add(Restrictions.eq("password", user.getPassword()))
 				.uniqueResult();
-
 	}
 
 	public void save(User user) {

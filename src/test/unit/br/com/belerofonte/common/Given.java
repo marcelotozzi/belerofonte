@@ -1,5 +1,6 @@
 package br.com.belerofonte.common;
 
+import br.com.belerofonte.model.Plataform;
 import br.com.belerofonte.model.User;
 
 public class Given {
@@ -22,5 +23,11 @@ public class Given {
 		User user = user(id, name, username, email, password, confirmPassword);
 		
 		return user;
+	}
+
+	public static Plataform plataform(String name) {
+		Plataform p = new Plataform();
+		p.setName(name);
+		return p;
 	}
 }
