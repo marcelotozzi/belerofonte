@@ -1,6 +1,8 @@
 package br.com.belerofonte.common;
 
+import br.com.belerofonte.model.Category;
 import br.com.belerofonte.model.Plataform;
+import br.com.belerofonte.model.SubCategory;
 import br.com.belerofonte.model.User;
 
 public class Given {
@@ -30,4 +32,22 @@ public class Given {
 		p.setName(name);
 		return p;
 	}
+
+	public static Category category(String name) {
+		Category category = new Category();
+		category.setName(name);
+		return category;
+	}
+
+	public static SubCategory subCategory(String category, String subCategory) {
+		Category cat = new Category();
+		cat.setName(category);
+		
+		SubCategory sub = new SubCategory();
+		sub.setCategory(cat);
+		sub.setName(subCategory);
+		return sub;
+	}
+
+
 }

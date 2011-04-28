@@ -66,19 +66,10 @@ public class UserControllerTest {
 
 	@Test
 	public void shouldDeleteUser() {
-		givenThereIsAUserRegistered(1L, "Name", "marcelocontro", "tozzi@gmail.com", "senha", "senha");
-
 		User u = this.userDAO.load(1L);
 
 		this.controller.delete(1L);
 
 		Mockito.verify(this.userDAO).remove(u);
-	}
-
-	private void givenThereIsAUserRegistered(long id, String name, String username, String email, String password, String confirmPassword) {
-		User u = Given.user(id, name, username, email, password,
-				confirmPassword);
-
-		Mockito.when(this.userDAO.load(id)).thenReturn(u);
 	}
 }

@@ -48,18 +48,10 @@ public class PlataformControllerTest {
 
 	@Test
 	public void shouldDeletePlataform() {
-		givenThereIsAPlataformRegistered(1L, "ANDROID");
-
 		Plataform u = this.plataformDAO.load(1L);
 
 		this.controller.delete(1L);
 
 		Mockito.verify(this.plataformDAO).remove(u);
-	}
-	
-	private void givenThereIsAPlataformRegistered(Long id, String name) {
-		Plataform plataform = Given.plataform(name);
-
-		Mockito.when(this.plataformDAO.load(id)).thenReturn(plataform);
 	}
 }
