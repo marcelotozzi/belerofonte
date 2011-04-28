@@ -68,9 +68,9 @@ public class PlataformDAOTest extends DaoTest {
 	public void shouldSavePlataform() {
 		this.plataformDAO.save(Given.plataform("ANDROID"));
 
-		Plataform user = this.plataformDAO.findByName("ANDROID");
+		Plataform plataform = this.plataformDAO.findByName("ANDROID");
 
-		Assert.assertEquals("ANDROID", user.getName());
+		Assert.assertEquals("ANDROID", plataform.getName());
 	}
 
 	@Test

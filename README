@@ -2,3 +2,8 @@ Trabalho de Conclusao de Curso de Ciencia da Computacao/dez 2010 - UNIFIEO
 
 O trabalho originalmente foi feito sem cobertura de testes nenhuma apesar da insistencia minha para isso.
 Como fomos bem e nos formamos, agora estou reescrevendo com testes pra ficar feliz :).
+
+- VRaptor
+- Hibernate
+- JUnit
+- Mockito

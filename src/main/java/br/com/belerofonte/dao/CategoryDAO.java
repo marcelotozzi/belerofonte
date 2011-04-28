@@ -1,6 +1,7 @@
 package br.com.belerofonte.dao;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import br.com.belerofonte.model.Category;
 import br.com.caelum.vraptor.ioc.Component;
@@ -11,6 +12,10 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 public class CategoryDAO {
 
 	private Session session;
+	
+	public CategoryDAO(Session session) {
+		this.session = session;
+	}
 
 	public void save(Category category) {
 		this.session.save(category);
@@ -29,6 +34,9 @@ public class CategoryDAO {
 	}
 
 	public Category findByName(String name) {
-		return null;
+		return (Category) this.session
+		.createCriteria(Category.class)
+		.add(Restrictions.eq("name", name))
+		.uniqueResult();
 	}
 }

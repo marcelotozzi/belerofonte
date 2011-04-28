@@ -29,7 +29,7 @@ public class CategoryControllerTest {
 	
 	@Test
 	public void shouldRegisterCategory() {
-		Category category = Given.category("Games");
+		Category category = Given.category("Ação");
 
 		this.controller.create(category);
 
@@ -38,7 +38,7 @@ public class CategoryControllerTest {
 	
 	@Test
 	public void shouldUpdateCategory() {
-		Category category = Given.category("Games");
+		Category category = Given.category("Ação");
 		
 		this.controller.update(category);
 
