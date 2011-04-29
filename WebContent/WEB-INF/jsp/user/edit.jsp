@@ -13,17 +13,16 @@
 		<div id="content">
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<div style="width: 920px;">
-						<form id="editUser" action="<c:url value="/user" />">
-							<input type="hidden" name="user.id" value="${user.id}"><br/>
-							Nome: <input type="text" name="user.name" value="${user.name}"><br/>
-							Username: <input type="text" name="user.username" value="${user.username}"><br/>
-							Email: <input type="text" name="user.email" value="${user.email}"><br/>
-							Nova senha: <input type="password" name="user.password" value="${user.password}"><br/>
-							Confirma nova senha: <input type="password" name="user.confirmPassword" value="${user.confirmPassword}"><br/>
-							<button type="submit" value="put" name="_method">Alterar</button> 
-						</form>
-					</div>
+					<h3>Edite seus dados</h3>
+					<form id="editUser" method="post" action="<c:url value="/user" />">
+						<input type="hidden" name="user.id" value="${user.id}"><br/>
+						Nome: <input type="text" name="user.name" value="${user.name}"><br/>
+						Username: <input type="text" name="user.username" value="${user.username}"><br/>
+						Email: <input type="text" name="user.email" value="${user.email}"><br/>
+						Nova senha: <input type="password" name="user.password" value="${user.password}"><br/>
+						Confirma nova senha: <input type="password" name="user.confirmPassword" value="${user.confirmPassword}"><br/>
+						<button type="submit" value="put" name="_method">Alterar</button> 
+					</form>
 				</div>
 			</div>
 		</div>

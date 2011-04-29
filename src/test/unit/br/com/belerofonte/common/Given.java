@@ -26,8 +26,9 @@ public class Given {
 		return user;
 	}
 
-	public static Plataform plataform(String name) {
+	public static Plataform plataform(long id, String name) {
 		Plataform p = new Plataform();
+		p.setId(id);
 		p.setName(name);
 		return p;
 	}

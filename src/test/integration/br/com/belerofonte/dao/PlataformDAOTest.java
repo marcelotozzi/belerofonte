@@ -32,7 +32,7 @@ public class PlataformDAOTest extends DaoTest {
 
 	@Test
 	public void shouldFindByName() {
-		this.plataformDAO.save(Given.plataform("ANDROID"));
+		this.plataformDAO.save(Given.plataform(1L,"ANDROID"));
 
 		Plataform plataform = this.plataformDAO.findByName("ANDROID");
 
@@ -48,7 +48,7 @@ public class PlataformDAOTest extends DaoTest {
 
 	@Test
 	public void shouldLoadPlatafom() {
-		this.plataformDAO.save(Given.plataform("ANDROID"));
+		this.plataformDAO.save(Given.plataform(1L,"ANDROID"));
 
 		Plataform plataformByName = this.plataformDAO.findByName("ANDROID");
 		Plataform plataformByLoad = this.plataformDAO.load(plataformByName.getId());
@@ -66,7 +66,7 @@ public class PlataformDAOTest extends DaoTest {
 
 	@Test
 	public void shouldSavePlataform() {
-		this.plataformDAO.save(Given.plataform("ANDROID"));
+		this.plataformDAO.save(Given.plataform(1L,"ANDROID"));
 
 		Plataform plataform = this.plataformDAO.findByName("ANDROID");
 
@@ -75,7 +75,7 @@ public class PlataformDAOTest extends DaoTest {
 
 	@Test
 	public void shouldUpdatePlataform() {
-		this.plataformDAO.save(Given.plataform("ANDROID"));
+		this.plataformDAO.save(Given.plataform(1L,"ANDROID"));
 
 		Plataform p = this.plataformDAO.findByName("ANDROID");
 		p.setName("JAVA");
@@ -89,7 +89,7 @@ public class PlataformDAOTest extends DaoTest {
 
 	@Test
 	public void shouldRemove() {
-		this.plataformDAO.save(Given.plataform("ANDROID"));
+		this.plataformDAO.save(Given.plataform(1L,"ANDROID"));
 
 		Plataform plataform = this.plataformDAO.findByName("ANDROID");
 

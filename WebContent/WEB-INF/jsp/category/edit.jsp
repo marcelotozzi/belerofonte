@@ -4,20 +4,24 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Minha Conta</title>
+		<title>Belerofonte | Administração | Categoria | Editar</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	</head>
-	<body>	
+	<body>
 		<c:import url="/public/header.jsp"></c:import>
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Bem vindo, ${account.user.name}!</h3>
-					<a href="user/edit/${account.user.id}">Editar Conta</a>
+					<h3>Edite >> ${category.name}</h3>
+					<form id="editCategory" method="post" action="<c:url value="/admin/category" />">
+						<input type="hidden" name="category.id" value="${category.id}"><br/>
+						Nome: <input type="text" name="category.name" value="${category.name}"><br/>
+						<button type="submit" value="put" name="_method">Alterar</button> 
+					</form>
 				</div>
 			</div>
 		</div>
-		<c:import url="/public/footer.jsp"></c:import>							
+		<c:import url="/public/footer.jsp"></c:import>	
 	</body>
 </html>

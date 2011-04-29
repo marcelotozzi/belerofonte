@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Jogos</title>
+		<title>Belerofonte | Games</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	</head>
@@ -13,6 +13,7 @@
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
+					<h2>Games</h2>
 				</div>
 			</div>
 		</div>

@@ -13,6 +13,9 @@
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
+					<h3>Administração</h3>
+					<a href="admin/plataforms">Plataformas</a>   |  |   
+					<a href="admin/categories">Categorias</a>
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,11 @@
+- logica para vincular CATEGORIA a PLATAFORMA
+- pagina oara vincular CATEGORIA a PLATAFORMA na ADMINISTRACAO
+- cria cadastro de APLICACOES e GAMES
+- logica para vincular PLATARFOMA e CATEGORIA as APLICACOES 
+- Upload dos arquivos das APLICACOES e GAMES
+- Download de Arquivos
+- Atualizar filtro de acessos
+- Disponibilizar servico de buscas para mobile por xml
+- Pesquisas ?????
+- Logica para recuperar senha
+- Implementar o HIBERNATE SEARCH

@@ -13,6 +13,7 @@
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
+					<h2>Aplicações</h2>
 				</div>
 			</div>
 		</div>

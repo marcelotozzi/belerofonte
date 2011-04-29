@@ -16,9 +16,7 @@
     	<div class="container">
         	<a href="/belerofonte" id="logo"><img src="" alt="Belerofonte" title="Belerofonte"></a>
             <ul id="account-nav" style="visibility: visible; ">
-            	<li>Logado: ${account.logged}   |</li>
-				<li>Admin: ${account.admin}</li>
-           		<li class=""><a href="<c:url value="/" />">Home</a></li>
+            	<li class=""><a href="<c:url value="/" />">Home</a></li>
 				<li class=""><a href="<c:url value="/apps" />">Aplicacoes</a></li>
 				<li class=""><a href="<c:url value="/games" />">Games</a></li>
                 <c:if test="${!account.logged}">

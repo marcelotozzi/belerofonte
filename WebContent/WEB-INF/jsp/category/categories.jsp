@@ -4,20 +4,28 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Minha Conta</title>
+		<title>Belerofonte | Administração | Categorias</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	</head>
-	<body>	
+	<body>
 		<c:import url="/public/header.jsp"></c:import>
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Bem vindo, ${account.user.name}!</h3>
-					<a href="user/edit/${account.user.id}">Editar Conta</a>
+					<h3>Categorias</h3>
+					<a href="category/register">Adicionar</a>
+					<br/>
+					<ul>
+					<c:forEach var="cat" items="${categories}">
+						<li>
+							<p> - ${cat.name} - <a href="<c:url value="category/${cat.id}" />">Ver</a> - <a href="<c:url value="category/edit/${cat.id}" />">Editar</a></p>
+						</li><br/>
+					</c:forEach>
+					</ul>
 				</div>
 			</div>
 		</div>
-		<c:import url="/public/footer.jsp"></c:import>							
+		<c:import url="/public/footer.jsp"></c:import>	
 	</body>
 </html>

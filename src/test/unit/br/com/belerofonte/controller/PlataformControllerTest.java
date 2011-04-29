@@ -11,17 +11,21 @@ import org.mockito.MockitoAnnotations;
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.dao.PlataformDAO;
 import br.com.belerofonte.model.Plataform;
+import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.util.test.MockResult;
 
 public class PlataformControllerTest {
 
 	@Mock
 	private PlataformDAO plataformDAO;
 	private PlataformController controller;
+	private Result result;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		this.controller = new PlataformController(this.plataformDAO);
+		this.result = new MockResult();
+		this.controller = new PlataformController(this.plataformDAO, this.result);
 	}
 
 	@After
@@ -30,7 +34,7 @@ public class PlataformControllerTest {
 	
 	@Test
 	public void shouldRegisterPlataform() {
-		Plataform plataform = Given.plataform("ANDROID");
+		Plataform plataform = Given.plataform(1L,"ANDROID");
 		
 		this.controller.create(plataform);
 		
@@ -39,7 +43,7 @@ public class PlataformControllerTest {
 	
 	@Test
 	public void shouldUpdatePlataform() {
-		Plataform plataform = Given.plataform("ANDROID");
+		Plataform plataform = Given.plataform(1L,"ANDROID");
 		
 		this.controller.update(plataform);
 		

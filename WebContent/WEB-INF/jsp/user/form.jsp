@@ -13,16 +13,15 @@
 		<div id="content">
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<div style="width: 920px;">
-						<form id="newUser" method="POST" action="<c:url value="/user" />">
-							Nome: <input type="text" name="user.name"><br/>
-							Username: <input type="text" name="user.username"><br/>
-							Email: <input type="text" name="user.email"><br/>
-							Senha: <input type="password" name="user.password"><br/>
-							Confirma Senha: <input type="password" name="user.confirmPassword"><br/>
-							<input type="submit" value="Registrar"> 
-						</form>
-					</div>
+					<h3>Registre-se</h3>
+					<form id="newUser" method="POST" action="<c:url value="/user" />">
+						Nome: <input type="text" name="user.name"><br/>
+						Username: <input type="text" name="user.username"><br/>
+						Email: <input type="text" name="user.email"><br/>
+						Senha: <input type="password" name="user.password"><br/>
+						Confirma Senha: <input type="password" name="user.confirmPassword"><br/>
+						<input type="submit" value="Registrar"> 
+					</form>	
 				</div>
 			</div>
 		</div>
