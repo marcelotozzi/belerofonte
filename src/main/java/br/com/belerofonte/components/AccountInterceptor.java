@@ -9,6 +9,7 @@ import br.com.belerofonte.controller.PlataformController;
 import br.com.belerofonte.controller.UserController;
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
+import br.com.caelum.vraptor.Lazy;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.core.InterceptorStack;
 import br.com.caelum.vraptor.interceptor.Interceptor;
@@ -17,6 +18,7 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 
 @Intercepts
+@Lazy
 public class AccountInterceptor implements Interceptor {
 	private Account account;
 	private Result result;

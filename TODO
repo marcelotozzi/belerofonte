@@ -1,5 +1,3 @@
-- logica para vincular CATEGORIA a PLATAFORMA
-- pagina oara vincular CATEGORIA a PLATAFORMA na ADMINISTRACAO
 - cria cadastro de APLICACOES e GAMES
 - logica para vincular PLATARFOMA e CATEGORIA as APLICACOES 
 - Upload dos arquivos das APLICACOES e GAMES
@@ -9,3 +7,4 @@
 - Pesquisas ?????
 - Logica para recuperar senha
 - Implementar o HIBERNATE SEARCH
+- LabJs
