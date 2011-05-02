@@ -1,5 +1,6 @@
 package br.com.belerofonte.common;
 
+import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.model.ApplicationType;
 import br.com.belerofonte.model.Plataform;
 import br.com.belerofonte.model.User;
@@ -37,5 +38,9 @@ public class Given {
 		ApplicationType applicationType = new ApplicationType();
 		applicationType.setName(name);
 		return applicationType;
+	}
+
+	public static ApplicationFile applicationFile() {
+		return new ApplicationFile();
 	}
 }
