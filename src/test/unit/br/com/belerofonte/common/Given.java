@@ -1,6 +1,6 @@
 package br.com.belerofonte.common;
 
-import br.com.belerofonte.model.Category;
+import br.com.belerofonte.model.ApplicationType;
 import br.com.belerofonte.model.Plataform;
 import br.com.belerofonte.model.User;
 
@@ -33,9 +33,9 @@ public class Given {
 		return p;
 	}
 
-	public static Category category(String name) {
-		Category category = new Category();
-		category.setName(name);
-		return category;
+	public static ApplicationType applicationType(String name) {
+		ApplicationType applicationType = new ApplicationType();
+		applicationType.setName(name);
+		return applicationType;
 	}
 }

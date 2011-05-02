@@ -14,8 +14,8 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Registre uma categoria</h3>
-					<form id="newCategory" method="POST" action="<c:url value="/admin/category" />">
-						Nome: <input type="text" name="category.name"><br/>
+					<form id="newApplicationType" method="POST" action="<c:url value="/admin/applicationType" />">
+						Nome: <input type="text" name="applicationType.name"><br/>
 						<input type="submit" value="Registrar"> 
 					</form>
 				</div>

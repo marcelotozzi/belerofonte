@@ -8,7 +8,7 @@ import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
 @Entity
-public class Category {
+public class ApplicationType {
 	@Id @GeneratedValue private Long id;
 	@NotEmpty @NotNull private String name;
 

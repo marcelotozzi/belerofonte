@@ -20,7 +20,7 @@
 
 		<mapping class="br.com.belerofonte.model.User" />
 		<mapping class="br.com.belerofonte.model.Plataform" />		
-		<mapping class="br.com.belerofonte.model.Category" />
+		<mapping class="br.com.belerofonte.model.ApplicationType" />
 	</session-factory>
 
 </hibernate-configuration>
