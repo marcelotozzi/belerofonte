@@ -10,13 +10,13 @@ import org.mockito.MockitoAnnotations;
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
-import br.com.belerofonte.service.ApplicationFileService;
+import br.com.belerofonte.service.FileService;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
-public class ApplicationFileControllerTest {
+public class FileControllerTest {
 
-	private ApplicationFileController controller;
-	private ApplicationFileService applicationFileService;
+	private FileController controller;
+	private FileService applicationFileService;
 
 	@Mock
 	private ApplicationFileDAO applicationFileDAO;
@@ -26,8 +26,8 @@ public class ApplicationFileControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		this.applicationFileService = new ApplicationFileService(this.applicationFileDAO);
-		this.controller = new ApplicationFileController(this.applicationFileDAO, this.applicationFileService);
+		this.applicationFileService = new FileService(this.applicationFileDAO);
+		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService);
 	}
 
 	@After

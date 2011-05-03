@@ -2,17 +2,17 @@ package br.com.belerofonte.controller;
 
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
-import br.com.belerofonte.service.ApplicationFileService;
+import br.com.belerofonte.service.FileService;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
 @Resource
-public class ApplicationFileController {
+public class FileController {
 
 	private ApplicationFileDAO applicationFileDAO;
-	private ApplicationFileService applicationFileService;
+	private FileService applicationFileService;
 
-	public ApplicationFileController(ApplicationFileDAO applicationFileDAO, ApplicationFileService applicationFileService) {
+	public FileController(ApplicationFileDAO applicationFileDAO, FileService applicationFileService) {
 		this.applicationFileDAO = applicationFileDAO;
 		this.applicationFileService  = applicationFileService;
 	}

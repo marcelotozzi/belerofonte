@@ -12,9 +12,9 @@ import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
-public class ApplicationFileServiceTest {
+public class FileServiceTest {
 	
-	private ApplicationFileService service;
+	private FileService service;
 	private UploadedFile uploadedFile;
 	@Mock
 	private ApplicationFileDAO applicationFileDAO;
@@ -22,7 +22,7 @@ public class ApplicationFileServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		this.service = new ApplicationFileService(this.applicationFileDAO);
+		this.service = new FileService(this.applicationFileDAO);
 	}
 
 	@After

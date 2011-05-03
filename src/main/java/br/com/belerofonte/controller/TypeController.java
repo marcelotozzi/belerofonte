@@ -11,12 +11,12 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 
 @Resource
-public class ApplicationTypeController {
+public class TypeController {
 
 	private ApplicationTypeDAO applicationTypeDAO;
 	private Result result;
 
-	public ApplicationTypeController(ApplicationTypeDAO applicationTypeDAO, Result result) {
+	public TypeController(ApplicationTypeDAO applicationTypeDAO, Result result) {
 		this.applicationTypeDAO = applicationTypeDAO;
 		this.result = result;
 	}
@@ -25,21 +25,21 @@ public class ApplicationTypeController {
 	@Path("/admin/applicationType")
 	public void create(ApplicationType applicationType) {
 		this.applicationTypeDAO.save(applicationType);
-		this.result.redirectTo(ApplicationTypeController.class).applicationTypes();
+		this.result.redirectTo(TypeController.class).applicationTypes();
 	}
 
 	@Put
 	@Path("/admin/applicationType")
 	public void update(ApplicationType applicationType) {
 		this.applicationTypeDAO.update(applicationType);
-		this.result.redirectTo(ApplicationTypeController.class).applicationTypes();
+		this.result.redirectTo(TypeController.class).applicationTypes();
 	}
 
 	@Delete
 	@Path("/admin/applicationType/{id}")
 	public void delete(long id) {
 		this.applicationTypeDAO.remove(this.applicationTypeDAO.load(id));
-		this.result.redirectTo(ApplicationTypeController.class).applicationTypes();
+		this.result.redirectTo(TypeController.class).applicationTypes();
 	}
 	
 	@Get

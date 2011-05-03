@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import br.com.belerofonte.controller.AccountController;
 import br.com.belerofonte.controller.AdminController;
-import br.com.belerofonte.controller.ApplicationTypeController;
+import br.com.belerofonte.controller.TypeController;
 import br.com.belerofonte.controller.PlataformController;
 import br.com.belerofonte.controller.UserController;
 import br.com.caelum.vraptor.InterceptionException;
@@ -33,7 +33,7 @@ public class AccountInterceptor implements Interceptor {
 		||
 		method.getResource().getType().isAssignableFrom(PlataformController.class) 
 		||
-		method.getResource().getType().isAssignableFrom(ApplicationTypeController.class) 
+		method.getResource().getType().isAssignableFrom(TypeController.class) 
 		||
 		(method.getResource().getType().isAssignableFrom(UserController.class) && 
 				(

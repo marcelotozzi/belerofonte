@@ -14,9 +14,9 @@ import br.com.belerofonte.model.ApplicationType;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.util.test.MockResult;
 
-public class ApplicationTypeControllerTest {
+public class TypeControllerTest {
 
-	private ApplicationTypeController controller;
+	private TypeController controller;
 	@Mock private ApplicationTypeDAO applicationTypeDAO;
 	private Result result;
 
@@ -24,7 +24,7 @@ public class ApplicationTypeControllerTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		this.result = new MockResult();
-		this.controller = new ApplicationTypeController(this.applicationTypeDAO, this.result);
+		this.controller = new TypeController(this.applicationTypeDAO, this.result);
 	}
 
 	@After

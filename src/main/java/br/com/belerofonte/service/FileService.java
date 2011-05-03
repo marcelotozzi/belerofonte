@@ -8,11 +8,11 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 
 @Component
 @RequestScoped
-public class ApplicationFileService {
+public class FileService {
 
 	private ApplicationFileDAO applicationFileDAO;
 
-	public ApplicationFileService(ApplicationFileDAO applicationFileDAO) {
+	public FileService(ApplicationFileDAO applicationFileDAO) {
 		this.applicationFileDAO = applicationFileDAO;
 	}
 	
