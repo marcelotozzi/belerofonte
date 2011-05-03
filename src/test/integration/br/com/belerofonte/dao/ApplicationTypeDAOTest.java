@@ -32,7 +32,7 @@ public class ApplicationTypeDAOTest extends DaoTest {
 	
 	@Test
 	public void shouldFindByName() {
-		this.applicationTypeDAO.save(Given.applicationType("Ação"));
+		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
 
 		ApplicationType applicationType = this.applicationTypeDAO.findByName("Ação");
 
@@ -48,7 +48,7 @@ public class ApplicationTypeDAOTest extends DaoTest {
 
 	@Test
 	public void shouldLoadApplicationType() {
-		this.applicationTypeDAO.save(Given.applicationType("Ação"));
+		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
 
 		ApplicationType applicationTypeByName = this.applicationTypeDAO.findByName("Ação");
 		ApplicationType applicationTypeByLoad = this.applicationTypeDAO.load(applicationTypeByName.getId());
@@ -66,7 +66,7 @@ public class ApplicationTypeDAOTest extends DaoTest {
 
 	@Test
 	public void shouldSaveApplicationType() {
-		this.applicationTypeDAO.save(Given.applicationType("Ação"));
+		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
 
 		ApplicationType applicationType = this.applicationTypeDAO.findByName("Ação");
 
@@ -75,7 +75,7 @@ public class ApplicationTypeDAOTest extends DaoTest {
 
 	@Test
 	public void shouldUpdateApplicationType() {
-		this.applicationTypeDAO.save(Given.applicationType("Ação"));
+		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
 
 		ApplicationType p = this.applicationTypeDAO.findByName("Ação");
 		p.setName("Aventura");
@@ -89,14 +89,14 @@ public class ApplicationTypeDAOTest extends DaoTest {
 
 	@Test
 	public void shouldRemove() {
-		this.applicationTypeDAO.save(Given.applicationType("Ação"));
+		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
 
 		ApplicationType applicationType = this.applicationTypeDAO.findByName("Ação");
 
 		this.applicationTypeDAO.remove(applicationType);
 
-		ApplicationType cat = this.applicationTypeDAO.findByName("Ação");
+		ApplicationType app = this.applicationTypeDAO.findByName("Ação");
 
-		Assert.assertNull(cat);
+		Assert.assertNull(app);
 	}
 }

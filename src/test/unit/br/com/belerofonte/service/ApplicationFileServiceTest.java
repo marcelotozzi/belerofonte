@@ -31,7 +31,7 @@ public class ApplicationFileServiceTest {
 
 	@Test
 	public void shouldCreate() {
-		ApplicationFile appFile = Given.applicationFile();
+		ApplicationFile appFile = Given.applicationFile(null, null, null, null, null, null, null, null, null);
 		
 		this.service.create(uploadedFile, appFile);
 		

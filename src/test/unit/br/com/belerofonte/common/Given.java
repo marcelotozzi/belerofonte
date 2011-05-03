@@ -1,5 +1,7 @@
 package br.com.belerofonte.common;
 
+import java.util.Calendar;
+
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.model.ApplicationType;
 import br.com.belerofonte.model.Plataform;
@@ -27,20 +29,35 @@ public class Given {
 		return user;
 	}
 
-	public static Plataform plataform(long id, String name) {
+	public static Plataform plataform(Long id, String name) {
 		Plataform p = new Plataform();
+		
 		p.setId(id);
 		p.setName(name);
 		return p;
 	}
 
-	public static ApplicationType applicationType(String name) {
+	public static ApplicationType applicationType(Long id, String name) {
 		ApplicationType applicationType = new ApplicationType();
+		applicationType.setId(id);
 		applicationType.setName(name);
 		return applicationType;
 	}
 
-	public static ApplicationFile applicationFile() {
-		return new ApplicationFile();
+	public static ApplicationFile applicationFile(Long id, String name, String nameOfFile, String description, 
+			Long sizeOfFile, String contentType, Plataform plataform, ApplicationType applicationType, Calendar uploadDate) {
+		ApplicationFile appFile = new ApplicationFile();
+		if (id != null) {
+			appFile.setId(id);
+		}
+		appFile.setName(name);
+		appFile.setNameOfFile(nameOfFile);
+		appFile.setDescription(description);
+		appFile.setSizeOfFile(sizeOfFile);
+		appFile.setContentType(contentType);
+		appFile.setPlataform(plataform);
+		appFile.setApplicationType(applicationType);
+		appFile.setUploadDate(uploadDate);
+		return appFile;
 	}
 }

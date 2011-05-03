@@ -18,10 +18,10 @@ public class ApplicationFile {
 	@NotNull @NotEmpty private String name;
 	@NotNull @NotEmpty private String nameOfFile;
 	private String description;
-	@NotNull @NotEmpty private Long sizeOfFile;
+	@NotNull private Long sizeOfFile;
 	@NotNull @NotEmpty private String contentType;
-	@NotNull @NotEmpty @ManyToOne private Plataform plataform;
-	@NotNull @NotEmpty @ManyToOne private ApplicationType applicationType;
+	@NotNull @ManyToOne private Plataform plataform;
+	@NotNull @ManyToOne private ApplicationType applicationType;
 	@Temporal(TemporalType.DATE) private Calendar uploadDate;
 	private Long numberOfDownloads;
 
@@ -103,5 +103,18 @@ public class ApplicationFile {
 
 	public void setNumberOfDownloads(Long numberOfDownloads) {
 		this.numberOfDownloads = numberOfDownloads;
+	}
+	
+	@Override
+	public String toString() {
+		return "Id["+this.id +"] "+
+				"Name["+this.name+"] "+
+				"NameOfFile["+this.nameOfFile+"] "+
+				"Description["+this.description+"] " +
+				"SizeOfFile["+this.sizeOfFile+"] " +
+				"ContentType["+this.contentType+"] " +
+				"Plataform["+this.plataform.getId()+"]["+this.plataform.getName()+"] " +
+				"ApplicationType["+this.applicationType.getId()+"]["+this.applicationType.getName()+"] " +
+				"UploadDate["+this.uploadDate.getTime()+"]";
 	}
 }

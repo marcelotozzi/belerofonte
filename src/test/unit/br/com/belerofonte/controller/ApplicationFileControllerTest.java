@@ -10,7 +10,6 @@ import org.mockito.MockitoAnnotations;
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
-import br.com.belerofonte.model.ApplicationType;
 import br.com.belerofonte.service.ApplicationFileService;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
@@ -37,7 +36,7 @@ public class ApplicationFileControllerTest {
 
 	@Test
 	public void shouldCreateApplicationFile() {
-		ApplicationFile appFile = Given.applicationFile();
+		ApplicationFile appFile = Given.applicationFile(null, null, null, null, null, null, null, null, null);
 		
 		this.controller.create(this.uploadFile, appFile);
 
@@ -46,7 +45,7 @@ public class ApplicationFileControllerTest {
 	
 	@Test
 	public void shouldUpdateApplicationFile() {
-		ApplicationFile appFile = Given.applicationFile();
+		ApplicationFile appFile = Given.applicationFile(null, null, null, null, null, null, null, null, null);
 		
 		this.controller.update(appFile);
 

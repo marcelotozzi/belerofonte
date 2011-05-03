@@ -1,5 +1,8 @@
 package br.com.belerofonte.dao;
 
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
@@ -8,21 +11,36 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 @RequestScoped
 public class ApplicationFileDAO {
 
-	public void save(ApplicationFile appFile) {
-		// TODO Auto-generated method stub
+	private Session session;
+
+	public ApplicationFileDAO(Session session) {
+		this.session = session;
+	}
+	
+	public void save(ApplicationFile applicationFile) {
+		this.session.save(applicationFile);
 	}
 
 	public ApplicationFile load(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return (ApplicationFile) this.session.load(ApplicationFile.class, id);
 	}
 
 	public void delete(ApplicationFile applicationFile) {
-		// TODO Auto-generated method stub
+		this.session.delete(applicationFile);
 	}
 
 	public void update(ApplicationFile applicationFile) {
-		// TODO Auto-generated method stub
-		
+		this.session.update(applicationFile);
+	}
+
+	public ApplicationFile findByName(String name) {
+		return (ApplicationFile) this.session
+		.createCriteria(ApplicationFile.class)
+		.add(Restrictions.eq("name", name))
+		.uniqueResult();
+	}
+
+	public void remove(ApplicationFile applicationFile) {
+		this.session.delete(applicationFile);
 	}
 }

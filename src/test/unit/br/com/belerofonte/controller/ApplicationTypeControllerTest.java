@@ -33,7 +33,7 @@ public class ApplicationTypeControllerTest {
 	
 	@Test
 	public void shouldRegisterApplicationType() {
-		ApplicationType applicationType = Given.applicationType("Ação");
+		ApplicationType applicationType = Given.applicationType(null, "Ação");
 
 		this.controller.create(applicationType);
 
@@ -42,7 +42,7 @@ public class ApplicationTypeControllerTest {
 	
 	@Test
 	public void shouldUpdateApplicationType() {
-		ApplicationType applicationType = Given.applicationType("Ação");
+		ApplicationType applicationType = Given.applicationType(null, "Ação");
 		
 		this.controller.update(applicationType);
 
