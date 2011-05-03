@@ -10,20 +10,24 @@ import org.mockito.MockitoAnnotations;
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
+import br.com.belerofonte.service.ApplicationFileService;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
 public class ApplicationFileControllerTest {
 
 	private ApplicationFileController controller;
+	private ApplicationFileService applicationFileService;
+
 	@Mock
 	private ApplicationFileDAO applicationFileDAO;
 	@Mock
-	private UploadedFile uploadFile; 
+	private UploadedFile uploadFile;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		this.controller = new ApplicationFileController(this.applicationFileDAO);
+		this.applicationFileService = new ApplicationFileService(this.applicationFileDAO);
+		this.controller = new ApplicationFileController(this.applicationFileDAO, this.applicationFileService);
 	}
 
 	@After
@@ -31,9 +35,10 @@ public class ApplicationFileControllerTest {
 	}
 
 	@Test
-	public void shouldUploadFile() {
+	public void shouldCreateFile() {
 		ApplicationFile appFile = Given.applicationFile();
-		this.controller.upload(this.uploadFile, appFile);
+		
+		this.controller.create(this.uploadFile, appFile);
 
 		Mockito.verify(this.applicationFileDAO).save(appFile);
 	}
@@ -42,9 +47,8 @@ public class ApplicationFileControllerTest {
 	public void shouldDeleteFile() {
 		ApplicationFile appFile = this.applicationFileDAO.load(1L);
 
-		this.controller.deleteFile(1L);
+		this.controller.delete(1L);
 
 		Mockito.verify(this.applicationFileDAO).delete(appFile);
-
 	}
 }
