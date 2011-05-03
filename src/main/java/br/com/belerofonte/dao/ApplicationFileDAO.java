@@ -20,4 +20,9 @@ public class ApplicationFileDAO {
 	public void delete(ApplicationFile applicationFile) {
 		// TODO Auto-generated method stub
 	}
+
+	public void update(ApplicationFile applicationFile) {
+		// TODO Auto-generated method stub
+		
+	}
 }

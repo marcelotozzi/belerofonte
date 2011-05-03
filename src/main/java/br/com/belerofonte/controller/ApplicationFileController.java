@@ -24,4 +24,8 @@ public class ApplicationFileController {
 	public void delete(long id) {
 		this.applicationFileDAO.delete(this.applicationFileDAO.load(id));
 	}
+
+	public void update(ApplicationFile applicationFile) {
+		this.applicationFileDAO.update(applicationFile);
+	}
 }

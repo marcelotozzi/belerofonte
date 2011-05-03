@@ -10,6 +10,7 @@ import org.mockito.MockitoAnnotations;
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
+import br.com.belerofonte.model.ApplicationType;
 import br.com.belerofonte.service.ApplicationFileService;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
@@ -35,16 +36,25 @@ public class ApplicationFileControllerTest {
 	}
 
 	@Test
-	public void shouldCreateFile() {
+	public void shouldCreateApplicationFile() {
 		ApplicationFile appFile = Given.applicationFile();
 		
 		this.controller.create(this.uploadFile, appFile);
 
 		Mockito.verify(this.applicationFileDAO).save(appFile);
 	}
-
+	
 	@Test
-	public void shouldDeleteFile() {
+	public void shouldUpdateApplicationFile() {
+		ApplicationFile appFile = Given.applicationFile();
+		
+		this.controller.update(appFile);
+
+		Mockito.verify(this.applicationFileDAO).update(appFile);
+	}
+	
+	@Test
+	public void shouldDeleteApplicationFile() {
 		ApplicationFile appFile = this.applicationFileDAO.load(1L);
 
 		this.controller.delete(1L);

@@ -19,6 +19,7 @@
 		<property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
 
 		<mapping class="br.com.belerofonte.model.User" />
+		<mapping class="br.com.belerofonte.model.ApplicationFile" />
 		<mapping class="br.com.belerofonte.model.Plataform" />		
 		<mapping class="br.com.belerofonte.model.ApplicationType" />
 	</session-factory>

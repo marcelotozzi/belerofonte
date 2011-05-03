@@ -5,6 +5,7 @@ import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -19,8 +20,8 @@ public class ApplicationFile {
 	private String description;
 	@NotNull @NotEmpty private Long sizeOfFile;
 	@NotNull @NotEmpty private String contentType;
-	@NotNull @NotEmpty private Plataform plataform;
-	@NotNull @NotEmpty private ApplicationType applicationType;
+	@NotNull @NotEmpty @ManyToOne private Plataform plataform;
+	@NotNull @NotEmpty @ManyToOne private ApplicationType applicationType;
 	@Temporal(TemporalType.DATE) private Calendar uploadDate;
 	private Long numberOfDownloads;
 
