@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.model.ApplicationType;
+import br.com.belerofonte.model.Category;
 import br.com.belerofonte.model.Plataform;
 import br.com.belerofonte.model.User;
 
@@ -59,5 +60,12 @@ public class Given {
 		appFile.setApplicationType(applicationType);
 		appFile.setUploadDate(uploadDate);
 		return appFile;
+	}
+
+	public static Category category(long id, String name) {
+		Category cat = new Category();
+		cat.setId(id);
+		cat.setName(name);
+		return cat;
 	}
 }

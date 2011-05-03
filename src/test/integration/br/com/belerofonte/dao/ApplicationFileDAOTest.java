@@ -1,7 +1,5 @@
 package br.com.belerofonte.dao;
 
-import static org.junit.Assert.fail;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
