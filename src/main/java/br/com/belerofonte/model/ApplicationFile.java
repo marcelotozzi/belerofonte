@@ -23,7 +23,7 @@ public class ApplicationFile {
 	@NotNull @ManyToOne private Plataform plataform;
 	@NotNull @ManyToOne private ApplicationType applicationType;
 	@Temporal(TemporalType.DATE) private Calendar uploadDate;
-	private Long numberOfDownloads;
+	@NotNull private Long numberOfDownloads;
 
 	public void setId(Long id) {
 		this.id = id;

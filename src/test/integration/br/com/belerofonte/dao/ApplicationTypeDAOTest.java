@@ -3,8 +3,10 @@ package br.com.belerofonte.dao;
 import junit.framework.Assert;
 
 import org.hibernate.ObjectNotFoundException;
+import org.hibernate.PropertyValueException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.validator.InvalidStateException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,7 +58,7 @@ public class ApplicationTypeDAOTest extends DaoTest {
 		Assert.assertEquals(applicationTypeByName.getId(), applicationTypeByLoad.getId());
 		Assert.assertEquals(applicationTypeByName.getName(), applicationTypeByLoad.getName());
 	}
-
+	
 	@Test(expected = ObjectNotFoundException.class)
 	public void shouldNotLoadInvalidApplicationType() {
 		ApplicationType applicationTypeByLoad = this.applicationTypeDAO.load(10000L);
@@ -72,7 +74,17 @@ public class ApplicationTypeDAOTest extends DaoTest {
 
 		Assert.assertEquals("Ação", applicationType.getName());
 	}
-
+	
+	@Test(expected=PropertyValueException.class)
+	public void shouldNotRegisterWithNameNullApplicationType(){
+		this.applicationTypeDAO.save(Given.applicationType(null, null));
+	}
+	
+	@Test(expected=InvalidStateException.class)
+	public void shouldNotRegisterWithNameEmptyApplicationType(){
+		this.applicationTypeDAO.save(Given.applicationType(null, ""));
+	}
+	
 	@Test
 	public void shouldUpdateApplicationType() {
 		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
