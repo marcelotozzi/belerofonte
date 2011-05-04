@@ -1,9 +1,17 @@
 package br.com.belerofonte.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.validator.NotEmpty;
+import org.hibernate.validator.NotNull;
+
+@Entity
 public class ApplicationCategory {
 
-	private Long id;
-	private String name;
+	@Id @GeneratedValue private Long id;
+	@NotNull @NotEmpty private String name;
 	
 	public String getName() {
 		return name;

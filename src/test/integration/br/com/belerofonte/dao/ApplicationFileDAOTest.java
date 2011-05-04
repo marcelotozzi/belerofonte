@@ -138,6 +138,18 @@ public class ApplicationFileDAOTest extends DaoTest {
 		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 	}
+	
+	@Test(expected=PropertyValueException.class)
+	public void shouldNotRegisterWithNumberOfDownloadsEmptyApplicationFile(){
+		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "", 
+				null, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+	}
+	
+	@Test(expected=PropertyValueException.class)
+	public void shouldNotRegisterWithSizeOfFileEmptyApplicationFile(){
+		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "", 
+				1l, null, GregorianCalendar.getInstance(), "Whatever", "Android"));
+	}
 
 	@Test
 	public void shouldUpdateApplicationFile() {

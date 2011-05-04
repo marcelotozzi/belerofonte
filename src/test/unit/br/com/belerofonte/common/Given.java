@@ -68,4 +68,13 @@ public class Given {
 		cat.setName(name);
 		return cat;
 	}
+
+	public static ApplicationCategory applicationCategory(Long id,String name) {
+		ApplicationCategory appCategory = new ApplicationCategory();
+		if (id != null) {
+			appCategory.setId(id);
+		}
+		appCategory.setName(name);
+		return appCategory;
+	}
 }
