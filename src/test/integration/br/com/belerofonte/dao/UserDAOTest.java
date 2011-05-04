@@ -92,13 +92,16 @@ public class UserDAOTest extends DaoTest {
 	@Test(expected = InvalidStateException.class)
 	public void shouldNotSaveUserWithNameEmpty() {
 		this.userDAO.save(Given.user(null, "", "SaveUser", "SaveUser@gmail.com", "senha", "senha"));
-
-		User user = this.userDAO.findByUsername("SaveUser");
-
-		Assert.assertEquals("SaveUser", user.getUsername());
-		Assert.assertEquals("SaveUser@gmail.com", user.getEmail());
-		Assert.assertEquals("senha", user.getPassword());
-		Assert.assertEquals("senha", user.getConfirmPassword());
+	}
+	
+	@Test(expected = PropertyValueException.class)
+	public void shouldNotSaveUserWithUsernameNull() {
+		this.userDAO.save(Given.user(null, "SaveUser", null, "SaveUser@gmail.com", "senha", "senha"));
+	}
+	
+	@Test(expected = InvalidStateException.class)
+	public void shouldNotSaveUserWithUsernameEmpty() {
+		this.userDAO.save(Given.user(null, "SaveUser", "", "SaveUser@gmail.com", "senha", "senha"));
 	}
 
 	@Test(expected = InvalidStateException.class)
