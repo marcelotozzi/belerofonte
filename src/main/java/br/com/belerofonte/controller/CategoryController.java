@@ -1,21 +1,21 @@
 package br.com.belerofonte.controller;
 
-import br.com.belerofonte.dao.CategoryDAO;
-import br.com.belerofonte.model.Category;
+import br.com.belerofonte.dao.ApplicationCategoryDAO;
+import br.com.belerofonte.model.ApplicationCategory;
 
 public class CategoryController {
 
-	private CategoryDAO categoryDAO;
+	private ApplicationCategoryDAO categoryDAO;
 
-	public CategoryController(CategoryDAO categoryDAO) {
+	public CategoryController(ApplicationCategoryDAO categoryDAO) {
 		this.categoryDAO = categoryDAO;
 	}
 
-	public void create(Category category) {
+	public void create(ApplicationCategory category) {
 		this.categoryDAO.save(category);
 	}
 
-	public void update(Category category) {
+	public void update(ApplicationCategory category) {
 		this.categoryDAO.update(category);
 	}
 

@@ -9,13 +9,13 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import br.com.belerofonte.common.Given;
-import br.com.belerofonte.dao.CategoryDAO;
-import br.com.belerofonte.model.Category;
+import br.com.belerofonte.dao.ApplicationCategoryDAO;
+import br.com.belerofonte.model.ApplicationCategory;
 
 public class CategoryControllerTest {
 
 	private CategoryController controller;
-	@Mock private CategoryDAO categoryDAO;
+	@Mock private ApplicationCategoryDAO categoryDAO;
 
 	@Before
 	public void setUp() throws Exception {
@@ -29,7 +29,7 @@ public class CategoryControllerTest {
 	
 	@Test
 	public void shouldRegisterCategory() {
-		Category cat = Given.category(1L,"ANDROID");
+		ApplicationCategory cat = Given.category(1L,"ANDROID");
 		
 		this.controller.create(cat);
 		
@@ -38,7 +38,7 @@ public class CategoryControllerTest {
 	
 	@Test
 	public void shouldUpdateCategory() {
-		Category cat = Given.category(1L,"ANDROID");
+		ApplicationCategory cat = Given.category(1L,"ANDROID");
 		
 		this.controller.update(cat);
 		
@@ -47,7 +47,7 @@ public class CategoryControllerTest {
 
 	@Test
 	public void shouldDeleteCategory() {
-		Category cat = this.categoryDAO.load(1L);
+		ApplicationCategory cat = this.categoryDAO.load(1L);
 
 		this.controller.delete(1L);
 

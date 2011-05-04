@@ -1,6 +1,6 @@
 package br.com.belerofonte.model;
 
-public class Category {
+public class ApplicationCategory {
 
 	private Long id;
 	private String name;

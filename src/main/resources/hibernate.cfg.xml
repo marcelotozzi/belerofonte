@@ -22,6 +22,7 @@
 		<mapping class="br.com.belerofonte.model.ApplicationFile" />
 		<mapping class="br.com.belerofonte.model.Plataform" />		
 		<mapping class="br.com.belerofonte.model.ApplicationType" />
+		<mapping class="br.com.belerofonte.model.ApplicationCategory" />
 	</session-factory>
 
 </hibernate-configuration>

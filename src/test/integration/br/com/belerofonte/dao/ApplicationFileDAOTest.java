@@ -9,7 +9,6 @@ import org.hibernate.ObjectNotFoundException;
 import org.hibernate.PropertyValueException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.validator.InvalidStateException;
 import org.junit.After;
 import org.junit.Before;
@@ -44,7 +43,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 
 	@Test
 	public void shouldFindByName() {
-		this.applicationFileDAO.save(givenApplicationType("Angry Birds", "angry_birds.file", "Description", "contentType", 
+		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "contentType", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 
 		ApplicationFile applicationFile = this.applicationFileDAO.findByName("Angry Birds");
@@ -62,7 +61,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 	@Test
 	public void shouldSaveApplicationFile() {
 		
-		ApplicationFile appFile = givenApplicationType("Angry Birds", "angry_birds.file", "Description", "contentType", 
+		ApplicationFile appFile = givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "contentType", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android");
 		
 		this.applicationFileDAO.save(appFile);
@@ -74,7 +73,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 
 	@Test
 	public void shouldLoadApplicationFile() {
-		this.applicationFileDAO.save(givenApplicationType("Angry Birds", "angry_birds.file", "Description", "contentType", 
+		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "contentType", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 
 		ApplicationFile applicationFileByName = this.applicationFileDAO.findByName("Angry Birds");
@@ -92,7 +91,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 
 	@Test
 	public void shouldRemoveApplicationFile() {
-		this.applicationFileDAO.save(givenApplicationType("Angry Birds", "angry_birds.file", "Description", "contentType", 
+		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "contentType", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 
 		ApplicationFile applicationFile = this.applicationFileDAO.findByName("Angry Birds");
@@ -106,49 +105,43 @@ public class ApplicationFileDAOTest extends DaoTest {
 	
 	@Test(expected=PropertyValueException.class)
 	public void shouldNotRegisterWithNameNullApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationType(null, "angry_birds.file", "Description", "contentType", 
+		this.applicationFileDAO.save(givenApplicationFile(null, "angry_birds.file", "Description", "contentType", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 	}
 	
 	@Test(expected=InvalidStateException.class)
 	public void shouldNotRegisterWithNameEmptyApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationType("", "angry_birds.file", "Description", "contentType", 
+		this.applicationFileDAO.save(givenApplicationFile("", "angry_birds.file", "Description", "contentType", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 	}
 	
 	@Test(expected=PropertyValueException.class)
 	public void shouldNotRegisterWithNameOfFileNullApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationType("Angry Birds", null, "Description", "contentType", 
+		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", null, "Description", "contentType", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 	}
 	
 	@Test(expected=InvalidStateException.class)
 	public void shouldNotRegisterWithNameOfFileEmptyApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationType("Angry Birds", "", "Description", "contentType", 
+		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "", "Description", "contentType", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 	}
 	
 	@Test(expected=PropertyValueException.class)
 	public void shouldNotRegisterWithContentTypeNullApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationType("Angry Birds", "angry_birds.file", "Description", null, 
+		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", null, 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 	}
 	
 	@Test(expected=InvalidStateException.class)
 	public void shouldNotRegisterWithContentTypeEmptyApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationType("Angry Birds", "angry_birds.file", "Description", "", 
+		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
-	}
-	
-	@Test(expected=ConstraintViolationException.class)
-	public void shouldNotRegisterWithNumberOfDownloadsNullApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationType("Angry Birds", "angry_birds.file", "Description", "contentType", 
-				null, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 	}
 
 	@Test
 	public void shouldUpdateApplicationFile() {
-		this.applicationFileDAO.save(givenApplicationType("Angry Birds", "angry_birds.file", "Description", "contentType", 
+		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "contentType", 
 				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
 
 		ApplicationFile p = this.applicationFileDAO.findByName("Angry Birds");
@@ -161,7 +154,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 		Assert.assertEquals("Angry Birds Rio", applicationFile.getName());
 	}
 	
-	private ApplicationFile givenApplicationType(String name, String nameOfFile, String description, String contentType, 
+	private ApplicationFile givenApplicationFile(String name, String nameOfFile, String description, String contentType, 
 			Long numberOfDownloads, Long sizeOfFile, Calendar uploadDate, String applicationType, String plataform) {
 		ApplicationFile appFile = new ApplicationFile();
 		appFile.setName(name);
