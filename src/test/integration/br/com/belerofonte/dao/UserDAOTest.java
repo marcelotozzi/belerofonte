@@ -3,6 +3,7 @@ package br.com.belerofonte.dao;
 import junit.framework.Assert;
 
 import org.hibernate.ObjectNotFoundException;
+import org.hibernate.PropertyValueException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.validator.InvalidStateException;
@@ -74,6 +75,23 @@ public class UserDAOTest extends DaoTest {
 	@Test
 	public void shouldSaveUser() {
 		this.userDAO.save(Given.user(null, "SaveUser", "SaveUser", "SaveUser@gmail.com", "senha", "senha"));
+
+		User user = this.userDAO.findByUsername("SaveUser");
+
+		Assert.assertEquals("SaveUser", user.getUsername());
+		Assert.assertEquals("SaveUser@gmail.com", user.getEmail());
+		Assert.assertEquals("senha", user.getPassword());
+		Assert.assertEquals("senha", user.getConfirmPassword());
+	}
+	
+	@Test(expected = PropertyValueException.class)
+	public void shouldNotSaveUserWithNameNull() {
+		this.userDAO.save(Given.user(null, null, "SaveUser", "SaveUser@gmail.com", "senha", "senha"));
+	}
+	
+	@Test(expected = InvalidStateException.class)
+	public void shouldNotSaveUserWithNameEmpty() {
+		this.userDAO.save(Given.user(null, "", "SaveUser", "SaveUser@gmail.com", "senha", "senha"));
 
 		User user = this.userDAO.findByUsername("SaveUser");
 

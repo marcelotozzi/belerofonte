@@ -3,8 +3,10 @@ package br.com.belerofonte.dao;
 import junit.framework.Assert;
 
 import org.hibernate.ObjectNotFoundException;
+import org.hibernate.PropertyValueException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.validator.InvalidStateException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -71,6 +73,16 @@ public class PlataformDAOTest extends DaoTest {
 		Plataform plataform = this.plataformDAO.findByName("ANDROID");
 
 		Assert.assertEquals("ANDROID", plataform.getName());
+	}
+	
+	@Test(expected=InvalidStateException.class)
+	public void shouldNotSaveWithNameEmptyPlataform(){
+		this.plataformDAO.save(Given.plataform(null, ""));
+	}
+	
+	@Test(expected=PropertyValueException.class)
+	public void shouldNotSaveWithNameNullPlataform(){
+		this.plataformDAO.save(Given.plataform(null, null));
 	}
 
 	@Test
