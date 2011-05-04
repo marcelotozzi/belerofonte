@@ -14,7 +14,7 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Login</h3>
-					<form action="<c:url value="authenticates"/>" method="POST"> 
+					<form id="formLogin" action="<c:url value="authenticates"/>" method="POST"> 
 						Login <input type="text" name="user.username"><br>
 						Senha <input type="password" name="user.password"><br>
 						<input type="submit" value="Login">

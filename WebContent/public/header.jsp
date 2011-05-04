@@ -4,7 +4,9 @@
    		<div class="container">
     		<ul>
                 <c:if test="${!account.logged}">
-	                <li id="global-nav-login"><strong><a href="${pageContext.request.contextPath}/account/login" rel="login">Login</a></strong></li>
+	                <li id="global-nav-login">
+	                	<strong><a name="loginlink" href="${pageContext.request.contextPath}/account/login" rel="login">Login</a></strong>
+	                </li>
 	            </c:if>
 	            <c:if test="${account.logged}">
 		            <li class=""><a href="<c:url value="/account/logoff" />">Logoff</a></li>
@@ -25,7 +27,7 @@
 				<c:if test="${account.logged}">
 					<li class=""><a href="<c:url value="/account" />">Conta</a></li>
 					<c:if test="${account.admin}">
-						<li class=""><a href="<c:url value="/admin" />">Admin</a></li>
+						<li class=""><a name="adminMenu" href="<c:url value="/admin" />">Admin</a></li>
 					</c:if>
 				</c:if>			
         	</ul>
