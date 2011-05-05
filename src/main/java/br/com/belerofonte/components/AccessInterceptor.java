@@ -2,11 +2,9 @@ package br.com.belerofonte.components;
 
 import java.util.Arrays;
 
+import br.com.belerofonte.annotation.InterceptResource;
+import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.controller.AccountController;
-import br.com.belerofonte.controller.AdminController;
-import br.com.belerofonte.controller.TypeController;
-import br.com.belerofonte.controller.PlataformController;
-import br.com.belerofonte.controller.UserController;
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Lazy;
@@ -29,31 +27,9 @@ public class AccessInterceptor implements Interceptor {
 	}
 
 	public boolean accepts(ResourceMethod method) {
-		return method.getResource().getType().isAssignableFrom(AdminController.class) 
-		||
-		method.getResource().getType().isAssignableFrom(PlataformController.class) 
-		||
-		method.getResource().getType().isAssignableFrom(TypeController.class) 
-		||
-		(method.getResource().getType().isAssignableFrom(UserController.class) && 
-				(
-						!(
-								method.getMethod().getName().equals("form")
-								||
-								method.getMethod().getName().equals("create")
-						)
-				)
-		)
-		||
-		(method.getResource().getType().isAssignableFrom(AccountController.class) && 
-				(
-						!(
-								method.getMethod().getName().equals("form") 
-								||
-								method.getMethod().getName().equals("authenticates") 
-						)
-				)
-		);
+		return method.getResource().getType().isAnnotationPresent(InterceptResource.class) || 
+				(method.getResource().getType().isAnnotationPresent(InterceptResource.class)  && 
+					!method.getMethod().isAnnotationPresent(NoInterceptMethod.class));
 	}
 
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object resourceInstance) throws InterceptionException {

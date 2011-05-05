@@ -1,5 +1,7 @@
 package br.com.belerofonte.controller;
 
+import br.com.belerofonte.annotation.InterceptResource;
+import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.components.Account;
 import br.com.belerofonte.dao.UserDAO;
 import br.com.belerofonte.model.User;
@@ -12,6 +14,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 
 @Resource
+@InterceptResource
 public class UserController {
 
 	private Account account;
@@ -23,11 +26,13 @@ public class UserController {
 		this.userDAO = userDAO;
 		this.result = result;
 	}
-	
+
+	@NoInterceptMethod
 	@Path("user/register")
 	public void form() {
 	}
 
+	@NoInterceptMethod
 	@Post
 	@Path("user")
 	public void create(User user) {
