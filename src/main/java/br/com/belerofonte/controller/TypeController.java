@@ -1,5 +1,6 @@
 package br.com.belerofonte.controller;
 
+import br.com.belerofonte.annotation.InterceptResource;
 import br.com.belerofonte.dao.ApplicationTypeDAO;
 import br.com.belerofonte.model.ApplicationType;
 import br.com.caelum.vraptor.Delete;
@@ -11,6 +12,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 
 @Resource
+@InterceptResource
 public class TypeController {
 
 	private ApplicationTypeDAO applicationTypeDAO;
