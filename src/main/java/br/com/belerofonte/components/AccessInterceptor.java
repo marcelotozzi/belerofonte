@@ -19,11 +19,11 @@ import br.com.caelum.vraptor.view.Results;
 
 @Intercepts
 @Lazy
-public class AccountInterceptor implements Interceptor {
+public class AccessInterceptor implements Interceptor {
 	private Account account;
 	private Result result;
 
-	public AccountInterceptor(Account account, Result result) {
+	public AccessInterceptor(Account account, Result result) {
 		this.account = account;
 		this.result = result;
 	}
