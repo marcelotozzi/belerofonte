@@ -11,7 +11,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.resource.DefaultResourceMethod;
 import br.com.caelum.vraptor.util.test.MockResult;
 
-public class AccessAccountControllerInterceptorTest {
+public class AccountControllerInterceptorTest {
 
 	private AccessInterceptor interceptor;
 	private Result result;

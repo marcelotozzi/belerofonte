@@ -10,7 +10,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.resource.DefaultResourceMethod;
 import br.com.caelum.vraptor.util.test.MockResult;
 
-public class AccessCategoryControllerInterceptorTest {
+public class CategoryControllerInterceptorTest {
 	private AccessInterceptor interceptor;
 	private Result result;
 	private Account account;
