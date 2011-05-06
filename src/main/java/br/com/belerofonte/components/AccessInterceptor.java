@@ -27,9 +27,8 @@ public class AccessInterceptor implements Interceptor {
 	}
 
 	public boolean accepts(ResourceMethod method) {
-		return method.getResource().getType().isAnnotationPresent(InterceptResource.class) || 
-				(method.getResource().getType().isAnnotationPresent(InterceptResource.class)  && 
-					!method.getMethod().isAnnotationPresent(NoInterceptMethod.class));
+		return method.getResource().getType().isAnnotationPresent(InterceptResource.class) && 
+				!method.getMethod().isAnnotationPresent(NoInterceptMethod.class);
 	}
 
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object resourceInstance) throws InterceptionException {

@@ -1,8 +1,12 @@
 package br.com.belerofonte.controller;
 
+import br.com.belerofonte.annotation.InterceptResource;
 import br.com.belerofonte.dao.ApplicationCategoryDAO;
 import br.com.belerofonte.model.ApplicationCategory;
+import br.com.caelum.vraptor.Resource;
 
+@Resource
+@InterceptResource
 public class CategoryController {
 
 	private ApplicationCategoryDAO categoryDAO;

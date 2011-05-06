@@ -73,7 +73,7 @@ public class LoginFuncionalTest {
 		
 		Assert.assertEquals("Bem vindo, Username!", welcome.getText());
 		
-		WebElement adminMenu = this.webdriver.findElement(By.name("adminMenu"));
+		this.webdriver.findElement(By.name("adminMenu"));
 	}
 	
 	@Test
