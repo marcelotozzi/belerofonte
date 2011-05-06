@@ -1,5 +1,6 @@
 package br.com.belerofonte.controller;
 
+import br.com.belerofonte.annotation.InterceptResource;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
@@ -7,6 +8,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
 @Resource
+@InterceptResource
 public class FileController {
 
 	private ApplicationFileDAO applicationFileDAO;
@@ -21,7 +23,7 @@ public class FileController {
 		this.applicationFileService.create(uploadedFile,applicationFile);
 	}
 
-	public void delete(long id) {
+	public void delete(Long id) {
 		this.applicationFileDAO.delete(this.applicationFileDAO.load(id));
 	}
 

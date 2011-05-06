@@ -39,20 +39,20 @@ public class TypeController {
 
 	@Delete
 	@Path("/admin/applicationType/{id}")
-	public void delete(long id) {
+	public void delete(Long id) {
 		this.applicationTypeDAO.remove(this.applicationTypeDAO.load(id));
 		this.result.redirectTo(TypeController.class).applicationTypes();
 	}
 	
 	@Get
 	@Path("/admin/applicationType/{id}")
-	public void show(long id) {
+	public void show(Long id) {
 		ApplicationType applicationType = this.applicationTypeDAO.load(id);
 		this.result.include("applicationType", applicationType);
 	}
 	
 	@Path("/admin/applicationType/edit/{id}")
-	public ApplicationType edit(long id) {
+	public ApplicationType edit(Long id) {
 		return this.applicationTypeDAO.load(id);
 	}
 

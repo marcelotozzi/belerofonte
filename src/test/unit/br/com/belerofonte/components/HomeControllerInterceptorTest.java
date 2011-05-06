@@ -20,10 +20,12 @@ public class HomeControllerInterceptorTest {
 		this.result = new MockResult();
 		this.interceptor = new AccessInterceptor(this.account, this.result);
 	}
-	
+
 	@Test
-	public void shouldNotInterceptTheHomeMethodHomeController() throws SecurityException, NoSuchMethodException {
+	public void shouldNotInterceptTheHomeMethodHomeController()
+			throws SecurityException, NoSuchMethodException {
 		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(HomeController.class, HomeController.class.getDeclaredMethod("home"))));
+				.instanceFor(HomeController.class,
+						HomeController.class.getDeclaredMethod("home"))));
 	}
 }

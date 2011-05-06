@@ -39,20 +39,20 @@ public class PlataformController {
 
 	@Delete
 	@Path("/admin/plataform/{id}")
-	public void delete(long id) {
+	public void delete(Long id) {
 		this.plataformDAO.remove(this.plataformDAO.load(id));
 		this.result.redirectTo(PlataformController.class).plataforms();
 	}
 	
 	@Get
 	@Path("/admin/plataform/{id}")
-	public void show(long id) {
+	public void show(Long id) {
 		Plataform plataform = this.plataformDAO.load(id);
 		this.result.include("plataform", plataform);
 	}
 	
 	@Path("/admin/plataform/edit/{id}")
-	public Plataform edit(long id) {
+	public Plataform edit(Long id) {
 		return this.plataformDAO.load(id);
 	}
 

@@ -50,20 +50,20 @@ public class UserController {
 
 	@Delete
 	@Path("/user/{id}")
-	public void delete(long id) {
+	public void delete(Long id) {
 		this.userDAO.remove(this.userDAO.load(id));
 		this.result.redirectTo(UserController.class).show(this.account.getUser().getId());
 	}
 
 	@Get
 	@Path("/user/{id}/{login}")
-	public void show(long id) {
+	public void show(Long id) {
 		User person = this.userDAO.load(id);
 		this.result.include("person", person);
 	}
 
 	@Path("/user/edit/{id}")
-	public User edit(long id) {
+	public User edit(Long id) {
 		return this.userDAO.load(id);
 	}
 

@@ -22,25 +22,26 @@ public class CategoryControllerInterceptorTest {
 	}
 
 	@Test
-	public void shouldInterceptCreateMethodCategoryController() throws SecurityException, NoSuchMethodException {
-		
-		System.out.println();
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(CategoryController.class,
-						CategoryController.class.getDeclaredMethod("create", ApplicationCategory.class))));
+	public void shouldInterceptCreateMethodCategoryController()
+			throws SecurityException, NoSuchMethodException {
+		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod.instanceFor(
+				CategoryController.class, CategoryController.class
+						.getDeclaredMethod("create", ApplicationCategory.class))));
 	}
-	
+
 	@Test
-	public void shouldInterceptUpdateMethodCategoryController() throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(CategoryController.class,
-						CategoryController.class.getDeclaredMethod("update",ApplicationCategory.class))));
+	public void shouldInterceptUpdateMethodCategoryController()
+			throws SecurityException, NoSuchMethodException {
+		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod.instanceFor(
+				CategoryController.class, CategoryController.class
+						.getDeclaredMethod("update", ApplicationCategory.class))));
 	}
-	
+
 	@Test
-	public void shouldInterceptDeleteMethodCategoryController() throws SecurityException, NoSuchMethodException {
+	public void shouldInterceptDeleteMethodCategoryController()
+			throws SecurityException, NoSuchMethodException {
 		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(CategoryController.class,
-						CategoryController.class.getDeclaredMethod("delete", Long.class))));
+				.instanceFor(CategoryController.class, CategoryController.class
+						.getDeclaredMethod("delete", Long.class))));
 	}
 }

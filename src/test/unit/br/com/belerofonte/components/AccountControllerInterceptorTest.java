@@ -28,26 +28,34 @@ public class AccountControllerInterceptorTest {
 	}
 
 	@Test
-	public void shouldNotInterceptTheFormMethodAccountController() throws SecurityException, NoSuchMethodException {
+	public void shouldNotInterceptTheFormMethodAccountController()
+			throws SecurityException, NoSuchMethodException {
 		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(AccountController.class, AccountController.class.getDeclaredMethod("form"))));
+				.instanceFor(AccountController.class,
+						AccountController.class.getDeclaredMethod("form"))));
 	}
-	
+
 	@Test
-	public void shouldNotInterceptTheAuthenticatesMethodAccountController() throws SecurityException, NoSuchMethodException {
+	public void shouldNotInterceptTheAuthenticatesMethodAccountController()
+			throws SecurityException, NoSuchMethodException {
 		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(AccountController.class, AccountController.class.getDeclaredMethod("authenticates",User.class))));
+				.instanceFor(AccountController.class, AccountController.class
+						.getDeclaredMethod("authenticates", User.class))));
 	}
-	
+
 	@Test
-	public void shouldInterceptTheLogoffMethodAccountController() throws SecurityException, NoSuchMethodException {
+	public void shouldInterceptTheLogoffMethodAccountController()
+			throws SecurityException, NoSuchMethodException {
 		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(AccountController.class, AccountController.class.getDeclaredMethod("logoff"))));
+				.instanceFor(AccountController.class,
+						AccountController.class.getDeclaredMethod("logoff"))));
 	}
-	
+
 	@Test
-	public void shouldInterceptTheAccountMethodAccountController() throws SecurityException, NoSuchMethodException {
+	public void shouldInterceptTheAccountMethodAccountController()
+			throws SecurityException, NoSuchMethodException {
 		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(AccountController.class, AccountController.class.getDeclaredMethod("account"))));
+				.instanceFor(AccountController.class,
+						AccountController.class.getDeclaredMethod("account"))));
 	}
 }

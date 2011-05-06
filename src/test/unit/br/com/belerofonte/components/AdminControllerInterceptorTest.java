@@ -22,8 +22,10 @@ public class AdminControllerInterceptorTest {
 	}
 
 	@Test
-	public void shouldInterceptTheAdminMethodAdminController() throws SecurityException, NoSuchMethodException {
+	public void shouldInterceptTheAdminMethodAdminController()
+			throws SecurityException, NoSuchMethodException {
 		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(AdminController.class,AdminController.class.getDeclaredMethod("admin"))));
+				.instanceFor(AdminController.class,
+						AdminController.class.getDeclaredMethod("admin"))));
 	}
 }
