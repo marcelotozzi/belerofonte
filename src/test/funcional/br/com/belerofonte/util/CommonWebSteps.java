@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class CommonWebSteps {
-	String serverUrl = "http://localhost:8081/belerofonte";
+	String serverUrl = "http://localhost:8081/belerofonte/";
 	WebDriver driver = new FirefoxDriver();
 
 	public void navigateToPage(String page) {
@@ -14,16 +14,16 @@ public class CommonWebSteps {
 	}
 
 	public void imNotLoggedOn() {
-		navigateToPage("/logout");
+		navigateToPage("account/logout");
 	}
 
 	public void imAtHome() {
-		navigateToPage("/home");
+		navigateToPage("home");
 	}
 
 	public void login(String username, String password) {
 		// imNotLoggedOn();
-		navigateToPage("/account/login");
+		navigateToPage("account/login");
 		TypeAtField(username, "user.username");
 		TypeAtField(password, "user.password");
 		submitForm("formLogin");
