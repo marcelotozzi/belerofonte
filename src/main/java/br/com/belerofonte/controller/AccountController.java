@@ -9,6 +9,8 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.validator.ValidationMessage;
 
 @Resource
 @InterceptResource
@@ -16,11 +18,13 @@ public class AccountController {
 	private final UserDAO userDAO;
 	private Account account;
 	private final Result result;
+	private Validator validator;
 
-	public AccountController(UserDAO dao, Result result, Account account) {
+	public AccountController(UserDAO dao, Result result, Account account,Validator validator) {
 		this.userDAO = dao;
 		this.result = result;
 		this.account = account;
+		this.validator = validator;
 	}
 
 	@NoInterceptMethod
@@ -33,13 +37,14 @@ public class AccountController {
 	@Path("/account/authenticates")	
 	public void authenticates(User user) {
 		User authenticated = this.userDAO.findByUsernameAndPassword(user);
-
+		    
 		if (authenticated != null) {
 			this.account.performLogin(authenticated);
 			result.redirectTo(AccountController.class).account();
-			return;
+		}else{
+			this.validator.add(new ValidationMessage("erro","Login ou senha inv‡lido"));
+			validator.onErrorUsePageOf(AccountController.class).form();
 		}
-		result.redirectTo(AccountController.class).form();
 	}
 
 	@Path("/account/logoff")

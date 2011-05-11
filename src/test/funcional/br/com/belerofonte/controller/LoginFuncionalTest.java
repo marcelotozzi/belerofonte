@@ -1,111 +1,42 @@
 package br.com.belerofonte.controller;
 
-
-import org.hibernate.Session;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.belerofonte.common.Given;
-import br.com.belerofonte.dao.DaoTest;
-import br.com.belerofonte.dao.UserDAO;
+import br.com.belerofonte.util.CommonWebSteps;
 
 public class LoginFuncionalTest {
-	private WebDriver webdriver;
-	private Session session;
-	private UserDAO userDAO;
-	
+	private CommonWebSteps cw;
+
 	@Before
 	public void setUp() throws Exception {
-		this.session = DaoTest.getSession();
-		this.userDAO = new UserDAO(this.session);
-		userDAO.save(Given.user(null, "Admin", "admin", "admin@gmail.com", "admin", "admin"));
-		userDAO.save(Given.user(null, "Username", "username", "admin@gmail.com", "password", "password"));
-		this.session.close();
-		this.webdriver = new FirefoxDriver();
+		cw = new CommonWebSteps();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		this.webdriver.close();
-		this.webdriver.quit();
+		cw.closeAndQuit();
 	}
 
 	@Test
 	public void shouldLoginInAppLikeAdmin() {
-		this.webdriver.get("http://localhost:8081/belerofonte");
+		cw.login("admin", "admin");
 
-		WebElement loginlink = this.webdriver.findElement(By.name("loginlink"));
-		loginlink.click();
-		
-		String username = "admin";
-		String password = "admin";
-		WebElement inputUsername = this.webdriver.findElement(By.name("user.username"));
-		inputUsername.sendKeys(username);
-
-		WebElement inputPassword = this.webdriver.findElement(By.name("user.password"));
-		inputPassword.sendKeys(password);
-
-		WebElement formLogin = this.webdriver.findElement(By.id("formLogin"));
-		formLogin.submit();
-
-		WebElement welcome = this.webdriver.findElement(By.id("welcome"));
-
-		WebElement adminMenu = this.webdriver.findElement(By.name("adminMenu"));
-
-		Assert.assertEquals("Bem vindo, Admin!", welcome.getText());
-		Assert.assertNotNull(adminMenu);
+		cw.checkMessage("Bem vindo, Admin!");
 	}
-	
-	@Test(expected=NoSuchElementException.class)
+
+	@Test
 	public void shouldLoginInAppLikeNormalUser() {
-		this.webdriver.get("http://localhost:8081/belerofonte");
+		cw.login("username", "password");
 
-		WebElement loginlink = this.webdriver.findElement(By.name("loginlink"));
-		loginlink.click();
-		
-		String username = "username";
-		String password = "password";
-		WebElement inputUsername = this.webdriver.findElement(By.name("user.username"));
-		inputUsername.sendKeys(username);
-
-		WebElement inputPassword = this.webdriver.findElement(By.name("user.password"));
-		inputPassword.sendKeys(password);
-
-		WebElement formLogin = this.webdriver.findElement(By.id("formLogin"));
-		formLogin.submit();
-
-		WebElement welcome = this.webdriver.findElement(By.id("welcome"));
-		
-		Assert.assertEquals("Bem vindo, Username!", welcome.getText());
-		
-		this.webdriver.findElement(By.name("adminMenu"));
+		cw.checkMessage("Bem vindo, Username!");
 	}
-	
+
 	@Test
 	public void shouldNotLoginInAppWithInvalidUser() {
-		this.webdriver.get("http://localhost:8081/belerofonte");
+		cw.login("invalid", "invalid");
 
-		WebElement loginlink = this.webdriver.findElement(By.name("loginlink"));
-		loginlink.click();
-		
-		String username = "invalid";
-		String password = "invalid";
-		WebElement inputUsername = this.webdriver.findElement(By.name("user.username"));
-		inputUsername.sendKeys(username);
-
-		WebElement inputPassword = this.webdriver.findElement(By.name("user.password"));
-		inputPassword.sendKeys(password);
-
-		WebElement formLogin = this.webdriver.findElement(By.id("formLogin"));
-		formLogin.submit();
-
-		Assert.assertEquals("http://localhost:8081/belerofonte/account/login", this.webdriver.getCurrentUrl());
+		cw.checkMessage("Login ou senha inv‡lido");
 	}
 }

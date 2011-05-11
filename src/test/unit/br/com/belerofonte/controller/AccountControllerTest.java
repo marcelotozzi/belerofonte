@@ -13,7 +13,10 @@ import br.com.belerofonte.components.Account;
 import br.com.belerofonte.dao.UserDAO;
 import br.com.belerofonte.model.User;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.util.test.MockResult;
+import br.com.caelum.vraptor.util.test.MockValidator;
+import br.com.caelum.vraptor.validator.ValidationException;
 
 public class AccountControllerTest {
 
@@ -22,13 +25,15 @@ public class AccountControllerTest {
 	private Result result;
 	@Mock
 	private UserDAO userDAO;
+	private Validator validator;
 	
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		this.result = new MockResult();
 		this.account = new Account();
-		this.controller = new AccountController(userDAO, result, account);
+		this.validator = new MockValidator();
+		this.controller = new AccountController(userDAO, result, account, validator);
 	}
 
 	@After
@@ -46,7 +51,7 @@ public class AccountControllerTest {
 		Mockito.verify(this.userDAO).findByUsernameAndPassword(user);
 	}
 	
-	@Test
+	@Test(expected=ValidationException.class)
 	public void shouldNotAuthenticateInvalidUser(){
 		User user = Given.invalidUser(1L, "Name","usernameinvalid", "invalid@bele.com", "pass", "pass");
 		Mockito.when(this.userDAO.findByUsernameAndPassword(user)).thenReturn(null);
