@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Administração | Categoria | Registrar</title>
+		<title>Belerofonte | Administração | Categorias</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	</head>
@@ -13,11 +13,16 @@
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Registre uma categoria</h3>
-					<form id="newApplicationType" method="POST" action="<c:url value="/admin/applicationType" />">
-						Nome: <input type="text" name="applicationType.name"><br/>
-						<input type="submit" value="Registrar"> 
-					</form>
+					<h3>Categorias</h3>
+					<a href="category/register">Adicionar</a>
+					<br/>
+					<ul>
+					<c:forEach var="cat" items="${categories}">
+						<li>
+							<p> - ${cat.name} - <a href="<c:url value="category/${cat.id}" />">Ver</a> - <a href="<c:url value="category/edit/${cat.id}" />">Editar</a></p>
+						</li><br/>
+					</c:forEach>
+					</ul>
 				</div>
 			</div>
 		</div>

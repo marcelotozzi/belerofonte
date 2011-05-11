@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Application Type | ${applicationType.name}</title>
+		<title>Belerofonte | Categoria | ${category.name}</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	</head>
@@ -13,7 +13,7 @@
 		<div id="content">
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h2>${applicationType.name}</h2>
+					<h2>${category.name}</h2>
 					<br/>
 					<p>#Listar Apps da categoria</p>
 				</div>

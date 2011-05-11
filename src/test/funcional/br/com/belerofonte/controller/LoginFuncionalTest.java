@@ -1,6 +1,7 @@
 package br.com.belerofonte.controller;
 
 
+import org.hibernate.Session;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,11 +12,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import br.com.belerofonte.common.Given;
+import br.com.belerofonte.dao.DaoTest;
+import br.com.belerofonte.dao.UserDAO;
+
 public class LoginFuncionalTest {
 	private WebDriver webdriver;
-
+	private Session session;
+	private UserDAO userDAO;
+	
 	@Before
 	public void setUp() throws Exception {
+		this.session = DaoTest.getSession();
+		this.userDAO = new UserDAO(this.session);
+		userDAO.save(Given.user(null, "Admin", "admin", "admin@gmail.com", "admin", "admin"));
+		userDAO.save(Given.user(null, "Username", "username", "admin@gmail.com", "password", "password"));
+		this.session.close();
 		this.webdriver = new FirefoxDriver();
 	}
 

@@ -44,4 +44,38 @@ public class CategoryControllerInterceptorTest {
 				.instanceFor(CategoryController.class, CategoryController.class
 						.getDeclaredMethod("delete", Long.class))));
 	}
+	
+	@Test
+	public void shouldInterceptShowMethodCategoryController()
+			throws SecurityException, NoSuchMethodException {
+		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+				.instanceFor(CategoryController.class,
+						CategoryController.class.getDeclaredMethod("show",
+								Long.class))));
+	}
+	
+	@Test
+	public void shouldInterceptEditMethodCategoryController()
+			throws SecurityException, NoSuchMethodException {
+		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+				.instanceFor(CategoryController.class,
+						CategoryController.class.getDeclaredMethod("edit",
+								Long.class))));
+	}
+	
+	@Test
+	public void shouldInterceptFormMethodCategoryController()
+			throws SecurityException, NoSuchMethodException {
+		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+				.instanceFor(CategoryController.class,
+						CategoryController.class.getDeclaredMethod("form"))));
+	}
+	
+	@Test
+	public void shouldInterceptCategoriesMethodCategoryController()
+			throws SecurityException, NoSuchMethodException {
+		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+				.instanceFor(CategoryController.class,
+						CategoryController.class.getDeclaredMethod("categories"))));
+	}
 }

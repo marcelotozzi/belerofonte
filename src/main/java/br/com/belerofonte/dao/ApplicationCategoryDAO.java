@@ -1,5 +1,7 @@
 package br.com.belerofonte.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -34,5 +36,10 @@ public class ApplicationCategoryDAO {
 		.createCriteria(ApplicationCategory.class)
 		.add(Restrictions.eq("name", name))
 		.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<ApplicationCategory> list() {
+		return this.session.createCriteria(ApplicationCategory.class).list();
 	}
 }

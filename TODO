@@ -1,7 +1,7 @@
-- cria cadastro de APLICACOES e GAMES
-- logica para vincular PLATARFOMA e CATEGORIA as APLICACOES 
+- cria layout cadastro de APLICACOES e GAMES
 - Upload dos arquivos das APLICACOES e GAMES
 - Download de Arquivos
+- layout para download
 - Atualizar filtro de acessos
 - Disponibilizar servico de buscas para mobile por xml
 - Pesquisas ?????

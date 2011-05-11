@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Administração | Categorias</title>
+		<title>Belerofonte | Administração | Categoria | Editar</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	</head>
@@ -13,16 +13,12 @@
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Categorias</h3>
-					<a href="applicationType/register">Adicionar</a>
-					<br/>
-					<ul>
-					<c:forEach var="apt" items="${applicationTypes}">
-						<li>
-							<p> - ${apt.name} - <a href="<c:url value="applicationType/${apt.id}" />">Ver</a> - <a href="<c:url value="applicationType/edit/${apt.id}" />">Editar</a></p>
-						</li><br/>
-					</c:forEach>
-					</ul>
+					<h3>Edite >> ${category.name}</h3>
+					<form id="editCategory" method="post" action="<c:url value="/admin/category" />">
+						<input type="hidden" name="category.id" value="${category.id}"><br/>
+						Nome: <input type="text" name="category.name" value="${category.name}"><br/>
+						<button type="submit" value="put" name="_method">Alterar</button> 
+					</form>
 				</div>
 			</div>
 		</div>
