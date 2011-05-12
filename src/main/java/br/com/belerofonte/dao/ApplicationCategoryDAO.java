@@ -6,7 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.belerofonte.model.ApplicationCategory;
+import br.com.caelum.vraptor.ioc.Component;
+import br.com.caelum.vraptor.ioc.RequestScoped;
 
+@Component
+@RequestScoped
 public class ApplicationCategoryDAO {
 
 	private Session session;

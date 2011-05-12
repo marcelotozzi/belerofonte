@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import br.com.belerofonte.util.CommonWebSteps;
 
-public class RegisterSpec {
+public class UserSpec {
 	private CommonWebSteps cw;
 
 	@Before
@@ -26,14 +26,14 @@ public class RegisterSpec {
 		cw.checkMessage("Registre-se");
 		
 		Long aleatorio = System.currentTimeMillis();
-		cw.TypeAtField(aleatorio.toString(), "user.name");
-		cw.TypeAtField(aleatorio.toString(), "user.username");
-		cw.TypeAtField("jose@bele.com", "user.email");
-		cw.TypeAtField("jose", "user.username");
-		cw.TypeAtField("senhadoze", "user.password");
-		cw.TypeAtField("senhadoze", "user.confirmPassword");		
+		cw.typeAtField(aleatorio.toString(), "user.name");
+		cw.typeAtField(aleatorio.toString(), "user.username");
+		cw.typeAtField("jose@bele.com", "user.email");
+		cw.typeAtField("senhadoze", "user.password");
+		cw.typeAtField("senhadoze", "user.confirmPassword");		
 		cw.submitForm("newUser");
 		
 		cw.checkMessage("Bem vindo, "+aleatorio.toString()+"!");
 	}
+
 }

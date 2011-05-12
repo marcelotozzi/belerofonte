@@ -3,11 +3,11 @@ package br.com.belerofonte.util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class CommonWebSteps {
 	String serverUrl = "http://localhost:8081/belerofonte/";
-	WebDriver driver = new HtmlUnitDriver();
+	WebDriver driver = new FirefoxDriver();
 
 	public void navigateToPage(String page) {
 		driver.get(serverUrl + page);
@@ -24,8 +24,8 @@ public class CommonWebSteps {
 	public void login(String username, String password) {
 		// imNotLoggedOn();
 		navigateToPage("account/login");
-		TypeAtField(username, "user.username");
-		TypeAtField(password, "user.password");
+		typeAtField(username, "user.username");
+		typeAtField(password, "user.password");
 		submitForm("formLogin");
 	}
 
@@ -33,7 +33,7 @@ public class CommonWebSteps {
 		this.driver.findElement(By.id(form)).submit();
 	}
 
-	public void TypeAtField(String chars, String inputTextName) {
+	public void typeAtField(String chars, String inputTextName) {
 		this.driver.findElement(By.name(inputTextName)).sendKeys(chars);
 	}
 
@@ -42,7 +42,7 @@ public class CommonWebSteps {
 	}
 
 	public void clickTheButtonByName(String buttonName) {
-		this.driver.findElement(By.id(buttonName)).click();
+		this.driver.findElement(By.name(buttonName)).click();
 	}
 
 	public void checkMessage(String message) {
@@ -54,7 +54,7 @@ public class CommonWebSteps {
 		this.driver.quit();
 	}
 
-	public void clickTheLink(String linkName) {
-		this.driver.findElement(By.linkText(linkName));
+	public void clickTheLink(String linkText) {
+		this.driver.findElement(By.linkText(linkText)).click();
 	}
 }

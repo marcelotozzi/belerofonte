@@ -14,7 +14,7 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Bem vindo, ${account.user.name}!</h3>
-					<a href="user/edit/${account.user.id}">Editar Conta</a>
+					<a id="editAccount" href="user/edit/${account.user.id}">Editar Conta</a>
 				</div>
 			</div>
 		</div>
