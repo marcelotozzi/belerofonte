@@ -3,11 +3,15 @@ package br.com.belerofonte.util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class CommonWebSteps {
 	String serverUrl = "http://localhost:8081/belerofonte/";
-	WebDriver driver = new FirefoxDriver();
+	WebDriver driver = new HtmlUnitDriver();
+	
+	public CommonWebSteps() {
+		PreDados.main(null);
+	}
 
 	public void navigateToPage(String page) {
 		driver.get(serverUrl + page);

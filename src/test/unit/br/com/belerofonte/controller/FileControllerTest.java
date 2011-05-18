@@ -36,7 +36,7 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldCreateApplicationFile() {
-		ApplicationFile appFile = Given.applicationFile(null, null, null, null, null, null, null, null, null);
+		ApplicationFile appFile = Given.applicationFile(null, null, null, null, null, null, null, null, null, null);
 		
 		this.controller.create(this.uploadFile, appFile);
 
@@ -45,7 +45,7 @@ public class FileControllerTest {
 	
 	@Test
 	public void shouldUpdateApplicationFile() {
-		ApplicationFile appFile = Given.applicationFile(null, null, null, null, null, null, null, null, null);
+		ApplicationFile appFile = Given.applicationFile(null, null, null, null, null, null, null, null, null, null);
 		
 		this.controller.update(appFile);
 

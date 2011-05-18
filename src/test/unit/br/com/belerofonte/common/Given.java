@@ -46,7 +46,7 @@ public class Given {
 	}
 
 	public static ApplicationFile applicationFile(Long id, String name, String nameOfFile, String description, 
-			Long sizeOfFile, String contentType, Plataform plataform, ApplicationType applicationType, Calendar uploadDate) {
+			Long sizeOfFile, String contentType, Plataform plataform, ApplicationType applicationType, Calendar uploadDate, Long numberOfDownloads) {
 		ApplicationFile appFile = new ApplicationFile();
 		if (id != null) {
 			appFile.setId(id);
@@ -59,6 +59,7 @@ public class Given {
 		appFile.setPlataform(plataform);
 		appFile.setApplicationType(applicationType);
 		appFile.setUploadDate(uploadDate);
+		appFile.setNumberOfDownloads(numberOfDownloads);
 		return appFile;
 	}
 
