@@ -6,3 +6,5 @@ WebContent/WEB-INF/classes/
 .externalToolBuilders/
 bin
 build
+files
+files/**/*

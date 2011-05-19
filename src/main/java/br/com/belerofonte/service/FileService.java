@@ -17,6 +17,10 @@ public class FileService {
 	}
 	
 	public void create(UploadedFile uploadedFile, ApplicationFile applicationFile) {
+		
+		applicationFile.setNameOfFile(uploadedFile.getFileName());
+		applicationFile.setContentType(uploadedFile.getContentType());
+		
 		this.applicationFileDAO.save(applicationFile);
 	}
 }

@@ -15,6 +15,7 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 public class FileServiceTest {
 	
 	private FileService service;
+	@Mock
 	private UploadedFile uploadedFile;
 	@Mock
 	private ApplicationFileDAO applicationFileDAO;
@@ -32,6 +33,8 @@ public class FileServiceTest {
 	@Test
 	public void shouldCreate() {
 		ApplicationFile appFile = Given.applicationFile(null, null, null, null, null, null, null, null, null, null);
+		
+		Mockito.when(uploadedFile.getContentType()).thenReturn("image/jpg");
 		
 		this.service.create(uploadedFile, appFile);
 		
