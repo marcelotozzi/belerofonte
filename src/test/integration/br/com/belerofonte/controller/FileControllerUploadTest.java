@@ -1,7 +1,6 @@
 package br.com.belerofonte.controller;
 
 import java.io.File;
-import java.util.Calendar;
 
 import junit.framework.Assert;
 
@@ -12,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.belerofonte.common.Given;
+import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.dao.ApplicationTypeDAO;
 import br.com.belerofonte.dao.DaoTest;
@@ -34,6 +34,7 @@ public class FileControllerUploadTest extends DaoTest {
 	private Transaction tx;
 	private PlataformDAO plataformDAO;
 	private ApplicationTypeDAO typeDAO;
+	private PropertiesLoader propertyLoader;
 
 	@Before
 	public void setUp() throws Exception {
@@ -45,7 +46,8 @@ public class FileControllerUploadTest extends DaoTest {
 		this.fileDAO = new ApplicationFileDAO(this.s);
 		this.plataformDAO = new PlataformDAO(this.s);
 		this.typeDAO = new ApplicationTypeDAO(this.s);
-		this.fileService = new FileService(this.fileDAO);
+		this.propertyLoader  = new PropertiesLoader();
+		this.fileService = new FileService(this.fileDAO, this.propertyLoader);
 		this.controller = new FileController(this.fileDAO, this.fileService);
 	}
 
@@ -59,7 +61,7 @@ public class FileControllerUploadTest extends DaoTest {
 		ApplicationFile appFile = Given.applicationFile(null, "image",
 				null, "description", 0L, null,
 				this.plataformDAO.findByName("iOS"),
-				this.typeDAO.findByName("Imagem"), Calendar.getInstance(), 0L);
+				this.typeDAO.findByName("Imagem"), null, 0L);
 
 		this.controller.create(this.uploadFile, appFile);
 		
