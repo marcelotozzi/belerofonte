@@ -12,6 +12,7 @@ public class ApplicationType {
 	@Id @GeneratedValue private Long id;
 	@NotEmpty @NotNull private String name;
 
+
 	public Long getId() {
 		return id;
 	}

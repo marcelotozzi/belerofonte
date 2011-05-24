@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Administração | Categorias</title>
+		<title>Belerofonte | Administração | Categorias | Tipos</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	</head>
@@ -13,15 +13,13 @@
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Categorias</h3>
+					<h3>Tipos</h3>
 					<a href="category/register">Adicionar</a>
 					<br/>
 					<ul>
-					<c:forEach var="cat" items="${categories}">
+					<c:forEach var="type" items="${types}">
 						<li>
-							<p> - ${cat.name} - <a href="<c:url value="category/${cat.id}" />">Ver</a> - 
-												<a href="<c:url value="category/edit/${cat.id}" />">Editar</a> - 
-												<a href="<c:url value="category/type/register" />">Adicionar Tipo</a></p>
+							<p> - ${type.name} - <a href="<c:url value="category/type/${type.id}" />">Ver</a> - <a href="<c:url value="category/type/edit/${type.id}" />">Editar</a></p>
 						</li><br/>
 					</c:forEach>
 					</ul>

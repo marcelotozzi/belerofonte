@@ -8,7 +8,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 public class CommonWebSteps {
 	String serverUrl = "http://localhost:8081/belerofonte/";
 	WebDriver driver = new HtmlUnitDriver();
-	
+
 	public CommonWebSteps() {
 		PreDados.main(null);
 	}
@@ -60,5 +60,21 @@ public class CommonWebSteps {
 
 	public void clickTheLink(String linkText) {
 		this.driver.findElement(By.linkText(linkText)).click();
+	}
+
+	public void givenImInTheAdminPage() {
+		login("admin", "admin");
+		checkMessage("Bem vindo, Admin!");
+		navigateToPage("admin");
+	}
+
+	public void givenImInThePlataformPage() {
+		this.givenImInTheAdminPage();
+		navigateToPage("admin/plataforms");
+	}
+
+	public void givenImInTheCategoriesPage() {
+		givenImInTheAdminPage();
+		clickTheLink("Categorias");
 	}
 }

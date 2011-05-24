@@ -5,7 +5,10 @@ Como fomos bem e nos formamos, agora estou reescrevendo com testes pra ficar fel
 
 - VRaptor
 - Hibernate
+- Hibernate Search
 - JUnit
 - Mockito
+- Selenium
+- FileUpload
 
 Tambem vou refazer a parte mobile, porém nao mais em Java, e sim em Android.

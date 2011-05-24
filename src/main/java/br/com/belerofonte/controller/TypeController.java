@@ -24,43 +24,43 @@ public class TypeController {
 	}
 
 	@Post
-	@Path("/admin/applicationType")
+	@Path("/admin/category/type")
 	public void create(ApplicationType applicationType) {
 		this.applicationTypeDAO.save(applicationType);
 		this.result.redirectTo(TypeController.class).applicationTypes();
 	}
 
 	@Put
-	@Path("/admin/applicationType")
+	@Path("/admin/category/type")
 	public void update(ApplicationType applicationType) {
 		this.applicationTypeDAO.update(applicationType);
 		this.result.redirectTo(TypeController.class).applicationTypes();
 	}
 
 	@Delete
-	@Path("/admin/applicationType/{id}")
+	@Path("/admin/category/type/{id}")
 	public void delete(Long id) {
 		this.applicationTypeDAO.remove(this.applicationTypeDAO.load(id));
 		this.result.redirectTo(TypeController.class).applicationTypes();
 	}
 	
 	@Get
-	@Path("/admin/applicationType/{id}")
+	@Path("/admin/category/type/{id}")
 	public void show(Long id) {
 		ApplicationType applicationType = this.applicationTypeDAO.load(id);
 		this.result.include("applicationType", applicationType);
 	}
 	
-	@Path("/admin/applicationType/edit/{id}")
+	@Path("/admin/category/type/edit/{id}")
 	public ApplicationType edit(Long id) {
 		return this.applicationTypeDAO.load(id);
 	}
 
-	@Path("/admin/applicationType/register")
+	@Path("/admin/category/type/register")
 	public void form() {
 	}
 	
-	@Path("/admin/applicationTypes")
+	@Path("/admin/category/types")
 	public void applicationTypes(){	
 		this.result.include("applicationTypes", this.applicationTypeDAO.list());
 	}

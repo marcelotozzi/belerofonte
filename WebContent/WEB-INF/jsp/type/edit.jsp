@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Administração | Categorias</title>
+		<title>Belerofonte | Administração | Categoria | Tipos | Editar</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	</head>
@@ -13,18 +13,12 @@
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Categorias</h3>
-					<a href="category/register">Adicionar</a>
-					<br/>
-					<ul>
-					<c:forEach var="cat" items="${categories}">
-						<li>
-							<p> - ${cat.name} - <a href="<c:url value="category/${cat.id}" />">Ver</a> - 
-												<a href="<c:url value="category/edit/${cat.id}" />">Editar</a> - 
-												<a href="<c:url value="category/type/register" />">Adicionar Tipo</a></p>
-						</li><br/>
-					</c:forEach>
-					</ul>
+					<h3>Edite >> ${type.name}</h3>
+					<form id="editType" method="post" action="<c:url value="/admin/category/type" />">
+						<input type="hidden" name="type.id" value="${type.id}"><br/>
+						Nome: <input type="text" name="type.name" value="${type.name}"><br/>
+						<button type="submit" value="put" name="_method">Alterar</button> 
+					</form>
 				</div>
 			</div>
 		</div>
