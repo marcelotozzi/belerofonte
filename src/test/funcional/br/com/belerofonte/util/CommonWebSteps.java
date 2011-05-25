@@ -77,4 +77,8 @@ public class CommonWebSteps {
 		givenImInTheAdminPage();
 		clickTheLink("Categorias");
 	}
+
+	public void setDriver(WebDriver webDriver) {
+		this.driver = webDriver;
+	}
 }

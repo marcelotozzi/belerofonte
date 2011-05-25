@@ -4,6 +4,7 @@ import br.com.belerofonte.annotation.InterceptResource;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
+import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
@@ -29,5 +30,9 @@ public class FileController {
 
 	public void update(ApplicationFile applicationFile) {
 		this.applicationFileDAO.update(applicationFile);
+	}
+	
+	@Path("file/register")
+	public void form(){
 	}
 }
