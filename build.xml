@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Belerofonte" default="assembly" basedir=".">
+	<property file="build.properties" />
+	<property name="webinf.lib.dir" value="WebContent/WEB-INF/lib" />
+
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: clean                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="clean">
+		<delete file="belerofonte*" failonerror="false" />
+		<delete file="belerofonte.war" />
+
+	</target>
+
+	<!-- ================================= 
+	          target: compile              
+	         ================================= -->
+	<target name="compile" depends="" description="--> compiles the project">
+
+		<mkdir dir="WebContent/WEB-INF/classes" />
+		<path id="buildpath">
+			<fileset dir="WebContent/WEB-INF/lib" />
+		</path>
+		<javac srcdir="src/main/java" destdir="WebContent/WEB-INF/classes" classpathref="buildpath" />
+
+	</target>
+
+	<target name="assembly" depends="clean, compile" description="--> assemblies the distribution">
+
+		<war destfile="belerofonte.war" webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="WebContent" excludes="src/main/webapp/WEB-INF/web.xml" />
+		</war>
+
+	</target>
+</project>

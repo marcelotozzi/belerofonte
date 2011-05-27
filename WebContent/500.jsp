@@ -4,19 +4,21 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Administração | Categoria | Registrar</title>
+		<title>Erro 500! #FUUU</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 	</head>
 	<body>
 		<c:import url="/public/header.jsp"></c:import>
-		<div id="content">
+		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Registre uma categoria</h3>
-					<form id="newCategory" method="POST" action="<c:url value="/admin/category" />">
-						Nome: <input type="text" name="category.name"><br/>
-						<input type="submit" value="Registrar"> 
-					</form>
+					<br/><br/>
+					<div style="width: 800px; height: 400px; float: left; ">
+						<h2>Ops!Erro 500, quem é esse?</h2>
+						<br/>
+						<label>Página não encontrada!</label><br/>
+						<label>#FUUUUUUUUUUUUUU</label>
+					</div>
 				</div>
 			</div>
 		</div>

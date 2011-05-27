@@ -5,23 +5,30 @@ import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
 import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
+import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
 @Resource
 @InterceptResource
 public class FileController {
 
-	private ApplicationFileDAO applicationFileDAO;
-	private FileService applicationFileService;
+	private final ApplicationFileDAO applicationFileDAO;
+	private final FileService applicationFileService;
+	private final Result result;
 
-	public FileController(ApplicationFileDAO applicationFileDAO, FileService applicationFileService) {
+	public FileController(ApplicationFileDAO applicationFileDAO, FileService applicationFileService, Result result) {
 		this.applicationFileDAO = applicationFileDAO;
 		this.applicationFileService  = applicationFileService;
+		this.result = result;
 	}
 
+	@Post
+	@Path("/admin/file/create")
 	public void create(UploadedFile uploadedFile, ApplicationFile applicationFile) {
 		this.applicationFileService.create(uploadedFile,applicationFile);
+		this.result.redirectTo(FileController.class).show();
 	}
 
 	public void delete(Long id) {
@@ -34,5 +41,10 @@ public class FileController {
 	
 	@Path("file/register")
 	public void form(){
+	}
+	
+	@Path("file/show/")
+	public void show(){
+		
 	}
 }

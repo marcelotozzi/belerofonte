@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 
 @Resource
 @InterceptResource
@@ -63,5 +64,10 @@ public class CategoryController {
 	@Path("/admin/categories")
 	public void categories(){		
 		this.result.include("categories", this.categoryDAO.list());
+	}
+	
+	@Path("/admin/categories.json")
+	public void plataformsJson(){	
+		this.result.use(Results.json()).from(this.categoryDAO.list(), "categories").serialize();
 	}
 }

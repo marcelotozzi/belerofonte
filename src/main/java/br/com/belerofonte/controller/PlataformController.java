@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 
 @Resource
 @InterceptResource
@@ -63,5 +64,10 @@ public class PlataformController {
 	@Path("/admin/plataforms")
 	public void plataforms(){		
 		this.result.include("plataforms", this.plataformDAO.list());
+	}
+	
+	@Path("/admin/plataforms.json")
+	public void plataformsJson(){	
+		this.result.use(Results.json()).from(this.plataformDAO.list(), "plataforms").serialize();
 	}
 }

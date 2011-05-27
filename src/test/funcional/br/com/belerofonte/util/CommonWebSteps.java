@@ -1,15 +1,23 @@
 package br.com.belerofonte.util;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+import br.com.belerofonte.components.PropertiesLoader;
+
 public class CommonWebSteps {
-	String serverUrl = "http://localhost:8081/belerofonte/";
+	String serverUrl;
 	WebDriver driver = new HtmlUnitDriver();
+	private PropertiesLoader loader;
 
 	public CommonWebSteps() {
+		loader = new PropertiesLoader();
+		serverUrl = loader.getValue("homeUrlTest");
 		PreDados.main(null);
 	}
 
@@ -80,5 +88,17 @@ public class CommonWebSteps {
 
 	public void setDriver(WebDriver webDriver) {
 		this.driver = webDriver;
+	}
+
+	public void select(String id, String name) {
+		// WebElement select =
+		// driver.findElement(By.xpath("//select[@id='"+id+"']"));
+		WebElement select = driver.findElement(By.id(id));
+		List<WebElement> allOptions = select.findElements(By.tagName("option"));
+		for (WebElement option : allOptions) {
+			System.out.println(option);
+			System.out.println(String.format("Value is: %s", option.getValue()));
+			option.setSelected();
+		}
 	}
 }

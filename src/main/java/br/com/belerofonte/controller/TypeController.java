@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 
 @Resource
 @InterceptResource
@@ -63,5 +64,10 @@ public class TypeController {
 	@Path("/admin/category/types")
 	public void applicationTypes(){	
 		this.result.include("applicationTypes", this.applicationTypeDAO.list());
+	}
+	
+	@Path("/admin/category/types.json")
+	public void applicationTypesJson(Long categoryId){
+		this.result.use(Results.json()).from(this.applicationTypeDAO.list(), "types").serialize();
 	}
 }

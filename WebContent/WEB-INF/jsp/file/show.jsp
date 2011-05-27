@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Administração | Categoria | Registrar</title>
+		<title>Belerofonte | Arquivo | ${applicationFile.name}</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 	</head>
 	<body>
@@ -12,11 +12,7 @@
 		<div id="content">
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Registre uma categoria</h3>
-					<form id="newCategory" method="POST" action="<c:url value="/admin/category" />">
-						Nome: <input type="text" name="category.name"><br/>
-						<input type="submit" value="Registrar"> 
-					</form>
+					
 				</div>
 			</div>
 		</div>
