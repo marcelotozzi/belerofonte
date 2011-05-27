@@ -20,9 +20,11 @@ import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
 import br.com.belerofonte.util.BeforeDataIntegration;
 import br.com.belerofonte.util.UploadedFileTest;
+import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.caelum.vraptor.util.test.MockResult;
 
 public class FileControllerUploadTest extends DaoTest {
 
@@ -35,6 +37,7 @@ public class FileControllerUploadTest extends DaoTest {
 	private PlataformDAO plataformDAO;
 	private ApplicationTypeDAO typeDAO;
 	private PropertiesLoader propertyLoader;
+	private Result result;
 
 	@Before
 	public void setUp() throws Exception {
@@ -47,8 +50,9 @@ public class FileControllerUploadTest extends DaoTest {
 		this.plataformDAO = new PlataformDAO(this.s);
 		this.typeDAO = new ApplicationTypeDAO(this.s);
 		this.propertyLoader  = new PropertiesLoader();
+		this.result = new MockResult();
 		this.fileService = new FileService(this.fileDAO, this.propertyLoader);
-		this.controller = new FileController(this.fileDAO, this.fileService);
+		this.controller = new FileController(this.fileDAO, this.fileService, this.result);
 	}
 
 	@After

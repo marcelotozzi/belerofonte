@@ -16,7 +16,9 @@ import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
 import br.com.belerofonte.util.UploadedFileTest;
+import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.caelum.vraptor.util.test.MockResult;
 
 public class FileControllerTest {
 
@@ -32,12 +34,15 @@ public class FileControllerTest {
 	@Mock
 	private PropertiesLoader proprertiesLoader;
 
+	private Result result;
+
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		this.uploadFile = new UploadedFileTest();
+		this.result = new MockResult();
 		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader);
-		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService);
+		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result);
 	}
 
 	@After
