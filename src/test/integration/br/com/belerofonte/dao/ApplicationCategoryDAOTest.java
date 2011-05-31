@@ -25,6 +25,7 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 	public void setUp() throws Exception {
 		s = getSession();
 		tx = s.beginTransaction();
+		Given.setSession(s);
 		this.applicationCategoryDAO =  new ApplicationCategoryDAO(s);
 	}
 
