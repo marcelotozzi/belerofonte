@@ -79,6 +79,6 @@ public class TypeControllerInterceptorTest {
 			throws SecurityException, NoSuchMethodException {
 		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
 				.instanceFor(TypeController.class,
-						TypeController.class.getDeclaredMethod("applicationTypes"))));
+						TypeController.class.getDeclaredMethod("types"))));
 	}
 }
