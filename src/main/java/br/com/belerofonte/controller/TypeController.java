@@ -25,48 +25,49 @@ public class TypeController {
 	}
 
 	@Post
-	@Path("/admin/category/type")
+	@Path("/admin/type")
 	public void create(ApplicationType type) {
 		this.applicationTypeDAO.save(type);
 		this.result.redirectTo(TypeController.class).types();
 	}
 
 	@Put
-	@Path("/admin/category/type")
-	public void update(ApplicationType applicationType) {
-		this.applicationTypeDAO.update(applicationType);
+	@Path("/admin/type")
+	public void update(ApplicationType type) {
+		this.applicationTypeDAO.update(type);
 		this.result.redirectTo(TypeController.class).types();
 	}
 
 	@Delete
-	@Path("/admin/category/type/{id}")
+	@Path("/admin/type/{id}")
 	public void delete(Long id) {
 		this.applicationTypeDAO.remove(this.applicationTypeDAO.load(id));
 		this.result.redirectTo(TypeController.class).types();
 	}
 	
 	@Get
-	@Path("/admin/category/type/{id}")
+	@Path("/admin/type/{id}")
 	public void show(Long id) {
 		ApplicationType applicationType = this.applicationTypeDAO.load(id);
-		this.result.include("applicationType", applicationType);
+		this.result.include("type", applicationType);
 	}
 	
-	@Path("/admin/category/type/edit/{id}")
-	public ApplicationType edit(Long id) {
-		return this.applicationTypeDAO.load(id);
+	@Path("/admin/type/edit/{id}")
+	public void edit(Long id) {
+		ApplicationType applicationType = this.applicationTypeDAO.load(id);
+		this.result.include("type", applicationType);
 	}
 
-	@Path("/admin/category/type/register")
+	@Path("/admin/type/register")
 	public void form() {
 	}
 	
-	@Path("/admin/category/types")
+	@Path("/admin/types")
 	public void types(){	
 		this.result.include("types", this.applicationTypeDAO.list());
 	}
 	
-	@Path("/admin/category/types.json")
+	@Path("/admin/types.json")
 	public void applicationTypesJson(Long categoryId){
 		this.result.use(Results.json()).from(this.applicationTypeDAO.list(), "types").serialize();
 	}

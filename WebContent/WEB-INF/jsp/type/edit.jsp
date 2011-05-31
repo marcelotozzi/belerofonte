@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Administração | Categoria | Tipos | Editar</title>
+		<title>Belerofonte | Administração | Tipos | Editar</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 	</head>
 	<body>
@@ -13,7 +13,7 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Edite >> ${type.name}</h3>
-					<form id="editType" method="post" action="<c:url value="/admin/category/type" />">
+					<form id="editType" method="post" action="<c:url value="/admin/type" />">
 						<input type="hidden" name="type.id" value="${type.id}"><br/>
 						Nome: <input type="text" name="type.name" value="${type.name}"><br/>
 						<button type="submit" value="put" name="_method">Alterar</button> 

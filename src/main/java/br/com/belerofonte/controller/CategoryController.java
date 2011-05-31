@@ -53,8 +53,9 @@ public class CategoryController {
 	}
 	
 	@Path("/admin/category/edit/{id}")
-	public ApplicationCategory edit(Long id) {
-		return this.categoryDAO.load(id);
+	public void edit(Long id) {
+		ApplicationCategory category = this.categoryDAO.load(id);
+		this.result.include("category", category);
 	}
 
 	@Path("/admin/category/register")

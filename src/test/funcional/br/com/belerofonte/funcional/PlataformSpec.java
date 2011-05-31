@@ -33,6 +33,6 @@ public class PlataformSpec {
 		Long aleatorio = System.currentTimeMillis();
 		cw.typeAtField(aleatorio.toString(), "plataform.name");
 		cw.submitForm("newPlataform");
-		cw.checkMessage("- "+aleatorio.toString()+" -");
+		cw.checkMessage(aleatorio.toString());
 	}
 }

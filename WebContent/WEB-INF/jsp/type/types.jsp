@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Administração | Categorias | Tipos</title>
+		<title>Belerofonte | Administração | Tipos</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 	</head>
 	<body>
@@ -13,12 +13,12 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Tipos</h3>
-					<a href="category/register">Adicionar</a>
+					<a href="type/register">Adicionar</a>
 					<br/>
 					<ul>
 					<c:forEach var="type" items="${types}">
 						<li>
-							<p> - ${type.name} - <a href="<c:url value="category/type/${type.id}" />">Ver</a> - <a href="<c:url value="category/type/edit/${type.id}" />">Editar</a></p>
+							<p><a href="<c:url value="type/${type.id}" />">${type.name}</a> - <a href="<c:url value="type/edit/${type.id}" />">Editar</a></p>
 						</li><br/>
 					</c:forEach>
 					</ul>

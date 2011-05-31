@@ -29,6 +29,7 @@ public class FileSpec {
 	
 	@Test
 	public void shouldUploadFile(){
+		
 		cw.login("username", "password");
 		cw.checkMessage("Bem vindo, Username!");
 		cw.clickTheLink("Adicionar Aplicativo");

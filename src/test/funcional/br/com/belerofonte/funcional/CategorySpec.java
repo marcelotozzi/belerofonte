@@ -33,6 +33,6 @@ public class CategorySpec {
 		Long aleatorio = System.currentTimeMillis();
 		cw.typeAtField(aleatorio.toString(), "category.name");
 		cw.submitForm("newCategory");
-		cw.checkMessage("- "+aleatorio.toString()+" -");
+		cw.checkMessage(aleatorio.toString());
 	}
 }

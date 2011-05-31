@@ -51,7 +51,7 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldCreateApplicationFile() throws FileNotFoundException, IOException {
-		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null);
+		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null, null);
 		
 		Mockito.when(proprertiesLoader.getValue("folderFiles")).thenReturn("/Users/marcelotozzi/Desktop/uploaded/");
 		
@@ -62,7 +62,7 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldUpdateApplicationFile() {
-		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null);
+		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null, null);
 
 		this.controller.update(appFile);
 

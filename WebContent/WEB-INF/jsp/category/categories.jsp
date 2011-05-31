@@ -18,9 +18,8 @@
 					<ul>
 					<c:forEach var="cat" items="${categories}">
 						<li>
-							<p> - ${cat.name} - <a href="<c:url value="category/${cat.id}" />">Ver</a> - 
-												<a href="<c:url value="category/edit/${cat.id}" />">Editar</a> - 
-												<a href="<c:url value="category/type/register" />">Adicionar Tipo</a></p>
+							<p><a href="<c:url value="category/${cat.id}" />">${cat.name}</a> - 
+												<a href="<c:url value="category/edit/${cat.id}" />">Editar</a></p>
 						</li><br/>
 					</c:forEach>
 					</ul>

@@ -38,7 +38,7 @@ public class ApplicationTypeDAOTest extends DaoTest {
 
 		ApplicationType applicationType = this.applicationTypeDAO.findByName("Type");
 
-		Assert.assertEquals("Ação", applicationType.getName());
+		Assert.assertEquals("Type", applicationType.getName());
 	}
 
 	@Test

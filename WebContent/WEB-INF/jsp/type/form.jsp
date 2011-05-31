@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Belerofonte | Administração | Categoria | Tipo | Registrar</title>
+		<title>Belerofonte | Administração | Tipo | Registrar</title>
 		<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css"  />
 	</head>
 	<body>
@@ -13,7 +13,7 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Registre um tipo</h3>
-					<form id="newType" method="POST" action="<c:url value="/admin/category/type" />">
+					<form id="newType" method="POST" action="<c:url value="/admin/type" />">
 						Nome: <input type="text" name="type.name"><br/>
 						<input type="submit" value="Registrar"> 
 					</form>

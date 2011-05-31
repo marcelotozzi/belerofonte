@@ -1,7 +1,6 @@
 package br.com.belerofonte.dao;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import junit.framework.Assert;
 
@@ -16,24 +15,19 @@ import org.junit.Test;
 
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.model.ApplicationFile;
-import br.com.belerofonte.model.ApplicationType;
-import br.com.belerofonte.model.Plataform;
 
 public class ApplicationFileDAOTest extends DaoTest {
 
 	private ApplicationFileDAO applicationFileDAO;
 	private Session s;
 	private Transaction tx;
-	private PlataformDAO plataformDAO;
-	private ApplicationTypeDAO applicationTypeDAO;
 
 	@Before
 	public void setUp() throws Exception {
 		s = getSession();
 		tx = s.beginTransaction();
+		Given.setSession(s);
 		this.applicationFileDAO = new ApplicationFileDAO(s);
-		this.plataformDAO = new PlataformDAO(s);
-		this.applicationTypeDAO = new ApplicationTypeDAO(s);
 	}
 
 	@After
@@ -43,45 +37,44 @@ public class ApplicationFileDAOTest extends DaoTest {
 
 	@Test
 	public void shouldFindByName() {
-		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "contentType", 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+		
+		ApplicationFile applicationFile = this.applicationFileDAO.findByName("Name");
 
-		ApplicationFile applicationFile = this.applicationFileDAO.findByName("Angry Birds");
-
-		Assert.assertEquals("Angry Birds", applicationFile.getName());
+		Assert.assertEquals("Name", applicationFile.getName());
 	}
-	
+
 	@Test
 	public void shouldNotFindByInvalidName() {
-		ApplicationFile applicationFile = this.applicationFileDAO.findByName("AçãoInvalido");
+		ApplicationFile applicationFile = this.applicationFileDAO.findByName("InvalidName");
 
 		Assert.assertNull(applicationFile);
 	}
-	
+
 	@Test
 	public void shouldSaveApplicationFile() {
-		
-		ApplicationFile appFile = givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "contentType", 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android");
-		
+		ApplicationFile appFile = Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+
 		this.applicationFileDAO.save(appFile);
-		
-		ApplicationFile angry = this.applicationFileDAO.findByName("Angry Birds");
-		
+
+		ApplicationFile angry = this.applicationFileDAO.findByName("Name");
+
 		Assert.assertNotNull(angry);
 	}
 
 	@Test
 	public void shouldLoadApplicationFile() {
-		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "contentType", 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
 
-		ApplicationFile applicationFileByName = this.applicationFileDAO.findByName("Angry Birds");
+		ApplicationFile applicationFileByName = this.applicationFileDAO.findByName("Name");
 		ApplicationFile applicationFileByLoad = this.applicationFileDAO.load(applicationFileByName.getId());
-		Assert.assertEquals(applicationFileByName.getId(), applicationFileByLoad.getId());
-		Assert.assertEquals(applicationFileByName.getName(), applicationFileByLoad.getName());
+		Assert.assertEquals(applicationFileByName.getId(),applicationFileByLoad.getId());
+		Assert.assertEquals(applicationFileByName.getName(),applicationFileByLoad.getName());
 	}
-	
+
 	@Test(expected = ObjectNotFoundException.class)
 	public void shouldNotLoadInvalidApplicationFile() {
 		ApplicationFile applicationFileByLoad = this.applicationFileDAO.load(10000L);
@@ -91,10 +84,10 @@ public class ApplicationFileDAOTest extends DaoTest {
 
 	@Test
 	public void shouldRemoveApplicationFile() {
-		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "contentType", 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
 
-		ApplicationFile applicationFile = this.applicationFileDAO.findByName("Angry Birds");
+		ApplicationFile applicationFile = this.applicationFileDAO.findByName("Name");
 
 		this.applicationFileDAO.remove(applicationFile);
 
@@ -102,88 +95,67 @@ public class ApplicationFileDAOTest extends DaoTest {
 
 		Assert.assertNull(app);
 	}
-	
-	@Test(expected=PropertyValueException.class)
-	public void shouldNotRegisterWithNameNullApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationFile(null, "angry_birds.file", "Description", "contentType", 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+
+	@Test(expected = PropertyValueException.class)
+	public void shouldNotRegisterWithNameNullApplicationFile() {
+		Given.filePersisted(null, null, "nameOfFile.file", "Description", "contentType", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
 	}
-	
-	@Test(expected=InvalidStateException.class)
-	public void shouldNotRegisterWithNameEmptyApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationFile("", "angry_birds.file", "Description", "contentType", 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+
+	@Test(expected = InvalidStateException.class)
+	public void shouldNotRegisterWithNameEmptyApplicationFile() {
+		Given.filePersisted(null, "", "nameOfFile.file", "Description", "contentType", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
 	}
-	
-	@Test(expected=PropertyValueException.class)
-	public void shouldNotRegisterWithNameOfFileNullApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", null, "Description", "contentType", 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+
+	@Test(expected = PropertyValueException.class)
+	public void shouldNotRegisterWithNameOfFileNullApplicationFile() {
+		Given.filePersisted(null, "Name", null, "Description", "contentType", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
 	}
-	
-	@Test(expected=InvalidStateException.class)
-	public void shouldNotRegisterWithNameOfFileEmptyApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "", "Description", "contentType", 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+
+	@Test(expected = InvalidStateException.class)
+	public void shouldNotRegisterWithNameOfFileEmptyApplicationFile() {
+		Given.filePersisted(null, "Name", "", "Description", "contentType", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
 	}
-	
-	@Test(expected=PropertyValueException.class)
-	public void shouldNotRegisterWithContentTypeNullApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", null, 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+
+	@Test(expected = PropertyValueException.class)
+	public void shouldNotRegisterWithContentTypeNullApplicationFile() {
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", null, 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
 	}
-	
-	@Test(expected=InvalidStateException.class)
-	public void shouldNotRegisterWithContentTypeEmptyApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "", 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+
+	@Test(expected = InvalidStateException.class)
+	public void shouldNotRegisterWithContentTypeEmptyApplicationFile() {
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
 	}
-	
-	@Test(expected=PropertyValueException.class)
-	public void shouldNotRegisterWithNumberOfDownloadsEmptyApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "", 
-				null, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+
+	@Test(expected = PropertyValueException.class)
+	public void shouldNotRegisterWithNumberOfDownloadsNullApplicationFile() {
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
+				null, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
 	}
-	
-	@Test(expected=PropertyValueException.class)
-	public void shouldNotRegisterWithSizeOfFileEmptyApplicationFile(){
-		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "", 
-				1l, null, GregorianCalendar.getInstance(), "Whatever", "Android"));
+
+	@Test(expected = PropertyValueException.class)
+	public void shouldNotRegisterWithSizeOfFileNullApplicationFile() {
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
+				0L, null, Calendar.getInstance(), "Category", "Type", "Plataform");
 	}
 
 	@Test
 	public void shouldUpdateApplicationFile() {
-		this.applicationFileDAO.save(givenApplicationFile("Angry Birds", "angry_birds.file", "Description", "contentType", 
-				1L, 133545L, GregorianCalendar.getInstance(), "Whatever", "Android"));
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
 
-		ApplicationFile p = this.applicationFileDAO.findByName("Angry Birds");
-		p.setName("Angry Birds Rio");
+		ApplicationFile p = this.applicationFileDAO.findByName("Name");
+		p.setName("Name Rio");
 
 		this.applicationFileDAO.update(p);
 
-		ApplicationFile applicationFile = this.applicationFileDAO.findByName("Angry Birds Rio");
+		ApplicationFile applicationFile = this.applicationFileDAO.findByName("Name Rio");
 
-		Assert.assertEquals("Angry Birds Rio", applicationFile.getName());
-	}
-	
-	private ApplicationFile givenApplicationFile(String name, String nameOfFile, String description, String contentType, 
-			Long numberOfDownloads, Long sizeOfFile, Calendar uploadDate, String applicationType, String plataform) {
-		ApplicationFile appFile = new ApplicationFile();
-		appFile.setName(name);
-		appFile.setNameOfFile(nameOfFile);
-		appFile.setDescription(description);
-		appFile.setContentType(contentType);
-		appFile.setNumberOfDownloads(numberOfDownloads);
-		appFile.setSizeOfFile(sizeOfFile);
-		appFile.setUploadDate(uploadDate);
-		
-		ApplicationType appType = Given.type(null, applicationType);
-		this.applicationTypeDAO.save(appType);
-		appFile.setApplicationType(appType);
-		
-		Plataform plat = Given.plataform(null, plataform);
-		this.plataformDAO.save(plat);
-		appFile.setPlataform(plat);
-		return appFile;
+		Assert.assertEquals("Name Rio", applicationFile.getName());
 	}
 }

@@ -66,7 +66,7 @@
 		});
 		
 		$('#selectCategory').live("change",function(){
-			$.getJSON('<c:url value="/admin/category/types.json"/>', { categoryId: $('#selectCategory').val()}, function (json) {
+			$.getJSON('<c:url value="/admin/types.json"/>', { categoryId: $('#selectCategory').val()}, function (json) {
 				var html = '<option value="0"></option>';
 				var len = json.types.length;
 				for (var i = 0; i< len; i++) {

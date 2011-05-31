@@ -5,6 +5,7 @@ import java.util.Calendar;
 import org.hibernate.Session;
 
 import br.com.belerofonte.dao.ApplicationCategoryDAO;
+import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.dao.ApplicationTypeDAO;
 import br.com.belerofonte.dao.PlataformDAO;
 import br.com.belerofonte.model.ApplicationFile;
@@ -15,10 +16,10 @@ import br.com.belerofonte.model.User;
 
 public class Given {
 	
-	private static Session session;
 	private static ApplicationCategoryDAO categoryDAO;
 	private static PlataformDAO plataformDAO;
 	private static ApplicationTypeDAO typeDAO;
+	private static ApplicationFileDAO fileDAO;
 
 	public static User user(Long id,String name, String username, String email, String password, String confirmPassword) {
 		User user = new User();
@@ -82,22 +83,47 @@ public class Given {
 		}
 	}
 
-	public static ApplicationFile file(Long id, String name, String nameOfFile, String description, 
-			Long sizeOfFile, String contentType, Plataform plataform, ApplicationType applicationType, Calendar uploadDate, Long numberOfDownloads) {
-		ApplicationFile appFile = new ApplicationFile();
+	public static ApplicationFile file(Long id, String name, String nameOfFile, String description,
+			String contentType, Long numberOfDownloads, Long sizeOfFile, Calendar uploadDate,
+			ApplicationCategory category, ApplicationType type, Plataform plataform){
+		ApplicationFile file = new ApplicationFile();
 		if (id != null) {
-			appFile.setId(id);
+			file.setId(id);
 		}
-		appFile.setName(name);
-		appFile.setNameOfFile(nameOfFile);
-		appFile.setDescription(description);
-		appFile.setSizeOfFile(sizeOfFile);
-		appFile.setContentType(contentType);
-		appFile.setPlataform(plataform);
-		appFile.setApplicationType(applicationType);
-		appFile.setUploadDate(uploadDate);
-		appFile.setNumberOfDownloads(numberOfDownloads);
-		return appFile;
+		file.setName(name);
+		file.setNameOfFile(nameOfFile);
+		file.setDescription(description);
+		file.setContentType(contentType);
+		file.setNumberOfDownloads(numberOfDownloads);
+		file.setSizeOfFile(sizeOfFile);
+		file.setUploadDate(uploadDate);
+		file.setApplicationCategory(category);
+		file.setApplicationType(type);
+		file.setPlataform(plataform);
+		return file;
+	}
+	
+	public static ApplicationFile filePersisted(Long id, String name, String nameOfFile, String description,
+			String contentType, Long numberOfDownloads, Long sizeOfFile, Calendar uploadDate,
+			String nameCategory, String nameType, String namePlataform){
+		ApplicationFile file = fileDAO.findByName(name);
+		if(file != null){
+			return file;
+		}else{
+			file = new ApplicationFile();
+			file.setName(name);
+			file.setNameOfFile(nameOfFile);
+			file.setDescription(description);
+			file.setContentType(contentType);
+			file.setNumberOfDownloads(numberOfDownloads);
+			file.setSizeOfFile(sizeOfFile);
+			file.setUploadDate(uploadDate);
+			file.setApplicationCategory(categoryPersisted(null, nameCategory));
+			file.setApplicationType(typePersisted(null, nameType));
+			file.setPlataform(plataformPersisted(null, namePlataform));
+			fileDAO.save(file);
+			return file;
+		}
 	}
 
 	public static ApplicationCategory category(Long id,String name) {
@@ -122,8 +148,9 @@ public class Given {
 	}
 
 	public static void setSession(Session s) {
-		session = s;
 		categoryDAO = new ApplicationCategoryDAO(s);
 		plataformDAO = new PlataformDAO(s);
+		fileDAO = new ApplicationFileDAO(s);
+		typeDAO = new ApplicationTypeDAO(s);
 	}
 }

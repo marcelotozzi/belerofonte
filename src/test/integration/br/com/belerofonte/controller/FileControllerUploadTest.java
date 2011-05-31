@@ -13,12 +13,9 @@ import org.junit.Test;
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
-import br.com.belerofonte.dao.ApplicationTypeDAO;
 import br.com.belerofonte.dao.DaoTest;
-import br.com.belerofonte.dao.PlataformDAO;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
-import br.com.belerofonte.util.BeforeDataIntegration;
 import br.com.belerofonte.util.UploadedFileTest;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.download.Download;
@@ -34,8 +31,6 @@ public class FileControllerUploadTest extends DaoTest {
 	private ApplicationFileDAO fileDAO;
 	private Session s;
 	private Transaction tx;
-	private PlataformDAO plataformDAO;
-	private ApplicationTypeDAO typeDAO;
 	private PropertiesLoader propertyLoader;
 	private Result result;
 
@@ -45,14 +40,13 @@ public class FileControllerUploadTest extends DaoTest {
 
 		s = getSession();
 		tx = s.beginTransaction();
-		BeforeDataIntegration.main(s);
+		Given.setSession(s);
 		this.fileDAO = new ApplicationFileDAO(this.s);
-		this.plataformDAO = new PlataformDAO(this.s);
-		this.typeDAO = new ApplicationTypeDAO(this.s);
-		this.propertyLoader  = new PropertiesLoader();
+		this.propertyLoader = new PropertiesLoader();
 		this.result = new MockResult();
 		this.fileService = new FileService(this.fileDAO, this.propertyLoader);
-		this.controller = new FileController(this.fileDAO, this.fileService, this.result);
+		this.controller = new FileController(this.fileDAO, this.fileService,
+				this.result);
 	}
 
 	@After
@@ -62,16 +56,16 @@ public class FileControllerUploadTest extends DaoTest {
 
 	@Test
 	public void shouldCreateAndUploadFile() {
-		ApplicationFile appFile = Given.file(null, "image",
-				null, "description", 0L, null,
-				this.plataformDAO.findByName("iOS"),
-				this.typeDAO.findByName("Imagem"), null, 0L);
+		ApplicationFile appFile = Given.file(null, "Name", null, "Description",
+				null, null, null, null,
+				Given.categoryPersisted(null, "Category"),
+				Given.typePersisted(null, "Type"), Given.plataformPersisted(null, "Plataform"));
 
 		this.controller.create(this.uploadFile, appFile);
-		
+
 		File file = new File("files/image.jpg");
 		Download fileUploaded = new FileDownload(file, "image/jpeg");
-		
+
 		Assert.assertNotNull(fileUploaded);
 		Assert.assertNotNull(file);
 		Assert.assertEquals("image.jpg", file.getName());

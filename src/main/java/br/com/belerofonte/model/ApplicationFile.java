@@ -14,16 +14,34 @@ import org.hibernate.validator.NotNull;
 
 @Entity
 public class ApplicationFile {
-	@Id @GeneratedValue private Long id;
-	@NotNull @NotEmpty private String name;
-	@NotNull @NotEmpty private String nameOfFile;
+	@Id
+	@GeneratedValue
+	private Long id;
+	@NotNull
+	@NotEmpty
+	private String name;
+	@NotNull
+	@NotEmpty
+	private String nameOfFile;
 	private String description;
-	@NotNull private Long sizeOfFile;
-	@NotNull @NotEmpty private String contentType;
-	@NotNull @ManyToOne private Plataform plataform;
-	@NotNull @ManyToOne private ApplicationType applicationType;
-	@Temporal(TemporalType.DATE) private Calendar uploadDate;
-	@NotNull private Long numberOfDownloads;
+	@NotNull
+	private Long sizeOfFile;
+	@NotNull
+	@NotEmpty
+	private String contentType;
+	@NotNull
+	@ManyToOne
+	private Plataform plataform;
+	@NotNull
+	@ManyToOne
+	private ApplicationCategory applicationCategory;
+	@NotNull
+	@ManyToOne
+	private ApplicationType applicationType;
+	@Temporal(TemporalType.DATE)
+	private Calendar uploadDate;
+	@NotNull
+	private Long numberOfDownloads;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -104,17 +122,25 @@ public class ApplicationFile {
 	public void setNumberOfDownloads(Long numberOfDownloads) {
 		this.numberOfDownloads = numberOfDownloads;
 	}
-	
+
+	public ApplicationCategory getApplicationCategory() {
+		return applicationCategory;
+	}
+
+	public void setApplicationCategory(ApplicationCategory applicationCategory) {
+		this.applicationCategory = applicationCategory;
+	}
+
 	@Override
 	public String toString() {
-		return "Id["+this.id +"] "+
-				"Name["+this.name+"] "+
-				"NameOfFile["+this.nameOfFile+"] "+
-				"Description["+this.description+"] " +
-				"SizeOfFile["+this.sizeOfFile+"] " +
-				"ContentType["+this.contentType+"] " +
-				"Plataform["+this.plataform.getId()+"]["+this.plataform.getName()+"] " +
-				"ApplicationType["+this.applicationType.getId()+"]["+this.applicationType.getName()+"] " +
-				"UploadDate["+this.uploadDate.getTime()+"]";
+		return "Id[" + this.id + "] " + "Name[" + this.name + "] "
+				+ "NameOfFile[" + this.nameOfFile + "] " + "Description["
+				+ this.description + "] " + "SizeOfFile[" + this.sizeOfFile
+				+ "] " + "ContentType[" + this.contentType + "] "
+				+ "Plataform[" + this.plataform.getId() + "]["
+				+ this.plataform.getName() + "] " + "ApplicationType["
+				+ this.applicationType.getId() + "]["
+				+ this.applicationType.getName() + "] " + "UploadDate["
+				+ this.uploadDate.getTime() + "]";
 	}
 }
