@@ -62,7 +62,7 @@ public class FileControllerUploadTest extends DaoTest {
 
 	@Test
 	public void shouldCreateAndUploadFile() {
-		ApplicationFile appFile = Given.applicationFile(null, "image",
+		ApplicationFile appFile = Given.file(null, "image",
 				null, "description", 0L, null,
 				this.plataformDAO.findByName("iOS"),
 				this.typeDAO.findByName("Imagem"), null, 0L);

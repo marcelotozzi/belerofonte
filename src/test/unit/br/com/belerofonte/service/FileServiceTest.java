@@ -36,7 +36,7 @@ public class FileServiceTest {
 
 	@Test
 	public void shouldCreate() {
-		ApplicationFile appFile = Given.applicationFile(null, null, null, null, null, null, null, null, null, null);
+		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null);
 		
 		Mockito.when(proprertiesLoader.getValue("folderFiles")).thenReturn("/Users/marcelotozzi/Desktop/uploaded/");
 		

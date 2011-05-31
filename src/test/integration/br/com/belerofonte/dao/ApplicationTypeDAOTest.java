@@ -34,9 +34,9 @@ public class ApplicationTypeDAOTest extends DaoTest {
 	
 	@Test
 	public void shouldFindByName() {
-		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
+		this.applicationTypeDAO.save(Given.type(null, "Type"));
 
-		ApplicationType applicationType = this.applicationTypeDAO.findByName("Ação");
+		ApplicationType applicationType = this.applicationTypeDAO.findByName("Type");
 
 		Assert.assertEquals("Ação", applicationType.getName());
 	}
@@ -50,7 +50,7 @@ public class ApplicationTypeDAOTest extends DaoTest {
 
 	@Test
 	public void shouldLoadApplicationType() {
-		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
+		this.applicationTypeDAO.save(Given.type(null, "Ação"));
 
 		ApplicationType applicationTypeByName = this.applicationTypeDAO.findByName("Ação");
 		ApplicationType applicationTypeByLoad = this.applicationTypeDAO.load(applicationTypeByName.getId());
@@ -68,7 +68,7 @@ public class ApplicationTypeDAOTest extends DaoTest {
 
 	@Test
 	public void shouldSaveApplicationType() {
-		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
+		this.applicationTypeDAO.save(Given.type(null, "Ação"));
 
 		ApplicationType applicationType = this.applicationTypeDAO.findByName("Ação");
 
@@ -77,17 +77,17 @@ public class ApplicationTypeDAOTest extends DaoTest {
 	
 	@Test(expected=PropertyValueException.class)
 	public void shouldNotRegisterWithNameNullApplicationType(){
-		this.applicationTypeDAO.save(Given.applicationType(null, null));
+		this.applicationTypeDAO.save(Given.type(null, null));
 	}
 	
 	@Test(expected=InvalidStateException.class)
 	public void shouldNotRegisterWithNameEmptyApplicationType(){
-		this.applicationTypeDAO.save(Given.applicationType(null, ""));
+		this.applicationTypeDAO.save(Given.type(null, ""));
 	}
 	
 	@Test
 	public void shouldUpdateApplicationType() {
-		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
+		this.applicationTypeDAO.save(Given.type(null, "Ação"));
 
 		ApplicationType p = this.applicationTypeDAO.findByName("Ação");
 		p.setName("Aventura");
@@ -101,7 +101,7 @@ public class ApplicationTypeDAOTest extends DaoTest {
 
 	@Test
 	public void shouldRemove() {
-		this.applicationTypeDAO.save(Given.applicationType(null, "Ação"));
+		this.applicationTypeDAO.save(Given.type(null, "Ação"));
 
 		ApplicationType applicationType = this.applicationTypeDAO.findByName("Ação");
 

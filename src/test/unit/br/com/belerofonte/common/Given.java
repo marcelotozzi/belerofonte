@@ -38,14 +38,14 @@ public class Given {
 		return p;
 	}
 
-	public static ApplicationType applicationType(Long id, String name) {
+	public static ApplicationType type(Long id, String name) {
 		ApplicationType applicationType = new ApplicationType();
 		applicationType.setId(id);
 		applicationType.setName(name);
 		return applicationType;
 	}
 
-	public static ApplicationFile applicationFile(Long id, String name, String nameOfFile, String description, 
+	public static ApplicationFile file(Long id, String name, String nameOfFile, String description, 
 			Long sizeOfFile, String contentType, Plataform plataform, ApplicationType applicationType, Calendar uploadDate, Long numberOfDownloads) {
 		ApplicationFile appFile = new ApplicationFile();
 		if (id != null) {
@@ -63,14 +63,7 @@ public class Given {
 		return appFile;
 	}
 
-	public static ApplicationCategory category(long id, String name) {
-		ApplicationCategory cat = new ApplicationCategory();
-		cat.setId(id);
-		cat.setName(name);
-		return cat;
-	}
-
-	public static ApplicationCategory applicationCategory(Long id,String name) {
+	public static ApplicationCategory category(Long id,String name) {
 		ApplicationCategory appCategory = new ApplicationCategory();
 		if (id != null) {
 			appCategory.setId(id);

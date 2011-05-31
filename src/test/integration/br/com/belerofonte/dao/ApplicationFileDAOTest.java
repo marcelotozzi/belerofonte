@@ -177,7 +177,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 		appFile.setSizeOfFile(sizeOfFile);
 		appFile.setUploadDate(uploadDate);
 		
-		ApplicationType appType = Given.applicationType(null, applicationType);
+		ApplicationType appType = Given.type(null, applicationType);
 		this.applicationTypeDAO.save(appType);
 		appFile.setApplicationType(appType);
 		

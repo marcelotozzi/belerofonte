@@ -30,13 +30,13 @@ public class BeforeDataIntegration {
 			typeDAO.remove(applicationType);
 		}
 		
-		typeDAO.save(Given.applicationType(null, "Imagem"));
+		typeDAO.save(Given.type(null, "Imagem"));
 		
 		List<ApplicationCategory> cats = categoryDAO.list();
 		for (ApplicationCategory applicationCategory : cats) {
 			categoryDAO.remove(applicationCategory);
 		}
 		
-		categoryDAO.save(Given.applicationCategory(null, "Edição"));
+		categoryDAO.save(Given.category(null, "Edição"));
 	}
 }

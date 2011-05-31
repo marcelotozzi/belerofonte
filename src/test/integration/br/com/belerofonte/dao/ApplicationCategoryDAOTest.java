@@ -35,7 +35,7 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 
 	@Test
 	public void shouldFindByName() {
-		this.applicationCategoryDAO.save(Given.applicationCategory(null, "Categoria"));
+		this.applicationCategoryDAO.save(Given.category(null, "Categoria"));
 
 		ApplicationCategory applicationCategory = this.applicationCategoryDAO.findByName("Categoria");
 
@@ -51,7 +51,7 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 
 	@Test
 	public void shouldLoadApplicationCategory() {
-		this.applicationCategoryDAO.save(Given.applicationCategory(null, "Categoria"));
+		this.applicationCategoryDAO.save(Given.category(null, "Categoria"));
 
 		ApplicationCategory applicationCategoryByName = this.applicationCategoryDAO.findByName("Categoria");
 		ApplicationCategory applicationCategoryByLoad = this.applicationCategoryDAO.load(applicationCategoryByName.getId());
@@ -69,7 +69,7 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 
 	@Test
 	public void shouldSaveApplicationCategory() {
-		this.applicationCategoryDAO.save(Given.applicationCategory(null, "Categoria"));
+		this.applicationCategoryDAO.save(Given.category(null, "Categoria"));
 
 		ApplicationCategory applicationCategory = this.applicationCategoryDAO.findByName("Categoria");
 
@@ -78,17 +78,17 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 	
 	@Test(expected=PropertyValueException.class)
 	public void shouldNotRegisterWithNameNullApplicationCategory(){
-		this.applicationCategoryDAO.save(Given.applicationCategory(null, null));
+		this.applicationCategoryDAO.save(Given.category(null, null));
 	}
 	
 	@Test(expected=InvalidStateException.class)
 	public void shouldNotRegisterWithNameEmptyApplicationCategory(){
-		this.applicationCategoryDAO.save(Given.applicationCategory(null, ""));
+		this.applicationCategoryDAO.save(Given.category(null, ""));
 	}
 	
 	@Test
 	public void shouldUpdateApplicationCategory() {
-		this.applicationCategoryDAO.save(Given.applicationCategory(null, "Categoria"));
+		this.applicationCategoryDAO.save(Given.category(null, "Categoria"));
 
 		ApplicationCategory p = this.applicationCategoryDAO.findByName("Categoria");
 		p.setName("Category");
@@ -102,7 +102,7 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 
 	@Test
 	public void shouldRemove() {
-		this.applicationCategoryDAO.save(Given.applicationCategory(null, "Categoria"));
+		this.applicationCategoryDAO.save(Given.category(null, "Categoria"));
 
 		ApplicationCategory applicationCategory = this.applicationCategoryDAO.findByName("Categoria");
 
