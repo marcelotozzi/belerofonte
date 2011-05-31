@@ -26,23 +26,23 @@ public class TypeController {
 
 	@Post
 	@Path("/admin/category/type")
-	public void create(ApplicationType applicationType) {
-		this.applicationTypeDAO.save(applicationType);
-		this.result.redirectTo(TypeController.class).applicationTypes();
+	public void create(ApplicationType type) {
+		this.applicationTypeDAO.save(type);
+		this.result.redirectTo(TypeController.class).types();
 	}
 
 	@Put
 	@Path("/admin/category/type")
 	public void update(ApplicationType applicationType) {
 		this.applicationTypeDAO.update(applicationType);
-		this.result.redirectTo(TypeController.class).applicationTypes();
+		this.result.redirectTo(TypeController.class).types();
 	}
 
 	@Delete
 	@Path("/admin/category/type/{id}")
 	public void delete(Long id) {
 		this.applicationTypeDAO.remove(this.applicationTypeDAO.load(id));
-		this.result.redirectTo(TypeController.class).applicationTypes();
+		this.result.redirectTo(TypeController.class).types();
 	}
 	
 	@Get
@@ -62,8 +62,8 @@ public class TypeController {
 	}
 	
 	@Path("/admin/category/types")
-	public void applicationTypes(){	
-		this.result.include("applicationTypes", this.applicationTypeDAO.list());
+	public void types(){	
+		this.result.include("types", this.applicationTypeDAO.list());
 	}
 	
 	@Path("/admin/category/types.json")
