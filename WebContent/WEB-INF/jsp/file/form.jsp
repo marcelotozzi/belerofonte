@@ -25,7 +25,7 @@
 							<select id="selectCategory">
 							</select>
 							Tipo:
-							<select id="selectType" disabled="disabled">
+							<select id="selectType">
 							</select> 
 							<input type="hidden" name="applicationFile.plataform.id" id="filePlataform">
 							<input type="hidden" name="applicationFile.applicationCategory.id" id="fileCategory">
@@ -55,7 +55,6 @@
 		
 		$(document).ready(function(){
 			$.getJSON('<c:url value="/admin/categories.json"/>', function (json) {
-				//console.debug("oncclick");
 				var html = '<option value="0"></option>';
 			    var len = json.categories.length;
 			    for (var i = 0; i< len; i++) {
@@ -65,8 +64,8 @@
 			});	
 		});
 		
-		$('#selectCategory').live("change",function(){
-			$.getJSON('<c:url value="/admin/types.json"/>', { categoryId: $('#selectCategory').val()}, function (json) {
+		$(document).ready(function(){
+			$.getJSON('<c:url value="/admin/types.json"/>', function (json) {
 				var html = '<option value="0"></option>';
 				var len = json.types.length;
 				for (var i = 0; i< len; i++) {
@@ -76,7 +75,7 @@
 			});	
 		});
 		
-		$('#submitFile').live("click",function(){
+		$(document).ready(function(){
 			console.debug(($("#selectPlataform").val() != 0));
 			if($("#selectPlataform").val() != 0){
 				$("#filePlataform").attr("value", $("#selectPlataform").val());				

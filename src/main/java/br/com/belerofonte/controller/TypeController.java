@@ -68,7 +68,7 @@ public class TypeController {
 	}
 	
 	@Path("/admin/types.json")
-	public void applicationTypesJson(Long categoryId){
+	public void applicationTypesJson(){
 		this.result.use(Results.json()).from(this.applicationTypeDAO.list(), "types").serialize();
 	}
 }

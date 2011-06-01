@@ -91,8 +91,7 @@ public class CommonWebSteps {
 	}
 
 	public void select(String id, String name) {
-		// WebElement select =
-		// driver.findElement(By.xpath("//select[@id='"+id+"']"));
+		// WebElement select = driver.findElement(By.xpath("//select[@id='"+id+"']"));
 		WebElement select = driver.findElement(By.id(id));
 		List<WebElement> allOptions = select.findElements(By.tagName("option"));
 		for (WebElement option : allOptions) {
@@ -100,5 +99,10 @@ public class CommonWebSteps {
 			System.out.println(String.format("Value is: %s", option.getValue()));
 			option.setSelected();
 		}
+	}
+
+	public void givenImInTheTypesPage() {
+		givenImInTheAdminPage();
+		clickTheLink("Tipos");
 	}
 }

@@ -3,6 +3,7 @@ package br.com.belerofonte.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.belerofonte.model.ApplicationCategory;
@@ -44,6 +45,6 @@ public class ApplicationCategoryDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<ApplicationCategory> list() {
-		return this.session.createCriteria(ApplicationCategory.class).list();
+		return this.session.createCriteria(ApplicationCategory.class).addOrder(Order.asc("name")).list();
 	}
 }

@@ -3,6 +3,7 @@ package br.com.belerofonte.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.belerofonte.model.User;
@@ -48,6 +49,6 @@ public class UserDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<User> list() {
-		return this.session.createCriteria(User.class).list();
+		return this.session.createCriteria(User.class).addOrder(Order.asc("username")).list();
 	}
 }
