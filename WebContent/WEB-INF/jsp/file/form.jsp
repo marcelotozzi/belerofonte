@@ -16,8 +16,8 @@
 					<h3>Registre uma aplicação</h3>
 						<form id="newFile" enctype="multipart/form-data" method="post" action="<c:url value='/admin/file/create' />">
 							Informe os dados do arquivo<br/><br/>
-							Nome: <input type="text" name="applicationFile.name" ><br/><br/>
-							Descrição: <input type="text" name="applicationFile.description"><br/><br/>
+							Nome: <input type="text" name="file.name" ><br/><br/>
+							Descrição: <input type="text" name="file.description"><br/><br/>
 							Plataforma: 
 							<select id="selectPlataform">
 							</select>
@@ -27,9 +27,9 @@
 							Tipo:
 							<select id="selectType">
 							</select> 
-							<input type="hidden" name="applicationFile.plataform.id" id="filePlataform">
-							<input type="hidden" name="applicationFile.applicationCategory.id" id="fileCategory">
-							<input type="hidden" name="applicationFile.applicationType.id" id="fileType">
+							<input type="hidden" name="file.plataform.id" id="filePlataform">
+							<input type="hidden" name="file.applicationCategory.id" id="fileCategory">
+							<input type="hidden" name="file.applicationType.id" id="fileType">
 							
 							<input type="file" name="uploadedFile" id="uploadedFile"/>
 													
@@ -75,8 +75,7 @@
 			});	
 		});
 		
-		$(document).ready(function(){
-			console.debug(($("#selectPlataform").val() != 0));
+		$('#submitFile').live("click",function(){
 			if($("#selectPlataform").val() != 0){
 				$("#filePlataform").attr("value", $("#selectPlataform").val());				
 			}

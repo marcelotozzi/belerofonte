@@ -12,7 +12,12 @@
 		<div id="content">
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					
+					<h2>${file.name}</h2>
+					Descrição: ${file.description} <br/>
+					Plataforma: ${file.plataform.name} <br/>
+					Categoria: ${file.applicationCategory.name} <br/>
+					Tipo: ${file.applicationType.name} <br/>
+					Numero de Downloads: ${file.numberOfDownloads}<br/>
 				</div>
 			</div>
 		</div>

@@ -26,9 +26,9 @@ public class FileController {
 
 	@Post
 	@Path("/admin/file/create")
-	public void create(UploadedFile uploadedFile, ApplicationFile applicationFile) {
-		this.applicationFileService.create(uploadedFile,applicationFile);
-		this.result.redirectTo(FileController.class).show();
+	public void create(final UploadedFile uploadedFile, ApplicationFile file) {
+		this.applicationFileService.create(uploadedFile,file);
+		this.result.redirectTo(FileController.class).show(file.getId());
 	}
 
 	public void delete(Long id) {
@@ -43,8 +43,9 @@ public class FileController {
 	public void form(){
 	}
 	
-	@Path("file/show/")
-	public void show(){
-		
+	@Path("file/show/{id}")
+	public void show(Long id){
+		ApplicationFile applicationFile = this.applicationFileDAO.load(id);
+		this.result.include("file", applicationFile);
 	}
 }

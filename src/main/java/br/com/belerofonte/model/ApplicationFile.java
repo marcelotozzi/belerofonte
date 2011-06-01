@@ -131,7 +131,7 @@ public class ApplicationFile {
 		this.applicationCategory = applicationCategory;
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "Id[" + this.id + "] " + "Name[" + this.name + "] "
 				+ "NameOfFile[" + this.nameOfFile + "] " + "Description["
@@ -142,5 +142,5 @@ public class ApplicationFile {
 				+ this.applicationType.getId() + "]["
 				+ this.applicationType.getName() + "] " + "UploadDate["
 				+ this.uploadDate.getTime() + "]";
-	}
+	}*/
 }

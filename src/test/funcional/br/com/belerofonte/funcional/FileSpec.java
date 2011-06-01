@@ -35,8 +35,8 @@ public class FileSpec {
 		cw.clickTheLink("Adicionar Aplicativo");
 		cw.checkMessage("Registre uma aplicação");
 		cw.checkMessage("Informe os dados do arquivo");		
-		cw.typeAtField("Belerofonte", "applicationFile.name");
-		cw.typeAtField("Aplicação do sistema Belerofonte", "applicationFile.description");
+		cw.typeAtField("Belerofonte", "file.name");
+		cw.typeAtField("Aplicação do sistema Belerofonte", "file.description");
 		cw.select("selectPlataform","Android");
 	}
 }
