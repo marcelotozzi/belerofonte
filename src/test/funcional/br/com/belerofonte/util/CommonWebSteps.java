@@ -30,7 +30,7 @@ public class CommonWebSteps {
 	}
 
 	public void imAtHome() {
-		navigateToPage("home");
+		navigateToPage(serverUrl);
 	}
 
 	public void login(String username, String password) {

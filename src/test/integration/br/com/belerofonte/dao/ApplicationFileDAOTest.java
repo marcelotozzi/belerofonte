@@ -1,6 +1,7 @@
 package br.com.belerofonte.dao;
 
 import java.util.Calendar;
+import java.util.List;
 
 import junit.framework.Assert;
 
@@ -161,13 +162,22 @@ public class ApplicationFileDAOTest extends DaoTest {
 	
 	@Test
 	public void shouldReturnRecentApplications(){
-		//this.controller.recentApplicationsJson();
-		Assert.fail("N‹o implementado");
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+		Given.filePersisted(null, "Name1", "nameOfFile1.file", "Description1", "contentType", 0L, 13134L, Calendar.getInstance(), "Category1", "Type1", "Plataform1");
+		
+		List<ApplicationFile> recents = this.applicationFileDAO.recentApplications(2);
+	
+		Assert.assertEquals(2, recents.size());
 	}
 	
 	@Test
 	public void shouldReturnTopDownloads(){
-		//this.controller.topDownloadsJson();
-		Assert.fail("N‹o implementado");
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 10L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+		Given.filePersisted(null, "Name1", "nameOfFile1.file", "Description1", "contentType", 20L, 13134L, Calendar.getInstance(), "Category1", "Type1", "Plataform1");
+		
+		List<ApplicationFile> top = this.applicationFileDAO.topDownloads(2);
+		
+		Assert.assertEquals(20, top.get(0).getNumberOfDownloads().longValue());
+		Assert.assertEquals(10, top.get(1).getNumberOfDownloads().longValue());
 	}
 }

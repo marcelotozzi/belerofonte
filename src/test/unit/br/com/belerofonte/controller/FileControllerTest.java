@@ -82,13 +82,11 @@ public class FileControllerTest {
 	
 	@Test
 	public void shouldReturnRecentApplicationsJson(){
-		//this.controller.recentApplicationsJson();
 		Assert.fail("N‹o implementado");
 	}
 	
 	@Test
 	public void shouldReturnTopDownloadsJson(){
-		//this.controller.topDownloadsJson();
 		Assert.fail("N‹o implementado");
 	}
 }
