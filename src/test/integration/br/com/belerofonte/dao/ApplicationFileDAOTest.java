@@ -158,4 +158,16 @@ public class ApplicationFileDAOTest extends DaoTest {
 
 		Assert.assertEquals("Name Rio", applicationFile.getName());
 	}
+	
+	@Test
+	public void shouldReturnRecentApplications(){
+		//this.controller.recentApplicationsJson();
+		Assert.fail("N‹o implementado");
+	}
+	
+	@Test
+	public void shouldReturnTopDownloads(){
+		//this.controller.topDownloadsJson();
+		Assert.fail("N‹o implementado");
+	}
 }

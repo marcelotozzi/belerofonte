@@ -1,6 +1,7 @@
 package br.com.belerofonte.controller;
 
 import br.com.belerofonte.annotation.InterceptResource;
+import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
@@ -9,6 +10,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.caelum.vraptor.view.Results;
 
 @Resource
 @InterceptResource
@@ -43,9 +45,22 @@ public class FileController {
 	public void form(){
 	}
 	
+	@NoInterceptMethod
 	@Path("file/show/{id}")
 	public void show(Long id){
 		ApplicationFile applicationFile = this.applicationFileDAO.load(id);
 		this.result.include("file", applicationFile);
+	}
+	
+	@NoInterceptMethod
+	@Path("/files/topDownloads.json")
+	public void topDownloadsJson(){
+		this.result.use(Results.json()).from(this.applicationFileDAO.topDownloads(10), "topDownloads").serialize();
+	}
+	
+	@NoInterceptMethod
+	@Path("/files/recentApplications.json")
+	public void recentApplicationsJson(){
+		this.result.use(Results.json()).from(this.applicationFileDAO.recentApplications(10), "recentApps").serialize();
 	}
 }

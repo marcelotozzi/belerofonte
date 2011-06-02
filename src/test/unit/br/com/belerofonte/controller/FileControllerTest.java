@@ -3,6 +3,8 @@ package br.com.belerofonte.controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -76,5 +78,17 @@ public class FileControllerTest {
 		this.controller.delete(1L);
 
 		Mockito.verify(this.applicationFileDAO).delete(appFile);
+	}
+	
+	@Test
+	public void shouldReturnRecentApplicationsJson(){
+		//this.controller.recentApplicationsJson();
+		Assert.fail("N‹o implementado");
+	}
+	
+	@Test
+	public void shouldReturnTopDownloadsJson(){
+		//this.controller.topDownloadsJson();
+		Assert.fail("N‹o implementado");
 	}
 }

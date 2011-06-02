@@ -1,6 +1,9 @@
 package br.com.belerofonte.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.belerofonte.model.ApplicationFile;
@@ -42,5 +45,15 @@ public class ApplicationFileDAO {
 
 	public void remove(ApplicationFile applicationFile) {
 		this.session.delete(applicationFile);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<ApplicationFile> topDownloads(int number) {
+		return this.session.createCriteria(ApplicationFile.class).setMaxResults(number).addOrder(Order.desc("numberOfDownloads")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<ApplicationFile> recentApplications(int number) {
+		return this.session.createCriteria(ApplicationFile.class).setMaxResults(number).addOrder(Order.desc("uploadDate")).list();
 	}
 }
