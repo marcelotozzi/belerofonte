@@ -1,5 +1,7 @@
 package br.com.belerofonte.funcional;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +31,6 @@ public class FileSpec {
 	
 	@Test
 	public void shouldUploadFile(){
-		
 		cw.login("username", "password");
 		cw.checkMessage("Bem vindo, Username!");
 		cw.clickTheLink("Adicionar Aplicativo");
@@ -38,5 +39,6 @@ public class FileSpec {
 		cw.typeAtField("Belerofonte", "file.name");
 		cw.typeAtField("Aplicação do sistema Belerofonte", "file.description");
 		cw.select("selectPlataform","Android");
+		Assert.fail("Não implementado");
 	}
 }

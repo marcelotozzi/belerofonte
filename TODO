@@ -1,10 +1,6 @@
-- Vincular Tipo a Categoria
-- terminar cadastro de arquivos
-- cria layout cadastro de APLICACOES e GAMES
-- Upload dos arquivos das APLICACOES e GAMES
 - Download de Arquivos
 - layout para download
-- Disponibilizar servico de buscas para mobile por xml
+- Disponibilizar servico de buscas para mobile por xml/json
 - Pesquisas ?????
 - Logica para recuperar senha
 - Implementar o HIBERNATE SEARCH

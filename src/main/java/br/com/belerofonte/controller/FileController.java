@@ -9,6 +9,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.view.Results;
 
@@ -28,16 +29,16 @@ public class FileController {
 
 	@Post
 	@Path("/admin/file/create")
-	public void create(final UploadedFile uploadedFile, ApplicationFile file) {
+	public void create(final UploadedFile uploadedFile, final ApplicationFile file) {
 		this.applicationFileService.create(uploadedFile,file);
 		this.result.redirectTo(FileController.class).show(file.getId());
 	}
 
-	public void delete(Long id) {
+	public void delete(final Long id) {
 		this.applicationFileDAO.delete(this.applicationFileDAO.load(id));
 	}
 
-	public void update(ApplicationFile applicationFile) {
+	public void update(final ApplicationFile applicationFile) {
 		this.applicationFileDAO.update(applicationFile);
 	}
 	
@@ -47,7 +48,7 @@ public class FileController {
 	
 	@NoInterceptMethod
 	@Path("file/show/{id}")
-	public void show(Long id){
+	public void show(final Long id){
 		ApplicationFile applicationFile = this.applicationFileDAO.load(id);
 		this.result.include("file", applicationFile);
 	}
@@ -62,5 +63,11 @@ public class FileController {
 	@Path("/files/recentApplications.json")
 	public void recentApplicationsJson(){
 		this.result.use(Results.json()).from(this.applicationFileDAO.recentApplications(10), "recentApps").serialize();
+	}
+
+	@NoInterceptMethod
+	@Path("/file/download/{id}")
+	public Download downloadFile(final Long id) {
+		return this.applicationFileService.searchAndDownloadFile(id);
 	}
 }

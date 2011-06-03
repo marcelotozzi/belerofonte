@@ -11,6 +11,8 @@ import org.apache.commons.io.IOUtils;
 import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
+import br.com.caelum.vraptor.interceptor.download.Download;
+import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
@@ -19,8 +21,8 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 @RequestScoped
 public class FileService {
 
-	private ApplicationFileDAO applicationFileDAO;
-	private PropertiesLoader loader;
+	private final ApplicationFileDAO applicationFileDAO;
+	private final PropertiesLoader loader;
 
 	public FileService(ApplicationFileDAO applicationFileDAO,
 			PropertiesLoader loader) {
@@ -50,5 +52,21 @@ public class FileService {
 		applicationFile.setSizeOfFile(filedestiny.length());
 		applicationFile.setNumberOfDownloads(0L);
 		return applicationFile;
+	}
+
+	public Download searchAndDownloadFile(Long id) {
+		ApplicationFile appFile = this.applicationFileDAO.load(id);
+		
+		File file = new File(loader.getValue("folderFiles") + appFile.getNameOfFile());
+		
+		Download download = new FileDownload(file, appFile.getContentType(), appFile.getNameOfFile());
+		
+		this.increasingNumberOfDownloads(appFile);
+		return download;
+	}
+
+	private void increasingNumberOfDownloads(ApplicationFile appFile) {
+		appFile.setNumberOfDownloads(appFile.getNumberOfDownloads()+1);
+		this.applicationFileDAO.update(appFile);
 	}
 }

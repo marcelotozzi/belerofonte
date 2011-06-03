@@ -1,6 +1,7 @@
 package br.com.belerofonte.controller;
 
 import java.io.File;
+import java.util.Calendar;
 
 import junit.framework.Assert;
 
@@ -23,7 +24,7 @@ import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.util.test.MockResult;
 
-public class FileControllerUploadTest extends DaoTest {
+public class FileControllerIntegrationTest extends DaoTest {
 
 	private FileController controller;
 	private UploadedFile uploadFile;
@@ -69,5 +70,15 @@ public class FileControllerUploadTest extends DaoTest {
 		Assert.assertNotNull(fileUploaded);
 		Assert.assertNotNull(file);
 		Assert.assertEquals("image.jpg", file.getName());
+	}
+	
+	@Test
+	public void shouldDownloadFile(){
+		Given.filePersisted(null, "Imagem", "image.jpg", "Description", "contentType", 
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+
+		Download down = this.controller.downloadFile(this.fileDAO.findByName("Imagem").getId());
+			
+		Assert.assertNotNull(down);
 	}
 }
