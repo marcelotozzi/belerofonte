@@ -38,7 +38,7 @@ public class ApplicationFile {
 	@NotNull
 	@ManyToOne
 	private ApplicationType applicationType;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar uploadDate;
 	@NotNull
 	private Long numberOfDownloads;

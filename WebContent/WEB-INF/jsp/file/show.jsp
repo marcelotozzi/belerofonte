@@ -17,7 +17,9 @@
 					Plataforma: ${file.plataform.name} <br/>
 					Categoria: ${file.applicationCategory.name} <br/>
 					Tipo: ${file.applicationType.name} <br/>
-					Numero de Downloads: ${file.numberOfDownloads}<br/>
+					Numero de Downloads: ${file.numberOfDownloads}<br/><br/>
+					
+					<a target="_blank" href="<c:url value="/file/download/${file.id}"/>">DOWNLOAD</a>
 				</div>
 			</div>
 		</div>
