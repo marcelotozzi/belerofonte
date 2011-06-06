@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import br.com.belerofonte.common.Given;
+import br.com.belerofonte.components.Account;
 import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
@@ -22,12 +23,14 @@ public class FileServiceTest {
 	private ApplicationFileDAO applicationFileDAO;
 	@Mock 
 	private PropertiesLoader proprertiesLoader;
+	@Mock
+	private Account account;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		this.uploadedFile = new UploadedFileTest();
-		this.service = new FileService(this.applicationFileDAO, this.proprertiesLoader);
+		this.service = new FileService(this.applicationFileDAO, this.proprertiesLoader, this.account);
 	}
 
 	@After
@@ -36,7 +39,7 @@ public class FileServiceTest {
 
 	@Test
 	public void shouldCreate() {
-		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null, null);
+		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null, null, null);
 		
 		Mockito.when(proprertiesLoader.getValue("folderFiles")).thenReturn("/Users/marcelotozzi/Desktop/uploaded/");
 		

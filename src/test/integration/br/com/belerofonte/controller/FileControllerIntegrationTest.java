@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.belerofonte.common.Given;
+import br.com.belerofonte.components.Account;
 import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.dao.DaoTest;
@@ -34,6 +35,7 @@ public class FileControllerIntegrationTest extends DaoTest {
 	private Transaction tx;
 	private PropertiesLoader propertyLoader;
 	private Result result;
+	private Account account;
 
 	@Before
 	public void setUp() throws Exception {
@@ -45,7 +47,9 @@ public class FileControllerIntegrationTest extends DaoTest {
 		this.fileDAO = new ApplicationFileDAO(this.s);
 		this.propertyLoader = new PropertiesLoader();
 		this.result = new MockResult();
-		this.fileService = new FileService(this.fileDAO, this.propertyLoader);
+		this.account = new Account();
+		this.account.performLogin(Given.userPersisted(null, "Name", "username", "name@email.com", "password", "password"));
+		this.fileService = new FileService(this.fileDAO, this.propertyLoader, this.account);
 		this.controller = new FileController(this.fileDAO, this.fileService,
 				this.result);
 	}
@@ -60,7 +64,9 @@ public class FileControllerIntegrationTest extends DaoTest {
 		ApplicationFile appFile = Given.file(null, "Name", null, "Description",
 				null, null, null, null,
 				Given.categoryPersisted(null, "Category"),
-				Given.typePersisted(null, "Type"), Given.plataformPersisted(null, "Plataform"));
+				Given.typePersisted(null, "Type"), 
+				Given.plataformPersisted(null, "Plataform"),
+				Given.userPersisted(null, "Name", "username", "email@email.com", "password", "password"));
 
 		this.controller.create(this.uploadFile, appFile);
 
@@ -75,7 +81,7 @@ public class FileControllerIntegrationTest extends DaoTest {
 	@Test
 	public void shouldDownloadFile(){
 		Given.filePersisted(null, "Imagem", "image.jpg", "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 
 		Download down = this.controller.downloadFile(this.fileDAO.findByName("Imagem").getId());
 			

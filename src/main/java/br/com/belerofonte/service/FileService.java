@@ -8,6 +8,7 @@ import java.util.Calendar;
 
 import org.apache.commons.io.IOUtils;
 
+import br.com.belerofonte.components.Account;
 import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
@@ -23,11 +24,13 @@ public class FileService {
 
 	private final ApplicationFileDAO applicationFileDAO;
 	private final PropertiesLoader loader;
+	private final Account account;
 
 	public FileService(ApplicationFileDAO applicationFileDAO,
-			PropertiesLoader loader) {
+			PropertiesLoader loader, Account account) {
 		this.applicationFileDAO = applicationFileDAO;
 		this.loader = loader;
+		this.account = account;
 	}
 
 	public void create(UploadedFile uploadedFile, ApplicationFile applicationFile) {			
@@ -51,6 +54,7 @@ public class FileService {
 		applicationFile.setContentType(uploadedFile.getContentType());
 		applicationFile.setSizeOfFile(filedestiny.length());
 		applicationFile.setNumberOfDownloads(0L);
+		applicationFile.setUser(this.account.getUser());
 		return applicationFile;
 	}
 

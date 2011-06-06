@@ -42,6 +42,9 @@ public class ApplicationFile {
 	private Calendar uploadDate;
 	@NotNull
 	private Long numberOfDownloads;
+	@NotNull
+	@ManyToOne
+	private User user;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -129,6 +132,14 @@ public class ApplicationFile {
 
 	public void setApplicationCategory(ApplicationCategory applicationCategory) {
 		this.applicationCategory = applicationCategory;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	/*@Override

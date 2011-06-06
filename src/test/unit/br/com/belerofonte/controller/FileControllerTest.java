@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import br.com.belerofonte.common.Given;
+import br.com.belerofonte.components.Account;
 import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
@@ -40,13 +41,15 @@ public class FileControllerTest {
 	private PropertiesLoader proprertiesLoader;
 
 	private Result result;
+	@Mock
+	private Account account;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		this.uploadFile = new UploadedFileTest();
 		this.result = new MockResult();
-		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader);
+		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, this.account);
 		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result);
 	}
 
@@ -56,7 +59,7 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldCreateApplicationFile() throws FileNotFoundException, IOException {
-		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null, null);
+		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null, null, null);
 		
 		Mockito.when(proprertiesLoader.getValue("folderFiles")).thenReturn("/Users/marcelotozzi/Desktop/uploaded/");
 		
@@ -67,7 +70,7 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldUpdateApplicationFile() {
-		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null, null);
+		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null, null, null);
 
 		this.controller.update(appFile);
 
@@ -101,7 +104,8 @@ public class FileControllerTest {
 				Calendar.getInstance(), 
 				Given.category(null, "Category"), 
 				Given.type(null, "Type"), 
-				Given.plataform(null, "Plataform")));
+				Given.plataform(null, "Plataform"),
+				Given.user(null, "Name", "usernam", "email@email.com", "password", "password")));
 		
 		Mockito.when(proprertiesLoader.getValue("folderFiles")).thenReturn("files/");
 		

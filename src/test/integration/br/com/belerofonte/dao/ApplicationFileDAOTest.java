@@ -39,7 +39,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 	@Test
 	public void shouldFindByName() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 		
 		ApplicationFile applicationFile = this.applicationFileDAO.findByName("Name");
 
@@ -56,7 +56,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 	@Test
 	public void shouldSaveApplicationFile() {
 		ApplicationFile appFile = Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 
 		this.applicationFileDAO.save(appFile);
 
@@ -68,7 +68,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 	@Test
 	public void shouldLoadApplicationFile() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 
 		ApplicationFile applicationFileByName = this.applicationFileDAO.findByName("Name");
 		ApplicationFile applicationFileByLoad = this.applicationFileDAO.load(applicationFileByName.getId());
@@ -86,7 +86,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 	@Test
 	public void shouldRemoveApplicationFile() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 
 		ApplicationFile applicationFile = this.applicationFileDAO.findByName("Name");
 
@@ -100,55 +100,55 @@ public class ApplicationFileDAOTest extends DaoTest {
 	@Test(expected = PropertyValueException.class)
 	public void shouldNotRegisterWithNameNullApplicationFile() {
 		Given.filePersisted(null, null, "nameOfFile.file", "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
 	@Test(expected = InvalidStateException.class)
 	public void shouldNotRegisterWithNameEmptyApplicationFile() {
 		Given.filePersisted(null, "", "nameOfFile.file", "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
 	@Test(expected = PropertyValueException.class)
 	public void shouldNotRegisterWithNameOfFileNullApplicationFile() {
 		Given.filePersisted(null, "Name", null, "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
 	@Test(expected = InvalidStateException.class)
 	public void shouldNotRegisterWithNameOfFileEmptyApplicationFile() {
 		Given.filePersisted(null, "Name", "", "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
 	@Test(expected = PropertyValueException.class)
 	public void shouldNotRegisterWithContentTypeNullApplicationFile() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", null, 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
 	@Test(expected = InvalidStateException.class)
 	public void shouldNotRegisterWithContentTypeEmptyApplicationFile() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
 	@Test(expected = PropertyValueException.class)
 	public void shouldNotRegisterWithNumberOfDownloadsNullApplicationFile() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
-				null, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				null, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
 	@Test(expected = PropertyValueException.class)
 	public void shouldNotRegisterWithSizeOfFileNullApplicationFile() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
-				0L, null, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, null, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
 	@Test
 	public void shouldUpdateApplicationFile() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 
 		ApplicationFile p = this.applicationFileDAO.findByName("Name");
 		p.setName("Name Rio");
@@ -162,8 +162,8 @@ public class ApplicationFileDAOTest extends DaoTest {
 	
 	@Test
 	public void shouldReturnRecentApplications(){
-		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
-		Given.filePersisted(null, "Name1", "nameOfFile1.file", "Description1", "contentType", 0L, 13134L, Calendar.getInstance(), "Category1", "Type1", "Plataform1");
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
+		Given.filePersisted(null, "Name1", "nameOfFile1.file", "Description1", "contentType", 0L, 13134L, Calendar.getInstance(), "Category1", "Type1", "Plataform1", "Name1");
 		
 		List<ApplicationFile> recents = this.applicationFileDAO.recentApplications(2);
 	
@@ -172,8 +172,8 @@ public class ApplicationFileDAOTest extends DaoTest {
 	
 	@Test
 	public void shouldReturnTopDownloads(){
-		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 10L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform");
-		Given.filePersisted(null, "Name1", "nameOfFile1.file", "Description1", "contentType", 20L, 13134L, Calendar.getInstance(), "Category1", "Type1", "Plataform1");
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 10L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
+		Given.filePersisted(null, "Name1", "nameOfFile1.file", "Description1", "contentType", 20L, 13134L, Calendar.getInstance(), "Category1", "Type1", "Plataform1", "Name1");
 		
 		List<ApplicationFile> top = this.applicationFileDAO.topDownloads(2);
 		

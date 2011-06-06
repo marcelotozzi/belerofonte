@@ -8,6 +8,7 @@ import br.com.belerofonte.dao.ApplicationCategoryDAO;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.dao.ApplicationTypeDAO;
 import br.com.belerofonte.dao.PlataformDAO;
+import br.com.belerofonte.dao.UserDAO;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.model.ApplicationType;
 import br.com.belerofonte.model.ApplicationCategory;
@@ -20,6 +21,7 @@ public class Given {
 	private static PlataformDAO plataformDAO;
 	private static ApplicationTypeDAO typeDAO;
 	private static ApplicationFileDAO fileDAO;
+	private static UserDAO userDAO;
 
 	public static User user(Long id,String name, String username, String email, String password, String confirmPassword) {
 		User user = new User();
@@ -32,6 +34,22 @@ public class Given {
 		user.setPassword(password);
 		user.setConfirmPassword(confirmPassword);
 		return user;
+	}
+	
+	public static User userPersisted(Long id, String name, String username, String email, String password, String confirmPassword){
+		User user = userDAO.findByUsername(username);
+		if (user != null) {
+			return user;
+		}else{
+			user = new User();
+			user.setName(name);
+			user.setUsername(username);
+			user.setEmail(email);
+			user.setPassword(password);
+			user.setConfirmPassword(confirmPassword);
+			userDAO.save(user);
+			return user;
+		}
 	}
 
 	public static User invalidUser(Long id, String name, String username, String email,
@@ -85,7 +103,8 @@ public class Given {
 
 	public static ApplicationFile file(Long id, String name, String nameOfFile, String description,
 			String contentType, Long numberOfDownloads, Long sizeOfFile, Calendar uploadDate,
-			ApplicationCategory category, ApplicationType type, Plataform plataform){
+			ApplicationCategory category, ApplicationType type, Plataform plataform,
+			User user){
 		ApplicationFile file = new ApplicationFile();
 		if (id != null) {
 			file.setId(id);
@@ -100,12 +119,13 @@ public class Given {
 		file.setApplicationCategory(category);
 		file.setApplicationType(type);
 		file.setPlataform(plataform);
+		file.setUser(user);
 		return file;
 	}
 	
 	public static ApplicationFile filePersisted(Long id, String name, String nameOfFile, String description,
 			String contentType, Long numberOfDownloads, Long sizeOfFile, Calendar uploadDate,
-			String nameCategory, String nameType, String namePlataform){
+			String nameCategory, String nameType, String namePlataform, String user){
 		ApplicationFile file = fileDAO.findByName(name);
 		if(file != null){
 			return file;
@@ -121,6 +141,7 @@ public class Given {
 			file.setApplicationCategory(categoryPersisted(null, nameCategory));
 			file.setApplicationType(typePersisted(null, nameType));
 			file.setPlataform(plataformPersisted(null, namePlataform));
+			file.setUser(userPersisted(null, user, user, user+"@email.com", user, user));
 			fileDAO.save(file);
 			return file;
 		}
@@ -152,5 +173,6 @@ public class Given {
 		plataformDAO = new PlataformDAO(s);
 		fileDAO = new ApplicationFileDAO(s);
 		typeDAO = new ApplicationTypeDAO(s);
+		userDAO = new UserDAO(s);
 	}
 }
