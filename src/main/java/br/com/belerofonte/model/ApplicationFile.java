@@ -14,37 +14,18 @@ import org.hibernate.validator.NotNull;
 
 @Entity
 public class ApplicationFile {
-	@Id
-	@GeneratedValue
-	private Long id;
-	@NotNull
-	@NotEmpty
-	private String name;
-	@NotNull
-	@NotEmpty
-	private String nameOfFile;
+	@Id @GeneratedValue private Long id;
+	@NotNull @NotEmpty private String name;
+	@NotNull @NotEmpty private String nameOfFile;
 	private String description;
-	@NotNull
-	private Long sizeOfFile;
-	@NotNull
-	@NotEmpty
-	private String contentType;
-	@NotNull
-	@ManyToOne
-	private Plataform plataform;
-	@NotNull
-	@ManyToOne
-	private ApplicationCategory applicationCategory;
-	@NotNull
-	@ManyToOne
-	private ApplicationType applicationType;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar uploadDate;
-	@NotNull
-	private Long numberOfDownloads;
-	@NotNull
-	@ManyToOne
-	private User user;
+	@NotNull private Long sizeOfFile;
+	@NotNull @NotEmpty private String contentType;
+	@NotNull @ManyToOne private Plataform plataform;
+	@NotNull @ManyToOne private ApplicationCategory applicationCategory;
+	@NotNull @ManyToOne private ApplicationType applicationType;
+	@Temporal(TemporalType.TIMESTAMP) private Calendar uploadDate;
+	@NotNull private Long numberOfDownloads;
+	@NotNull @ManyToOne private User user;
 
 	public void setId(Long id) {
 		this.id = id;

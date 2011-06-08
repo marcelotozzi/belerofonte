@@ -1,8 +1,14 @@
 package br.com.belerofonte.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Index;
 import org.hibernate.validator.Email;
@@ -17,7 +23,8 @@ public class User {
 	@NotEmpty @Length(min = 10) @Email private String email;
 	@NotEmpty @Length(min = 4) private String password;
 	@NotEmpty @Length(min = 4) private String confirmPassword;
-
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="user", targetEntity=ApplicationFile.class) @JoinColumn(name="user_id") private List<ApplicationFile> files;
+	
 	public Long getId() {
 		return id;
 	}
@@ -66,6 +73,14 @@ public class User {
 		this.name = name;
 	}
 	
+	public List<ApplicationFile> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<ApplicationFile> files) {
+		this.files = files;
+	}
+
 	@Override
 	public String toString() {
 		return "ID:["+ this.id +"] Name:["+ this.name +"] Username:["+ this.username +"] Email:["+ this.email+"]";
