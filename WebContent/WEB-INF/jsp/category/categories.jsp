@@ -14,7 +14,7 @@
 				<div class="box clearfix" id="dashboard">
 					<h3>Categorias</h3>
 					<a href="category/register">Adicionar</a>
-					<br/>
+					<br/><br/>
 					<ul>
 					<c:forEach var="cat" items="${categories}">
 						<li>

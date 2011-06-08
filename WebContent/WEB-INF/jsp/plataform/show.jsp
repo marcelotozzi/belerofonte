@@ -13,8 +13,11 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h2>${plataform.name}</h2>
-					<br/>
-					<p>#Listar Apps da plataforma</p>
+					<c:forEach items="${plataform.files}" var="plat">
+						<li>
+							<p><a href="<c:url value="/file/show/${plat.id}" />">${plat.name}</a></p>
+						</li><br/>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

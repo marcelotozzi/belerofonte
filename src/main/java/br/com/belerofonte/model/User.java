@@ -23,7 +23,9 @@ public class User {
 	@NotEmpty @Length(min = 10) @Email private String email;
 	@NotEmpty @Length(min = 4) private String password;
 	@NotEmpty @Length(min = 4) private String confirmPassword;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="user", targetEntity=ApplicationFile.class) @JoinColumn(name="user_id") private List<ApplicationFile> files;
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="user", targetEntity=ApplicationFile.class) 
+	@JoinColumn(name="user_id") 
+	private List<ApplicationFile> files;
 	
 	public Long getId() {
 		return id;

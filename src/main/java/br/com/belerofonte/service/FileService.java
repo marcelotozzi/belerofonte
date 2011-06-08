@@ -69,7 +69,7 @@ public class FileService {
 	public Download searchAndDownloadFile(Long id) {
 		ApplicationFile appFile = this.applicationFileDAO.load(id);
 		
-		File file = new File(loader.getValue("folderFiles") + appFile.getNameOfFile());
+		File file = new File(loader.getValue("folderFiles") + appFile.getUser().getUsername() +"/" + appFile.getNameOfFile());
 		
 		Download download = new FileDownload(file, appFile.getContentType(), appFile.getNameOfFile());
 		

@@ -13,8 +13,11 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h2>${category.name}</h2>
-					<br/>
-					<p>#Listar Apps da categoria</p>
+					<c:forEach items="${category.files}" var="cat">
+						<li>
+							<p><a href="<c:url value="/file/show/${cat.id}" />">${cat.name}</a></p>
+						</li><br/>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

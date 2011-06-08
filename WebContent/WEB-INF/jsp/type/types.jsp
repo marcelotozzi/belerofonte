@@ -14,7 +14,7 @@
 				<div class="box clearfix" id="dashboard">
 					<h3>Tipos</h3>
 					<a href="type/register">Adicionar</a>
-					<br/>
+					<br/><br/>
 					<ul>
 					<c:forEach var="type" items="${types}">
 						<li>

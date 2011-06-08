@@ -16,10 +16,10 @@
 					<a id="editAccount" href="user/edit/${account.user.id}">Editar Conta</a>
 					<br/><br/>
 					<a href='<c:url value="/file/register" />'>Adicionar Aplicativo</a>
-					
+					<br/><br/>
 					<c:forEach items="${account.user.files}" var="file">
 						<li>
-							<p>${file.id} -  ${file.name}</p>
+							<p><a href="<c:url value="/admin/plataform/${file.id}" />">${file.name}</a>   ${file.numberOfDownloads} downloads</p>
 						</li><br/>
 					</c:forEach>
 				</div>

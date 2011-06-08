@@ -14,7 +14,7 @@
 				<div class="box clearfix" id="dashboard">
 					<h3>Plataformas</h3>
 					<a href="plataform/register">Adicionar</a>
-					<br/>
+					<br/><br/>
 					<ul>
 					<c:forEach var="plat" items="${plataforms}">
 						<li>
