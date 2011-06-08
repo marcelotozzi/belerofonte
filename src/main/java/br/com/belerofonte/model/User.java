@@ -2,7 +2,6 @@ package br.com.belerofonte.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,7 @@ public class User {
 	@NotEmpty @Length(min = 10) @Email private String email;
 	@NotEmpty @Length(min = 4) private String password;
 	@NotEmpty @Length(min = 4) private String confirmPassword;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="user", targetEntity=ApplicationFile.class) 
+	@OneToMany(fetch=FetchType.EAGER) 
 	@JoinColumn(name="user_id") 
 	private List<ApplicationFile> files;
 	

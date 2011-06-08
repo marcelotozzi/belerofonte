@@ -2,7 +2,6 @@ package br.com.belerofonte.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,7 @@ import org.hibernate.validator.NotNull;
 public class ApplicationCategory {
 	@Id @GeneratedValue private Long id;
 	@NotNull @NotEmpty private String name;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="applicationCategory", targetEntity=ApplicationFile.class) 
+	@OneToMany(fetch=FetchType.EAGER) 
 	@JoinColumn(name="applicationCategory_id") 
 	private List<ApplicationFile> files;
 	

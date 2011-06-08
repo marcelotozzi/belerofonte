@@ -18,7 +18,7 @@
 					<ul>
 					<c:forEach var="plat" items="${plataforms}">
 						<li>
-							<p><a href="<c:url value="plataform/${plat.id}" />">${plat.name}</a> - <a href="<c:url value="plataform/edit/${plat.id}" />">Editar</a></p>
+							<p><a href="<c:url value="/admin/plataform/${plat.id}" />">${plat.name}</a> - <a href="<c:url value="plataform/edit/${plat.id}" />">Editar</a></p>
 						</li><br/>
 					</c:forEach>
 					</ul>

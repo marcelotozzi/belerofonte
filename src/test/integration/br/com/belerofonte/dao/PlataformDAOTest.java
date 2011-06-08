@@ -34,11 +34,11 @@ public class PlataformDAOTest extends DaoTest {
 
 	@Test
 	public void shouldFindByName() {
-		this.plataformDAO.save(Given.plataform(1L,"ANDROID"));
+		this.plataformDAO.save(Given.plataform(1L,"Plataform"));
 
-		Plataform plataform = this.plataformDAO.findByName("ANDROID");
+		Plataform plataform = this.plataformDAO.findByName("Plataform");
 
-		Assert.assertEquals("ANDROID", plataform.getName());
+		Assert.assertEquals("Plataform", plataform.getName());
 	}
 
 	@Test
@@ -50,9 +50,9 @@ public class PlataformDAOTest extends DaoTest {
 
 	@Test
 	public void shouldLoadPlatafom() {
-		this.plataformDAO.save(Given.plataform(1L,"ANDROID"));
+		this.plataformDAO.save(Given.plataform(1L,"Plataform"));
 
-		Plataform plataformByName = this.plataformDAO.findByName("ANDROID");
+		Plataform plataformByName = this.plataformDAO.findByName("Plataform");
 		Plataform plataformByLoad = this.plataformDAO.load(plataformByName.getId());
 
 		Assert.assertEquals(plataformByName.getId(), plataformByLoad.getId());
@@ -68,11 +68,11 @@ public class PlataformDAOTest extends DaoTest {
 
 	@Test
 	public void shouldSavePlataform() {
-		this.plataformDAO.save(Given.plataform(1L,"ANDROID"));
+		this.plataformDAO.save(Given.plataform(1L,"Plataform"));
 
-		Plataform plataform = this.plataformDAO.findByName("ANDROID");
+		Plataform plataform = this.plataformDAO.findByName("Plataform");
 
-		Assert.assertEquals("ANDROID", plataform.getName());
+		Assert.assertEquals("Plataform", plataform.getName());
 	}
 	
 	@Test(expected=InvalidStateException.class)
@@ -87,27 +87,27 @@ public class PlataformDAOTest extends DaoTest {
 
 	@Test
 	public void shouldUpdatePlataform() {
-		this.plataformDAO.save(Given.plataform(1L,"ANDROID"));
+		this.plataformDAO.save(Given.plataform(1L,"Plataform"));
 
-		Plataform p = this.plataformDAO.findByName("ANDROID");
-		p.setName("JAVA");
+		Plataform p = this.plataformDAO.findByName("Plataform");
+		p.setName("Plataform2");
 
 		this.plataformDAO.update(p);
 
-		Plataform plataform = this.plataformDAO.findByName("JAVA");
+		Plataform plataform = this.plataformDAO.findByName("Plataform2");
 
-		Assert.assertEquals("JAVA", plataform.getName());
+		Assert.assertEquals("Plataform2", plataform.getName());
 	}
 
 	@Test
 	public void shouldRemove() {
-		this.plataformDAO.save(Given.plataform(1L,"ANDROID"));
+		this.plataformDAO.save(Given.plataform(1L,"Plataform"));
 
-		Plataform plataform = this.plataformDAO.findByName("ANDROID");
+		Plataform plataform = this.plataformDAO.findByName("Plataform");
 
 		this.plataformDAO.remove(plataform);
 
-		Plataform u = this.plataformDAO.findByName("ANDROID");
+		Plataform u = this.plataformDAO.findByName("Plataform");
 
 		Assert.assertNull(u);
 	}

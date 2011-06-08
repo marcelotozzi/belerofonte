@@ -81,7 +81,7 @@ public class FileControllerIntegrationTest extends DaoTest {
 	@Test
 	public void shouldDownloadFile(){
 		Given.filePersisted(null, "Imagem", "image.jpg", "Description", "contentType", 
-				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
+				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "username");
 
 		Download down = this.controller.downloadFile(this.fileDAO.findByName("Imagem").getId());
 			
