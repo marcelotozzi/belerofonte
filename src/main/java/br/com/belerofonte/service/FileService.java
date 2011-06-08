@@ -34,18 +34,26 @@ public class FileService {
 	}
 
 	public void create(UploadedFile uploadedFile, ApplicationFile applicationFile) {			
-		File filedestiny = new File(loader.getValue("folderFiles"), uploadedFile.getFileName());
+		File filedestiny = checksTheUsersDirectory(uploadedFile);
 		
 		try {
 			IOUtils.copyLarge(uploadedFile.getFile(), new FileOutputStream(filedestiny));	
 			
-			this.applicationFileDAO.save(fillAtributes(uploadedFile, applicationFile, filedestiny));
-			
+			this.applicationFileDAO.save(fillAtributes(uploadedFile, applicationFile, filedestiny));		
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private File checksTheUsersDirectory(UploadedFile uploadedFile) {
+		String dir = loader.getValue("folderFiles")+this.account.getUser().getUsername();
+		if(!new File(dir).exists()){
+			new File(dir).mkdir();
+		}
+		File filedestiny = new File(dir, uploadedFile.getFileName());
+		return filedestiny;
 	}
 
 	private ApplicationFile fillAtributes(UploadedFile uploadedFile, ApplicationFile applicationFile, File filedestiny) {

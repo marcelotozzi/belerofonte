@@ -18,6 +18,7 @@ import br.com.belerofonte.components.Account;
 import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
+import br.com.belerofonte.model.User;
 import br.com.belerofonte.service.FileService;
 import br.com.belerofonte.util.UploadedFileTest;
 import br.com.caelum.vraptor.Result;
@@ -28,27 +29,22 @@ import br.com.caelum.vraptor.util.test.MockResult;
 public class FileControllerTest {
 
 	private FileController controller;
-
-	@Mock
 	private FileService applicationFileService;
-
+	private UploadedFile uploadFile;
+	private PropertiesLoader proprertiesLoader;
+	private Result result;
+	private Account account;
 	@Mock
 	private ApplicationFileDAO applicationFileDAO;
-
-	private UploadedFile uploadFile;
-	
-	@Mock
-	private PropertiesLoader proprertiesLoader;
-
-	private Result result;
-	@Mock
-	private Account account;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		this.uploadFile = new UploadedFileTest();
 		this.result = new MockResult();
+		this.account = new Account();
+		this.account.performLogin(new User());
+		this.proprertiesLoader = new PropertiesLoader();
 		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, this.account);
 		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result);
 	}
@@ -59,10 +55,8 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldCreateApplicationFile() throws FileNotFoundException, IOException {
-		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null, null, null);
-		
-		Mockito.when(proprertiesLoader.getValue("folderFiles")).thenReturn("/Users/marcelotozzi/Desktop/uploaded/");
-		
+		ApplicationFile appFile = new ApplicationFile();
+			
 		this.controller.create(this.uploadFile, appFile);
 
 		Mockito.verify(this.applicationFileDAO).save(appFile);
@@ -70,7 +64,7 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldUpdateApplicationFile() {
-		ApplicationFile appFile = Given.file(null, null, null, null, null, null, null, null, null, null, null, null);
+		ApplicationFile appFile = new ApplicationFile();
 
 		this.controller.update(appFile);
 
@@ -105,9 +99,7 @@ public class FileControllerTest {
 				Given.category(null, "Category"), 
 				Given.type(null, "Type"), 
 				Given.plataform(null, "Plataform"),
-				Given.user(null, "Name", "usernam", "email@email.com", "password", "password")));
-		
-		Mockito.when(proprertiesLoader.getValue("folderFiles")).thenReturn("files/");
+				Given.user(null, "Name", "username", "email@email.com", "password", "password")));
 		
 		Download down = this.controller.downloadFile(20L);
 		

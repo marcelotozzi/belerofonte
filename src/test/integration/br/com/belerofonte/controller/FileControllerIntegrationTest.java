@@ -70,7 +70,7 @@ public class FileControllerIntegrationTest extends DaoTest {
 
 		this.controller.create(this.uploadFile, appFile);
 
-		File file = new File("files/image.jpg");
+		File file = new File(this.propertyLoader.getValue("folderFiles")+this.account.getUser().getUsername()+"/image.jpg");
 		Download fileUploaded = new FileDownload(file, "image/jpeg");
 
 		Assert.assertNotNull(fileUploaded);
