@@ -1,8 +1,14 @@
 package br.com.belerofonte.components;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
 import br.com.belerofonte.controller.AccountController;
 import br.com.belerofonte.controller.AdminController;
 import br.com.belerofonte.controller.CategoryController;
@@ -20,14 +26,17 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.resource.DefaultResourceMethod;
 import br.com.caelum.vraptor.util.test.MockResult;
+import br.com.caelum.vraptor.validator.ValidationMessage;
 
 public class AccessInterceptorTest {
 	private AccessInterceptor interceptor;
 	private Result result;
+	@Mock
 	private Account account;
-
+	
 	@Before
 	public void setUp() throws Exception {
+		MockitoAnnotations.initMocks(this);
 		this.result = new MockResult();
 		this.interceptor = new AccessInterceptor(this.account, this.result);
 	}
@@ -97,9 +106,9 @@ public class AccessInterceptorTest {
 	}
 
 	@Test
-	public void shouldInterceptShowMethodCategoryController()
+	public void shouldNotInterceptShowMethodCategoryController()
 			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
 				.instanceFor(CategoryController.class, CategoryController.class
 						.getDeclaredMethod("show", Long.class))));
 	}
@@ -121,9 +130,9 @@ public class AccessInterceptorTest {
 	}
 
 	@Test
-	public void shouldInterceptCategoriesMethodCategoryController()
+	public void shouldNotInterceptCategoriesMethodCategoryController()
 			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
 				.instanceFor(CategoryController.class, CategoryController.class
 						.getDeclaredMethod("categories"))));
 	}
@@ -189,9 +198,9 @@ public class AccessInterceptorTest {
 	}
 
 	@Test
-	public void shouldInterceptShowMethodPlataformController()
+	public void shouldNotInterceptShowMethodPlataformController()
 			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
 				.instanceFor(PlataformController.class,
 						PlataformController.class.getDeclaredMethod("show",
 								Long.class))));
@@ -215,9 +224,9 @@ public class AccessInterceptorTest {
 	}
 
 	@Test
-	public void shouldInterceptPlataformsMethodPlataformController()
+	public void shouldNotInterceptPlataformsMethodPlataformController()
 			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
 				.instanceFor(PlataformController.class,
 						PlataformController.class
 								.getDeclaredMethod("plataforms"))));
@@ -248,9 +257,9 @@ public class AccessInterceptorTest {
 	}
 
 	@Test
-	public void shouldInterceptShowMethodTypeController()
+	public void shouldNotInterceptShowMethodTypeController()
 			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
 				.instanceFor(TypeController.class, TypeController.class
 						.getDeclaredMethod("show", Long.class))));
 	}
@@ -272,9 +281,9 @@ public class AccessInterceptorTest {
 	}
 
 	@Test
-	public void shouldInterceptApplicationTypesMethodTypeController()
+	public void shouldNotInterceptApplicationTypesMethodTypeController()
 			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
 				.instanceFor(TypeController.class,
 						TypeController.class.getDeclaredMethod("types"))));}
 
@@ -311,9 +320,9 @@ public class AccessInterceptorTest {
 	}
 
 	@Test
-	public void shouldInterceptShowMethodUserController()
+	public void shouldNotInterceptShowMethodUserController()
 			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
+		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
 				.instanceFor(UserController.class, UserController.class
 						.getDeclaredMethod("show", Long.class))));
 	}
@@ -332,5 +341,18 @@ public class AccessInterceptorTest {
 		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
 				.instanceFor(UserController.class, UserController.class
 						.getDeclaredMethod("verifyUsername", String.class))));
+	}
+	
+	@Test
+	public void shouldRedirectToLogin(){
+		Mockito.when(this.account.isLogged()).thenReturn(false);
+		
+		this.interceptor.intercept(null, null, null);
+		
+		@SuppressWarnings("unchecked")
+		List<ValidationMessage> errors = (List<ValidationMessage>) this.result.included().get("errors");
+		for (ValidationMessage erro : errors) {
+			Assert.assertEquals("Faça o Login para acessar sua conta.", erro.getMessage());
+		}
 	}
 }

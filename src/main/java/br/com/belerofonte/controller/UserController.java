@@ -55,6 +55,7 @@ public class UserController {
 		this.result.redirectTo(UserController.class).show(this.account.getUser().getId());
 	}
 
+	@NoInterceptMethod
 	@Get
 	@Path("/user/{id}/{login}")
 	public void show(Long id) {
@@ -63,8 +64,9 @@ public class UserController {
 	}
 
 	@Path("/user/edit/{id}")
-	public User edit(Long id) {
-		return this.userDAO.load(id);
+	public void edit(Long id) {
+		 User user = this.userDAO.load(id);
+		 result.include("user", user);
 	}
 
 	@Path("/user/verify/username")

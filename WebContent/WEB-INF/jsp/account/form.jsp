@@ -13,7 +13,7 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<c:forEach var="error" items="${errors}">
-    					${error.category} - ${error.message}<br />
+    					${error.message} - ${error.category}<br />
 						<br>
 					</c:forEach>
 					<h3>Login</h3>

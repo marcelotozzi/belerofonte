@@ -1,6 +1,7 @@
 package br.com.belerofonte.controller;
 
 import br.com.belerofonte.annotation.InterceptResource;
+import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.dao.PlataformDAO;
 import br.com.belerofonte.model.Plataform;
 import br.com.caelum.vraptor.Delete;
@@ -45,6 +46,7 @@ public class PlataformController {
 		this.result.redirectTo(PlataformController.class).plataforms();
 	}
 	
+	@NoInterceptMethod
 	@Get
 	@Path("/admin/plataform/{id}")
 	public void show(Long id) {
@@ -53,14 +55,16 @@ public class PlataformController {
 	}
 	
 	@Path("/admin/plataform/edit/{id}")
-	public Plataform edit(Long id) {
-		return this.plataformDAO.load(id);
+	public void edit(Long id) {
+		Plataform plataform = this.plataformDAO.load(id);
+		this.result.include("plataform", plataform);
 	}
 
 	@Path("/admin/plataform/register")
 	public void form() {
 	}
 	
+	@NoInterceptMethod
 	@Path("/admin/plataforms")
 	public void plataforms(){		
 		this.result.include("plataforms", this.plataformDAO.list());

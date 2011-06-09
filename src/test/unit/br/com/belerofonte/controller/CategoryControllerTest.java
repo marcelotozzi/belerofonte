@@ -1,7 +1,10 @@
 package br.com.belerofonte.controller;
 
 
+import java.util.List;
+
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -56,5 +59,39 @@ public class CategoryControllerTest {
 		this.controller.delete(1L);
 
 		Mockito.verify(this.categoryDAO).remove(cat);
+	}
+	
+	@Test
+	public void shouldCallFormMethod(){
+		this.controller.form();
+	}
+	
+	@Test
+	public void shouldCallCategoriesMethodAndReturnListInResult(){
+		this.controller.categories();
+		@SuppressWarnings("unchecked")
+		List<ApplicationCategory> objects = (List<ApplicationCategory>) this.result.included().get("categories");
+		
+		Assert.assertNotNull(objects);
+	}
+	
+	@Test
+	public void shouldCallShowMethodAndReturnApplicationCategoryInResult(){
+		Mockito.when(this.categoryDAO.load(1L)).thenReturn(new ApplicationCategory());
+
+		this.controller.show(1L);
+		
+		ApplicationCategory category = (ApplicationCategory) this.result.included().get("category");
+		Assert.assertNotNull(category);
+	}
+	
+	@Test
+	public void shouldCallEditMethodAndReturnApplicationCategoryInResult(){
+		Mockito.when(this.categoryDAO.load(1L)).thenReturn(new ApplicationCategory());
+
+		this.controller.edit(1L);
+		
+		ApplicationCategory categpry = (ApplicationCategory) this.result.included().get("category");
+		Assert.assertNotNull(categpry);
 	}
 }

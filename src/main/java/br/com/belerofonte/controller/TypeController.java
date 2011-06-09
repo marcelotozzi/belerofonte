@@ -1,6 +1,7 @@
 package br.com.belerofonte.controller;
 
 import br.com.belerofonte.annotation.InterceptResource;
+import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.dao.ApplicationTypeDAO;
 import br.com.belerofonte.model.ApplicationType;
 import br.com.caelum.vraptor.Delete;
@@ -45,6 +46,7 @@ public class TypeController {
 		this.result.redirectTo(TypeController.class).types();
 	}
 	
+	@NoInterceptMethod
 	@Get
 	@Path("/admin/type/{id}")
 	public void show(Long id) {
@@ -62,6 +64,7 @@ public class TypeController {
 	public void form() {
 	}
 	
+	@NoInterceptMethod
 	@Path("/admin/types")
 	public void types(){	
 		this.result.include("types", this.applicationTypeDAO.list());

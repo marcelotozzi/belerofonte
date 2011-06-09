@@ -68,4 +68,14 @@ public class AccountControllerTest {
 		
 		Assert.assertFalse(this.account.isLogged());
 	}
+	
+	@Test
+	public void shouldCallFormMethod(){
+		this.controller.form();
+	}
+	
+	@Test
+	public void shouldCallAccountMethod(){
+		this.controller.account();
+	}
 }

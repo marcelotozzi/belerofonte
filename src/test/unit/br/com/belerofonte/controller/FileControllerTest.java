@@ -81,16 +81,6 @@ public class FileControllerTest {
 	}
 	
 	@Test
-	public void shouldReturnRecentApplicationsJson(){
-		Assert.fail("N‹o implementado");
-	}
-	
-	@Test
-	public void shouldReturnTopDownloadsJson(){
-		Assert.fail("N‹o implementado");
-	}
-	
-	@Test
 	public void shouldDownloadFile(){		
 		
 		Mockito.when(this.applicationFileDAO.load(20))
@@ -105,5 +95,20 @@ public class FileControllerTest {
 		
 		Assert.assertNotNull(down);
 		Mockito.verify(this.applicationFileDAO).load(20L);
+	}
+	
+	@Test
+	public void shouldCallFormMethod(){
+		this.controller.form();
+	}
+	
+	@Test
+	public void shouldCallShowMethodAndReturnApplicationFileInResult(){
+		Mockito.when(this.applicationFileDAO.load(1L)).thenReturn(new ApplicationFile());
+
+		this.controller.show(1L);
+		
+		ApplicationFile file = (ApplicationFile) this.result.included().get("file");
+		Assert.assertNotNull(file);
 	}
 }

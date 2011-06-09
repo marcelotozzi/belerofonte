@@ -72,4 +72,29 @@ public class UserControllerTest {
 
 		Mockito.verify(this.userDAO).remove(u);
 	}
+	
+	@Test
+	public void shouldCallFormMethod(){
+		this.controller.form();
+	}
+	
+	@Test
+	public void shouldCallShowMethodAndReturnUserInResult(){
+		Mockito.when(this.userDAO.load(1L)).thenReturn(new User());
+
+		this.controller.show(1L);
+		
+		User user = (User) this.result.included().get("person");
+		Assert.assertNotNull(user);
+	}
+	
+	@Test
+	public void shouldCallEditMethodAndReturnUserInResult(){
+		Mockito.when(this.userDAO.load(1L)).thenReturn(new User());
+
+		this.controller.edit(1L);
+		
+		User type = (User) this.result.included().get("user");
+		Assert.assertNotNull(type);
+	}
 }

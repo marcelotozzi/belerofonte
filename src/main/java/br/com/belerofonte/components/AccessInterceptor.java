@@ -35,7 +35,7 @@ public class AccessInterceptor implements Interceptor {
 		if (this.account.isLogged()) {
 			stack.next(method, resourceInstance);
 		} else {
-			result.include("errors", Arrays.asList(new ValidationMessage(null, "Faça o Login para acessar sua conta.")));
+			result.include("errors", Arrays.asList(new ValidationMessage("Faça o Login para acessar sua conta.", null)));
 			result.use(Results.logic()).redirectTo(AccountController.class).form();
 		}
 	}

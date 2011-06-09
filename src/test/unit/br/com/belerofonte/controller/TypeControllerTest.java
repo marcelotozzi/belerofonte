@@ -1,7 +1,10 @@
 package br.com.belerofonte.controller;
 
 
+import java.util.List;
+
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -56,5 +59,39 @@ public class TypeControllerTest {
 		this.controller.delete(1L);
 
 		Mockito.verify(this.applicationTypeDAO).remove(applicationType);
+	}
+	
+	@Test
+	public void shouldCallFormMethod(){
+		this.controller.form();
+	}
+	
+	@Test
+	public void shouldCallTypesMethodAndReturnListInResult(){
+		this.controller.types();
+		@SuppressWarnings("unchecked")
+		List<ApplicationType> objects = (List<ApplicationType>) this.result.included().get("types");
+		
+		Assert.assertNotNull(objects);
+	}
+	
+	@Test
+	public void shouldCallShowMethodAndReturnApplicationTypeInResult(){
+		Mockito.when(this.applicationTypeDAO.load(1L)).thenReturn(new ApplicationType());
+
+		this.controller.show(1L);
+		
+		ApplicationType type = (ApplicationType) this.result.included().get("type");
+		Assert.assertNotNull(type);
+	}
+	
+	@Test
+	public void shouldCallEditMethodAndReturnApplicationTypeInResult(){
+		Mockito.when(this.applicationTypeDAO.load(1L)).thenReturn(new ApplicationType());
+
+		this.controller.edit(1L);
+		
+		ApplicationType type = (ApplicationType) this.result.included().get("type");
+		Assert.assertNotNull(type);
 	}
 }

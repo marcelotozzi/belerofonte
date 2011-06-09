@@ -1,6 +1,7 @@
 package br.com.belerofonte.controller;
 
 import br.com.belerofonte.annotation.InterceptResource;
+import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.dao.ApplicationCategoryDAO;
 import br.com.belerofonte.model.ApplicationCategory;
 import br.com.caelum.vraptor.Delete;
@@ -45,6 +46,7 @@ public class CategoryController {
 		this.result.redirectTo(CategoryController.class).categories();
 	}
 
+	@NoInterceptMethod
 	@Get
 	@Path("/admin/category/{id}")
 	public void show(Long id) {
@@ -62,6 +64,7 @@ public class CategoryController {
 	public void form() {
 	}
 
+	@NoInterceptMethod
 	@Path("/admin/categories")
 	public void categories(){		
 		this.result.include("categories", this.categoryDAO.list());

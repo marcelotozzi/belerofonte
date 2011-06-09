@@ -1,7 +1,10 @@
 package br.com.belerofonte.controller;
 
 
+import java.util.List;
+
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -57,5 +60,39 @@ public class PlataformControllerTest {
 		this.controller.delete(1L);
 
 		Mockito.verify(this.plataformDAO).remove(u);
+	}
+	
+	@Test
+	public void shouldCallFormMethod(){
+		this.controller.form();
+	}
+	
+	@Test
+	public void shouldCallPlataformsMethodAndReturnListInResult(){
+		this.controller.plataforms();
+		@SuppressWarnings("unchecked")
+		List<Plataform> objects = (List<Plataform>) this.result.included().get("plataforms");
+		
+		Assert.assertNotNull(objects);
+	}
+	
+	@Test
+	public void shouldCallShowMethodAndReturnPlataformInResult(){
+		Mockito.when(this.plataformDAO.load(1L)).thenReturn(new Plataform());
+
+		this.controller.show(1L);
+		
+		Plataform plataform = (Plataform) this.result.included().get("plataform");
+		Assert.assertNotNull(plataform);
+	}
+	
+	@Test
+	public void shouldCallEditMethodAndReturnPlataformInResult(){
+		Mockito.when(this.plataformDAO.load(1L)).thenReturn(new Plataform());
+
+		this.controller.edit(1L);
+		
+		Plataform plataform = (Plataform) this.result.included().get("plataform");
+		Assert.assertNotNull(plataform);
 	}
 }
