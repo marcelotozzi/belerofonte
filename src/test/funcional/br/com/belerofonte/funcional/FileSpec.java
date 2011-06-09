@@ -39,6 +39,8 @@ public class FileSpec {
 		cw.typeAtField("Belerofonte", "file.name");
 		cw.typeAtField("Aplicação do sistema Belerofonte", "file.description");
 		cw.select("selectPlataform","Android");
+		
+		//cw.clickTheButton("submitFile");
 		Assert.fail("Não implementado");
 	}
 }

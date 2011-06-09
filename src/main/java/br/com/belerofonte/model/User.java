@@ -81,9 +81,4 @@ public class User {
 	public void setFiles(List<ApplicationFile> files) {
 		this.files = files;
 	}
-
-	@Override
-	public String toString() {
-		return "ID:["+ this.id +"] Name:["+ this.name +"] Username:["+ this.username +"] Email:["+ this.email+"]";
-	}
 }

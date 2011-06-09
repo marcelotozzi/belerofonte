@@ -18,7 +18,6 @@ public class CommonWebSteps {
 	public CommonWebSteps() {
 		loader = new PropertiesLoader();
 		serverUrl = loader.getValue("homeUrlTest");
-		PreDados.main(null);
 	}
 
 	public void navigateToPage(String page) {
@@ -53,10 +52,6 @@ public class CommonWebSteps {
 		this.driver.findElement(By.id(buttonId)).click();
 	}
 
-	public void clickTheButtonByName(String buttonName) {
-		this.driver.findElement(By.name(buttonName)).click();
-	}
-
 	public void checkMessage(String message) {
 		Assert.assertTrue(this.driver.getPageSource().contains(message));
 	}
@@ -86,18 +81,14 @@ public class CommonWebSteps {
 		clickTheLink("Categorias");
 	}
 
-	public void setDriver(WebDriver webDriver) {
-		this.driver = webDriver;
-	}
-
 	public void select(String id, String name) {
 		// WebElement select = driver.findElement(By.xpath("//select[@id='"+id+"']"));
 		WebElement select = driver.findElement(By.id(id));
 		List<WebElement> allOptions = select.findElements(By.tagName("option"));
 		for (WebElement option : allOptions) {
-			System.out.println(option);
-			System.out.println(String.format("Value is: %s", option.getValue()));
-			option.setSelected();
+			if(option.getText().equals(name)){
+				option.setSelected();
+			}
 		}
 	}
 

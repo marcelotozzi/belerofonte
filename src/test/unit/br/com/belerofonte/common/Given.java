@@ -16,7 +16,6 @@ import br.com.belerofonte.model.Plataform;
 import br.com.belerofonte.model.User;
 
 public class Given {
-	
 	private static ApplicationCategoryDAO categoryDAO;
 	private static PlataformDAO plataformDAO;
 	private static ApplicationTypeDAO typeDAO;

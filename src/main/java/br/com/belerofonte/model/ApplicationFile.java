@@ -122,17 +122,4 @@ public class ApplicationFile {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	/*@Override
-	public String toString() {
-		return "Id[" + this.id + "] " + "Name[" + this.name + "] "
-				+ "NameOfFile[" + this.nameOfFile + "] " + "Description["
-				+ this.description + "] " + "SizeOfFile[" + this.sizeOfFile
-				+ "] " + "ContentType[" + this.contentType + "] "
-				+ "Plataform[" + this.plataform.getId() + "]["
-				+ this.plataform.getName() + "] " + "ApplicationType["
-				+ this.applicationType.getId() + "]["
-				+ this.applicationType.getName() + "] " + "UploadDate["
-				+ this.uploadDate.getTime() + "]";
-	}*/
 }
