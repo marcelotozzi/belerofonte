@@ -1,5 +1,7 @@
 package br.com.belerofonte.controller;
 
+import static org.junit.Assert.fail;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
@@ -110,5 +112,15 @@ public class FileControllerTest {
 		
 		ApplicationFile file = (ApplicationFile) this.result.included().get("file");
 		Assert.assertNotNull(file);
+	}
+	
+	@Test
+	public void shouldReturnJsonWithTopDownloads(){
+		fail("Nao implementado");
+	}
+	
+	@Test
+	public void shouldReturnJsonWithRecentApplications(){
+		fail("Nao implementado");
 	}
 }
