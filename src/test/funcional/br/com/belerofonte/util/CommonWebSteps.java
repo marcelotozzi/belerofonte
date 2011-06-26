@@ -14,7 +14,7 @@ public class CommonWebSteps {
 	String serverUrl;
 	WebDriver driver = new HtmlUnitDriver();
 	private PropertiesLoader loader;
-
+	
 	public CommonWebSteps() {
 		loader = new PropertiesLoader();
 		serverUrl = loader.getValue("homeUrlTest");

@@ -1,5 +1,7 @@
 package br.com.belerofonte.controller;
 
+import java.util.List;
+
 import br.com.belerofonte.annotation.InterceptResource;
 import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.dao.ApplicationFileDAO;
@@ -56,13 +58,21 @@ public class FileController {
 	@NoInterceptMethod
 	@Path("/files/topDownloads.json")
 	public void topDownloadsJson(){
-		this.result.use(Results.json()).from(this.applicationFileDAO.topDownloads(10), "topDownloads").serialize();
+		this.result.use(Results.json()).from(this.applicationFileDAO.topDownloads(10), "topDownloads")
+		.include("applicationCategory")
+		.include("plataform")
+		.include("applicationType")
+		.serialize();
 	}
 	
 	@NoInterceptMethod
 	@Path("/files/recentApplications.json")
 	public void recentApplicationsJson(){
-		this.result.use(Results.json()).from(this.applicationFileDAO.recentApplications(10), "recentApps").serialize();
+		this.result.use(Results.json()).from(this.applicationFileDAO.recentApplications(10), "recentApps")
+		.include("applicationCategory")
+		.include("plataform")
+		.include("applicationType")
+		.serialize();
 	}
 
 	@NoInterceptMethod

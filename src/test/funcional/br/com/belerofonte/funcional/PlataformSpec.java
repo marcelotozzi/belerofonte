@@ -1,22 +1,45 @@
 package br.com.belerofonte.funcional;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.belerofonte.common.Given;
+import br.com.belerofonte.dao.DaoTest;
+import br.com.belerofonte.dao.PlataformDAO;
+import br.com.belerofonte.dao.UserDAO;
 import br.com.belerofonte.util.CommonWebSteps;
 
 public class PlataformSpec {
 	private CommonWebSteps cw;
+	private Long aleatorio;
+	private Session s;
+	private Transaction tx;
+	private PlataformDAO dao;
+	private UserDAO userDao;
 
 	@Before
 	public void setUp() throws Exception {
 		cw = new CommonWebSteps();
+		s = DaoTest.getSession();
+		tx = s.beginTransaction();
+		userDao = new UserDAO(s);
+		userDao.save(Given.user(null, "Admin", "admin", "admin@email.com", "admin", "admin"));
+		tx.commit();
+		s.close();
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		cw.closeAndQuit();
+		s = DaoTest.getSession();
+		tx = s.beginTransaction();
+		userDao = new UserDAO(s);
+		userDao.remove(userDao.findByUsername("admin"));
+		tx.commit();
+		s.close();
 	}
 
 	@Test
@@ -30,9 +53,16 @@ public class PlataformSpec {
 		cw.givenImInThePlataformPage();
 		cw.clickTheLink("Adicionar");
 		cw.checkMessage("Registre uma plataforma");
-		Long aleatorio = System.currentTimeMillis();
+		aleatorio = System.currentTimeMillis();
 		cw.typeAtField(aleatorio.toString(), "plataform.name");
 		cw.submitForm("newPlataform");
 		cw.checkMessage(aleatorio.toString());
+		
+		s = DaoTest.getSession();
+		tx = s.beginTransaction();
+		dao = new PlataformDAO(s);
+		dao.remove(dao.findByName(aleatorio.toString()));
+		tx.commit();
+		s.close();
 	}
 }

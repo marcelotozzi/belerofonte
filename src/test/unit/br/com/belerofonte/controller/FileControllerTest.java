@@ -1,10 +1,7 @@
 package br.com.belerofonte.controller;
 
-import static org.junit.Assert.fail;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Calendar;
 
 import junit.framework.Assert;
 
@@ -15,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
 import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
@@ -24,7 +20,6 @@ import br.com.belerofonte.model.User;
 import br.com.belerofonte.service.FileService;
 import br.com.belerofonte.util.UploadedFileTest;
 import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.util.test.MockResult;
 
@@ -83,23 +78,6 @@ public class FileControllerTest {
 	}
 	
 	@Test
-	public void shouldDownloadFile(){		
-		
-		Mockito.when(this.applicationFileDAO.load(20))
-		.thenReturn(Given.file(null, "Name", "image.jpg", "description", "image/jpg", 0L, 1343L, 
-				Calendar.getInstance(), 
-				Given.category(null, "Category"), 
-				Given.type(null, "Type"), 
-				Given.plataform(null, "Plataform"),
-				Given.user(null, "Name", "username", "email@email.com", "password", "password")));
-		
-		Download down = this.controller.downloadFile(20L);
-		
-		Assert.assertNotNull(down);
-		Mockito.verify(this.applicationFileDAO).load(20L);
-	}
-	
-	@Test
 	public void shouldCallFormMethod(){
 		this.controller.form();
 	}
@@ -112,15 +90,5 @@ public class FileControllerTest {
 		
 		ApplicationFile file = (ApplicationFile) this.result.included().get("file");
 		Assert.assertNotNull(file);
-	}
-	
-	@Test
-	public void shouldReturnJsonWithTopDownloads(){
-		fail("Nao implementado");
-	}
-	
-	@Test
-	public void shouldReturnJsonWithRecentApplications(){
-		fail("Nao implementado");
 	}
 }
