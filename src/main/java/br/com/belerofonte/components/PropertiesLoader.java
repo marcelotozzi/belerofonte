@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
-import br.com.caelum.vraptor.ioc.SessionScoped;
 
 @Component
-@SessionScoped
+@ApplicationScoped
 public class PropertiesLoader {
 	private Properties props;
 	private String nameOfFileProperties = "/files.properties";
@@ -20,6 +20,7 @@ public class PropertiesLoader {
 			props.load(in);
 			in.close();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

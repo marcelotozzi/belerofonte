@@ -4,7 +4,6 @@ package br.com.belerofonte.dao;
 import junit.framework.Assert;
 
 import org.hibernate.ObjectNotFoundException;
-import org.hibernate.PropertyValueException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.validator.InvalidStateException;
@@ -36,11 +35,11 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 
 	@Test
 	public void shouldFindByName() {
-		this.applicationCategoryDAO.save(Given.category(null, "Categoria"));
+		this.applicationCategoryDAO.save(Given.category(null, "Category"));
 
-		ApplicationCategory applicationCategory = this.applicationCategoryDAO.findByName("Categoria");
+		ApplicationCategory applicationCategory = this.applicationCategoryDAO.findByName("Category");
 
-		Assert.assertEquals("Categoria", applicationCategory.getName());
+		Assert.assertEquals("Category", applicationCategory.getName());
 	}
 
 	@Test
@@ -52,9 +51,9 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 
 	@Test
 	public void shouldLoadApplicationCategory() {
-		this.applicationCategoryDAO.save(Given.category(null, "Categoria"));
+		this.applicationCategoryDAO.save(Given.category(null, "Category"));
 
-		ApplicationCategory applicationCategoryByName = this.applicationCategoryDAO.findByName("Categoria");
+		ApplicationCategory applicationCategoryByName = this.applicationCategoryDAO.findByName("Category");
 		ApplicationCategory applicationCategoryByLoad = this.applicationCategoryDAO.load(applicationCategoryByName.getId());
 
 		Assert.assertEquals(applicationCategoryByName.getId(), applicationCategoryByLoad.getId());
@@ -70,14 +69,14 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 
 	@Test
 	public void shouldSaveApplicationCategory() {
-		this.applicationCategoryDAO.save(Given.category(null, "Categoria"));
+		this.applicationCategoryDAO.save(Given.category(null, "Category"));
 
-		ApplicationCategory applicationCategory = this.applicationCategoryDAO.findByName("Categoria");
+		ApplicationCategory applicationCategory = this.applicationCategoryDAO.findByName("Category");
 
-		Assert.assertEquals("Categoria", applicationCategory.getName());
+		Assert.assertEquals("Category", applicationCategory.getName());
 	}
 	
-	@Test(expected=PropertyValueException.class)
+	@Test(expected=InvalidStateException.class)
 	public void shouldNotRegisterWithNameNullApplicationCategory(){
 		this.applicationCategoryDAO.save(Given.category(null, null));
 	}
@@ -89,9 +88,9 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 	
 	@Test
 	public void shouldUpdateApplicationCategory() {
-		this.applicationCategoryDAO.save(Given.category(null, "Categoria"));
+		this.applicationCategoryDAO.save(Given.category(null, "Category2"));
 
-		ApplicationCategory p = this.applicationCategoryDAO.findByName("Categoria");
+		ApplicationCategory p = this.applicationCategoryDAO.findByName("Category2");
 		p.setName("Category");
 
 		this.applicationCategoryDAO.update(p);
@@ -103,13 +102,13 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 
 	@Test
 	public void shouldRemove() {
-		this.applicationCategoryDAO.save(Given.category(null, "Categoria"));
+		this.applicationCategoryDAO.save(Given.category(null, "Category"));
 
-		ApplicationCategory applicationCategory = this.applicationCategoryDAO.findByName("Categoria");
+		ApplicationCategory applicationCategory = this.applicationCategoryDAO.findByName("Category");
 
 		this.applicationCategoryDAO.remove(applicationCategory);
 
-		ApplicationCategory app = this.applicationCategoryDAO.findByName("Categoria");
+		ApplicationCategory app = this.applicationCategoryDAO.findByName("Category");
 
 		Assert.assertNull(app);
 	}

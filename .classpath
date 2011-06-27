@@ -5,11 +5,6 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/test/unit"/>
 	<classpathentry kind="src" path="src/test/funcional"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
-		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
@@ -19,7 +14,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/commons-io-1.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/commons-lang-2.5.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/cssparser-0.9.5.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/hibernate-annotations-3.4.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/htmlunit-2.5-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/htmlunit-2.8.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/htmlunit-core-js-2.4.jar"/>
@@ -35,5 +29,10 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/xalan-2.7.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/xerces-2.6.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/xercesImpl-2.9.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+@SuppressWarnings("deprecation")
 public class DaoTest {
 	private static SessionFactory factory;
 	static {

@@ -6,7 +6,6 @@ import java.util.List;
 import junit.framework.Assert;
 
 import org.hibernate.ObjectNotFoundException;
-import org.hibernate.PropertyValueException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.validator.InvalidStateException;
@@ -97,7 +96,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 		Assert.assertNull(app);
 	}
 
-	@Test(expected = PropertyValueException.class)
+	@Test(expected = InvalidStateException.class)
 	public void shouldNotRegisterWithNameNullApplicationFile() {
 		Given.filePersisted(null, null, "nameOfFile.file", "Description", "contentType", 
 				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
@@ -109,7 +108,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
-	@Test(expected = PropertyValueException.class)
+	@Test(expected = InvalidStateException.class)
 	public void shouldNotRegisterWithNameOfFileNullApplicationFile() {
 		Given.filePersisted(null, "Name", null, "Description", "contentType", 
 				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
@@ -121,7 +120,7 @@ public class ApplicationFileDAOTest extends DaoTest {
 				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
-	@Test(expected = PropertyValueException.class)
+	@Test(expected = InvalidStateException.class)
 	public void shouldNotRegisterWithContentTypeNullApplicationFile() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", null, 
 				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
@@ -133,13 +132,13 @@ public class ApplicationFileDAOTest extends DaoTest {
 				0L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
-	@Test(expected = PropertyValueException.class)
+	@Test(expected = InvalidStateException.class)
 	public void shouldNotRegisterWithNumberOfDownloadsNullApplicationFile() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
 				null, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
 	}
 
-	@Test(expected = PropertyValueException.class)
+	@Test(expected = InvalidStateException.class)
 	public void shouldNotRegisterWithSizeOfFileNullApplicationFile() {
 		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 
 				0L, null, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");

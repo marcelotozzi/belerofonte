@@ -17,12 +17,29 @@
 		<!-- <property name="hibernate.hbm2ddl.auto">create-drop</property> -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
-
+		
+		<!-- Config. Hibernate Search init -->
+		<property name="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</property>
+		<property name="hibernate.search.default.indexBase">indexes</property>
+		<!-- Config. Hibernate Search end -->
+		
 		<mapping class="br.com.belerofonte.model.User" />
 		<mapping class="br.com.belerofonte.model.ApplicationFile" />
-		<mapping class="br.com.belerofonte.model.Plataform" />		
+		<mapping class="br.com.belerofonte.model.Plataform" />
 		<mapping class="br.com.belerofonte.model.ApplicationType" />
 		<mapping class="br.com.belerofonte.model.ApplicationCategory" />
+
+		<!-- Config. Hibernate Search init -->
+		<!-- <event type="post-update">
+			<listener class="org.hibernate.search.event.FullTextIndexEventListener" />
+		</event>
+		<event type="post-insert">
+			<listener class="org.hibernate.search.event.FullTextIndexEventListener" />
+		</event>
+		<event type="post-delete">
+			<listener class="org.hibernate.search.event.FullTextIndexEventListener" />
+		</event> -->
+		<!-- Config. Hibernate Search end -->
 	</session-factory>
 
 </hibernate-configuration>

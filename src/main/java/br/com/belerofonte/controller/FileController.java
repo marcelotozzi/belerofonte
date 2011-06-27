@@ -1,7 +1,5 @@
 package br.com.belerofonte.controller;
 
-import java.util.List;
-
 import br.com.belerofonte.annotation.InterceptResource;
 import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.dao.ApplicationFileDAO;

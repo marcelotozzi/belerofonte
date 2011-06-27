@@ -9,15 +9,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
 @Entity
+@Indexed
 public class ApplicationFile {
-	@Id @GeneratedValue private Long id;
-	@NotNull @NotEmpty private String name;
+	@Id @GeneratedValue @DocumentId private Long id;
+	@NotNull @NotEmpty @Field(index = Index.TOKENIZED, store = Store.NO) private String name;
 	@NotNull @NotEmpty private String nameOfFile;
-	private String description;
+	@Field(index = Index.TOKENIZED, store = Store.NO) private String description;
 	@NotNull private Long sizeOfFile;
 	@NotNull @NotEmpty private String contentType;
 	@NotNull @ManyToOne private Plataform plataform;

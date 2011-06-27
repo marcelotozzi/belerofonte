@@ -56,4 +56,9 @@ public class ApplicationFileDAO {
 	public List<ApplicationFile> recentApplications(int number) {
 		return this.session.createCriteria(ApplicationFile.class).setMaxResults(number).addOrder(Order.desc("uploadDate")).list();
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<ApplicationFile> list() {
+		return this.session.createCriteria(ApplicationFile.class).list();
+	}
 }
