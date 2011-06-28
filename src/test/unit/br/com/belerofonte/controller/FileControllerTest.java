@@ -74,7 +74,7 @@ public class FileControllerTest {
 
 		this.controller.delete(1L);
 
-		Mockito.verify(this.applicationFileDAO).delete(appFile);
+		Mockito.verify(this.applicationFileDAO).remove(appFile);
 	}
 	
 	@Test

@@ -1,6 +1,8 @@
 package br.com.belerofonte.controller;
 
 
+import static org.junit.Assert.fail;
+
 import java.util.List;
 
 import org.junit.After;
@@ -93,5 +95,11 @@ public class TypeControllerTest {
 		
 		ApplicationType type = (ApplicationType) this.result.included().get("type");
 		Assert.assertNotNull(type);
+	}
+	
+	@Test
+	public void shouldReturnJsonWithTypes() {
+		this.controller.applicationTypesJson();
+		fail("Nao implementado");
 	}
 }

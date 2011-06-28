@@ -1,11 +1,10 @@
 package br.com.belerofonte.controller;
 
-import static org.junit.Assert.fail;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import br.com.belerofonte.service.SearchService;
@@ -32,7 +31,9 @@ public class SearchControllerTest {
 
 	@Test
 	public void shouldSearch() {
-		this.controller.textSearch("twitter");
-		fail("Nao implementado");
+		String text = "application";
+		this.controller.textSearch(text);
+		
+		Mockito.verify(this.searchService).search(text);
 	}
 }

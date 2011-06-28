@@ -35,7 +35,7 @@ public class FileController {
 	}
 
 	public void delete(final Long id) {
-		this.applicationFileDAO.delete(this.applicationFileDAO.load(id));
+		this.applicationFileDAO.remove(this.applicationFileDAO.load(id));
 	}
 
 	public void update(final ApplicationFile applicationFile) {

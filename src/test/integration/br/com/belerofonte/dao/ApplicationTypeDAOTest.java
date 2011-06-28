@@ -1,5 +1,7 @@
 package br.com.belerofonte.dao;
 
+import java.util.List;
+
 import junit.framework.Assert;
 
 import org.hibernate.ObjectNotFoundException;
@@ -109,5 +111,16 @@ public class ApplicationTypeDAOTest extends DaoTest {
 		ApplicationType app = this.applicationTypeDAO.findByName("Ação");
 
 		Assert.assertNull(app);
+	}
+	
+	@Test
+	public void shouldList(){
+		this.applicationTypeDAO.save(Given.type(null, "Ação1"));
+		this.applicationTypeDAO.save(Given.type(null, "Ação2"));
+		this.applicationTypeDAO.save(Given.type(null, "Ação3"));
+		
+		List<ApplicationType> types = this.applicationTypeDAO.list();
+		
+		Assert.assertEquals(3, types.size());
 	}
 }

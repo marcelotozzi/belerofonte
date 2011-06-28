@@ -1,5 +1,7 @@
 package br.com.belerofonte.dao;
 
+import java.util.List;
+
 import junit.framework.Assert;
 
 import org.hibernate.ObjectNotFoundException;
@@ -159,5 +161,16 @@ public class UserDAOTest extends DaoTest {
 		User u = this.userDAO.findByUsername("Remove");
 
 		Assert.assertNull(u);
+	}
+	
+	@Test
+	public void shouldList(){
+		this.userDAO.save(Given.user(null, "Remove1", "Remove1", "Remove1@gmail.com", "senha1", "senha1"));
+		this.userDAO.save(Given.user(null, "Remove2", "Remove2", "Remove2@gmail.com", "senha2", "senha2"));
+		this.userDAO.save(Given.user(null, "Remove3", "Remove3", "Remove3@gmail.com", "senha3", "senha3"));
+		
+		List<User> users = this.userDAO.list();
+		
+		Assert.assertEquals(3, users.size());
 	}
 }

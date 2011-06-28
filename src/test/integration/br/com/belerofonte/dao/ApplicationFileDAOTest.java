@@ -179,4 +179,27 @@ public class ApplicationFileDAOTest extends DaoTest {
 		Assert.assertEquals(20, top.get(0).getNumberOfDownloads().longValue());
 		Assert.assertEquals(10, top.get(1).getNumberOfDownloads().longValue());
 	}
+	
+	@Test
+	public void shouldRemove() {
+		Given.filePersisted(null, "Name1", "nameOfFile1.file", "Description1", "contentType", 20L, 13134L, Calendar.getInstance(), "Category1", "Type1", "Plataform1", "Name1");
+		
+		ApplicationFile file = this.applicationFileDAO.findByName("Name1");
+
+		this.applicationFileDAO.remove(file);
+
+		ApplicationFile removedFile = this.applicationFileDAO.findByName("Name1");
+
+		Assert.assertNull(removedFile);
+	}
+	
+	@Test
+	public void shouldList(){
+		Given.filePersisted(null, "Name", "nameOfFile.file", "Description", "contentType", 10L, 13134L, Calendar.getInstance(), "Category", "Type", "Plataform", "Name");
+		Given.filePersisted(null, "Name1", "nameOfFile1.file", "Description1", "contentType", 20L, 13134L, Calendar.getInstance(), "Category1", "Type1", "Plataform1", "Name1");
+		
+		List<ApplicationFile> files = this.applicationFileDAO.list();
+		
+		Assert.assertEquals(2, files.size());
+	}
 }

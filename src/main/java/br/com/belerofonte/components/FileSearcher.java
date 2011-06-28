@@ -17,13 +17,14 @@ import br.com.caelum.vraptor.ioc.Component;
 @Component
 public class FileSearcher {
 	private FullTextSession fullTextSession;
+	private SearchFactory searchFactory;
 	
 	public FileSearcher(Session session) {
-		fullTextSession = Search.getFullTextSession(session);
+		this.fullTextSession = Search.getFullTextSession(session);
+		this.searchFactory = fullTextSession.getSearchFactory();
 	}
 
 	public List<ApplicationFile> fullText(String text) {
-		SearchFactory searchFactory = fullTextSession.getSearchFactory();
 		QueryParser parser = new QueryParser(Version.LUCENE_32, "name",searchFactory.getAnalyzer(ApplicationFile.class));
 		
 		Query luceneQuery = null;

@@ -71,7 +71,7 @@ public class CategoryController {
 	}
 	
 	@Path("/admin/categories.json")
-	public void plataformsJson(){	
+	public void categoriesJson(){	
 		this.result.use(Results.json()).from(this.categoryDAO.list(), "categories").serialize();
 	}
 }

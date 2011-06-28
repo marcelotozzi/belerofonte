@@ -2,8 +2,6 @@ package br.com.belerofonte.controller;
 
 import static org.junit.Assert.fail;
 
-import java.io.IOException;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +13,7 @@ import br.com.belerofonte.service.FileService;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.util.test.MockResult;
 
-public class FileControllerJsonTest {
+public class FileControllerJsonIntegrationTest {
 	private FileController controller;
 	private Result result;
 	@Mock
@@ -24,14 +22,14 @@ public class FileControllerJsonTest {
 	private FileService service;
 
 	@Before
-	public void setup() throws IOException {
+	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		this.result = new MockResult();
 		this.controller = new FileController(this.applicationFileDAO,this.service, this.result);
 	}
 
 	@After
-	public void tearDown() {
+	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -42,7 +40,7 @@ public class FileControllerJsonTest {
 
 	@Test
 	public void shouldReturnJsonWithRecentApplications() {
-		this.controller.recentApplicationsJson();
 		fail("Nao implementado");
 	}
+
 }

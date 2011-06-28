@@ -1,5 +1,7 @@
 package br.com.belerofonte.dao;
 
+import java.util.List;
+
 import junit.framework.Assert;
 
 import org.hibernate.ObjectNotFoundException;
@@ -109,5 +111,16 @@ public class PlataformDAOTest extends DaoTest {
 		Plataform u = this.plataformDAO.findByName("Plataform");
 
 		Assert.assertNull(u);
+	}
+	
+	@Test
+	public void shouldList(){
+		this.plataformDAO.save(Given.plataform(null,"Plataform1"));
+		this.plataformDAO.save(Given.plataform(null,"Plataform2"));
+		this.plataformDAO.save(Given.plataform(null,"Plataform3"));
+		
+		List<Plataform> plataforms = this.plataformDAO.list();
+		
+		Assert.assertEquals(3, plataforms.size());
 	}
 }

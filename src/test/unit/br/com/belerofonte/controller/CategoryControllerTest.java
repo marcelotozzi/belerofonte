@@ -1,6 +1,8 @@
 package br.com.belerofonte.controller;
 
 
+import static org.junit.Assert.fail;
+
 import java.util.List;
 
 import org.junit.After;
@@ -93,5 +95,11 @@ public class CategoryControllerTest {
 		
 		ApplicationCategory categpry = (ApplicationCategory) this.result.included().get("category");
 		Assert.assertNotNull(categpry);
+	}
+	
+	@Test
+	public void shouldReturnJsonWithCategories() {
+		this.controller.categoriesJson();
+		fail("Nao implementado");
 	}
 }

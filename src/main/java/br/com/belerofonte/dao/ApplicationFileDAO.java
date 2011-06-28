@@ -28,10 +28,6 @@ public class ApplicationFileDAO {
 		return (ApplicationFile) this.session.load(ApplicationFile.class, id);
 	}
 
-	public void delete(ApplicationFile applicationFile) {
-		this.session.delete(applicationFile);
-	}
-
 	public void update(ApplicationFile applicationFile) {
 		this.session.update(applicationFile);
 	}
