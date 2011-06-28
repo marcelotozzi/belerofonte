@@ -1,5 +1,7 @@
 package br.com.belerofonte.controller;
 
+import static org.junit.Assert.fail;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,5 +37,14 @@ public class SearchControllerTest {
 		this.controller.textSearch(text);
 		
 		Mockito.verify(this.searchService).search(text);
+	}
+	
+	@Test
+	public void shouldSearchJson() {
+		String text = "application";
+		this.controller.textSearchJson(text);
+		
+		Mockito.verify(this.searchService).search(text);
+		fail("Nao implementado");
 	}
 }

@@ -24,9 +24,23 @@ public class SearchController {
 	}
 
 	@NoInterceptMethod
+	@Path("/search")
+	public void textSearch(String seek) {
+		//TODO corrigir esse redirect para exibir nome na pesquisa
+		this.result.redirectTo(this).searchResult(seek);
+	}
+	
+	@NoInterceptMethod
+	@Path("/search/{seek}")
+	public void searchResult(String seek) {
+		this.result.include("word",seek);
+		this.result.include("files", this.searchService.search(seek));
+	}
+
+	@NoInterceptMethod
 	@Path("/search.json")
-	public void textSearch(String text) {
-		List<ApplicationFile> list = this.searchService.search(text);
-		this.result.use(Results.json()).from(list, "list").serialize();
+	public void textSearchJson(String seek) {
+		List<ApplicationFile> list = this.searchService.search(seek);
+		this.result.use(Results.json()).from(list, "files").serialize();
 	}
 }

@@ -16,7 +16,15 @@
 	</div>
     <div id="local-nav">
     	<div class="container">
-        	<a href="/belerofonte" id="logo"><img src="" alt="Belerofonte" title="Belerofonte"></a>
+        	<div>
+            	<form method="post" action="<c:url value="http://localhost:8080/belerofonte/search" />">
+                    <div>
+                        <input type="text" value="" id="seek" name="seek">
+                    	<input type="submit" value="Pesquisar"> 
+                		<br class="clear">
+                    </div>
+            	</form>
+            </div>
             <ul id="account-nav" style="visibility: visible; ">
             	<li class=""><a href="<c:url value="/" />">Home</a></li>
 				<li class=""><a href="<c:url value="/apps" />">Aplicacoes</a></li>
