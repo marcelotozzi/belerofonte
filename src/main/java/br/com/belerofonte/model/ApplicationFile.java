@@ -28,7 +28,6 @@ public class ApplicationFile {
 	@NotNull @NotEmpty private String contentType;
 	@NotNull @ManyToOne private Plataform plataform;
 	@NotNull @ManyToOne private ApplicationCategory applicationCategory;
-	@NotNull @ManyToOne private ApplicationType applicationType;
 	@Temporal(TemporalType.TIMESTAMP) private Calendar uploadDate;
 	@NotNull private Long numberOfDownloads;
 	@NotNull @ManyToOne private User user;
@@ -87,14 +86,6 @@ public class ApplicationFile {
 
 	public void setPlataform(Plataform plataform) {
 		this.plataform = plataform;
-	}
-
-	public ApplicationType getApplicationType() {
-		return applicationType;
-	}
-
-	public void setApplicationType(ApplicationType applicationType) {
-		this.applicationType = applicationType;
 	}
 
 	public Calendar getUploadDate() {

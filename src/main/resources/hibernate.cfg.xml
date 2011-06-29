@@ -26,7 +26,6 @@
 		<mapping class="br.com.belerofonte.model.User" />
 		<mapping class="br.com.belerofonte.model.ApplicationFile" />
 		<mapping class="br.com.belerofonte.model.Plataform" />
-		<mapping class="br.com.belerofonte.model.ApplicationType" />
 		<mapping class="br.com.belerofonte.model.ApplicationCategory" />
 
 		<!-- Config. Hibernate Search init -->

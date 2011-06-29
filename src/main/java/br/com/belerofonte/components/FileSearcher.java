@@ -26,12 +26,12 @@ public class FileSearcher {
 
 	public List<ApplicationFile> fullText(String text) {
 		QueryParser parser = new QueryParser(Version.LUCENE_32, "name",searchFactory.getAnalyzer(ApplicationFile.class));
-		
+		//TODO refatorar pesquisa para pegar todos os tipos de classes // conforme a classe inserida busca pelo campo indexado
 		Query luceneQuery = null;
 		try {
 			luceneQuery = parser.parse("name.orderBy_name:" + text);
 		} catch (ParseException e) {
-			// TODO
+			// TODO inserir log
 		}
 
 		org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery);

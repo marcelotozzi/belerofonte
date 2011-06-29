@@ -91,9 +91,4 @@ public class CommonWebSteps {
 			}
 		}
 	}
-
-	public void givenImInTheTypesPage() {
-		givenImInTheAdminPage();
-		clickTheLink("Tipos");
-	}
 }

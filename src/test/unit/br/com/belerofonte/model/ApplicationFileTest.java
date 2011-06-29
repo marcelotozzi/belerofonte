@@ -42,14 +42,6 @@ public class ApplicationFileTest {
 	}
 	
 	@Test
-	public void testGetType(){
-		ApplicationType type = new ApplicationType();
-		type.setName("Type");
-		this.file.setApplicationType(type);
-		Assert.assertEquals("Type", this.file.getApplicationType().getName());	
-	}
-	
-	@Test
 	public void testGetPlataform(){
 		Plataform plataform = new Plataform();
 		plataform.setName("Plataform");

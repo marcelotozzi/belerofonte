@@ -24,12 +24,9 @@
 							Categoria:
 							<select id="selectCategory">
 							</select>
-							Tipo:
-							<select id="selectType">
-							</select> 
+							
 							<input type="hidden" name="file.plataform.id" id="filePlataform">
 							<input type="hidden" name="file.applicationCategory.id" id="fileCategory">
-							<input type="hidden" name="file.applicationType.id" id="fileType">
 							
 							<input type="file" name="uploadedFile" id="uploadedFile"/>
 													
@@ -83,15 +80,6 @@
 			if($("#selectCategory").val() != 0){
 				$("#fileCategory").attr("value", $("#selectCategory").val());	
 			}
-			
-			if($("#selectType").val() != 0){
-				$("#fileType").attr("value", $("#selectType").val());	
-			}
-			
-			
-			console.debug($("#filePlataform").val());
-			console.debug($("#fileCategory").val());
-			console.debug($("#fileType").val());
 		});
 	</script>
 </html>

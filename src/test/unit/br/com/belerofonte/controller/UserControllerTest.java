@@ -94,7 +94,7 @@ public class UserControllerTest {
 
 		this.controller.edit(1L);
 		
-		User type = (User) this.result.included().get("user");
-		Assert.assertNotNull(type);
+		User user = (User) this.result.included().get("user");
+		Assert.assertNotNull(user);
 	}
 }

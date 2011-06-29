@@ -15,11 +15,9 @@ import br.com.belerofonte.controller.CategoryController;
 import br.com.belerofonte.controller.FileController;
 import br.com.belerofonte.controller.HomeController;
 import br.com.belerofonte.controller.PlataformController;
-import br.com.belerofonte.controller.TypeController;
 import br.com.belerofonte.controller.UserController;
 import br.com.belerofonte.model.ApplicationCategory;
 import br.com.belerofonte.model.ApplicationFile;
-import br.com.belerofonte.model.ApplicationType;
 import br.com.belerofonte.model.Plataform;
 import br.com.belerofonte.model.User;
 import br.com.caelum.vraptor.Result;
@@ -232,60 +230,7 @@ public class AccessInterceptorTest {
 								.getDeclaredMethod("plataforms"))));
 	}
 
-	@Test
-	public void shouldInterceptCreateMethodTypeController()
-			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(TypeController.class, TypeController.class
-						.getDeclaredMethod("create", ApplicationType.class))));
-	}
-
-	@Test
-	public void shouldInterceptUpdateMethodTypeController()
-			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(TypeController.class, TypeController.class
-						.getDeclaredMethod("update", ApplicationType.class))));
-	}
-
-	@Test
-	public void shouldInterceptDeleteMethodDeleteTypeController()
-			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(TypeController.class, TypeController.class
-						.getDeclaredMethod("delete", Long.class))));
-	}
-
-	@Test
-	public void shouldNotInterceptShowMethodTypeController()
-			throws SecurityException, NoSuchMethodException {
-		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(TypeController.class, TypeController.class
-						.getDeclaredMethod("show", Long.class))));
-	}
-
-	@Test
-	public void shouldInterceptEditMethodTypeController()
-			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(TypeController.class, TypeController.class
-						.getDeclaredMethod("edit", Long.class))));
-	}
-
-	@Test
-	public void shouldInterceptFormMethodTypeController()
-			throws SecurityException, NoSuchMethodException {
-		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(TypeController.class,
-						TypeController.class.getDeclaredMethod("form"))));
-	}
-
-	@Test
-	public void shouldNotInterceptApplicationTypesMethodTypeController()
-			throws SecurityException, NoSuchMethodException {
-		Assert.assertFalse(this.interceptor.accepts(DefaultResourceMethod
-				.instanceFor(TypeController.class,
-						TypeController.class.getDeclaredMethod("types"))));}
+	
 
 	@Test
 	public void shouldNotInterceptFormMethodUserController()

@@ -47,7 +47,6 @@ public class FileControllerDownloadTest {
 		.thenReturn(Given.file(null, "Name", "image.jpg", "description", "image/jpg", 0L, 1343L, 
 				Calendar.getInstance(), 
 				Given.category(null, "Category"), 
-				Given.type(null, "Type"), 
 				Given.plataform(null, "Plataform"),
 				Given.user(null, "Name", "username", "email@email.com", "password", "password")));
 		

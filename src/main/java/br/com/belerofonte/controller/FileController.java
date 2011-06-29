@@ -59,7 +59,6 @@ public class FileController {
 		this.result.use(Results.json()).from(this.applicationFileDAO.topDownloads(10), "topDownloads")
 		.include("applicationCategory")
 		.include("plataform")
-		.include("applicationType")
 		.serialize();
 	}
 	
@@ -69,7 +68,6 @@ public class FileController {
 		this.result.use(Results.json()).from(this.applicationFileDAO.recentApplications(10), "recentApps")
 		.include("applicationCategory")
 		.include("plataform")
-		.include("applicationType")
 		.serialize();
 	}
 
