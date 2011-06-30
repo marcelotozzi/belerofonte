@@ -1,6 +1,10 @@
-- Disponibilizar servico de buscas para mobile por xml/json
-- Pesquisas ?????
+- Cadastra/Edição/ Exclusão de imagem no Perfil
+- Cadastra/Edição/ Exclusão de imagem na Aplicação
+- Validação de parametros nos controllers
+- Logs
+- Opção de exclusão de apps
 - Logica para recuperar senha
-- Implementar o HIBERNATE SEARCH
+- Testes de retorno dos jsons
+- Validação de campos via javascript
 - LabJs
-- Refatorar testes (
+- Refatorar testes 	

@@ -41,6 +41,10 @@ public class SearchController {
 	@Path("/search.json")
 	public void textSearchJson(String seek) {
 		List<ApplicationFile> list = this.searchService.search(seek);
-		this.result.use(Results.json()).from(list, "files").serialize();
+		this.result.use(Results.json()).from(list, "files")
+		.include("applicationCategory")
+		.include("plataform")
+		.include("user")
+		.serialize();
 	}
 }

@@ -27,7 +27,7 @@
             </div>
             <ul id="account-nav" style="visibility: visible; ">
             	<li class=""><a href="<c:url value="/" />">Home</a></li>
-				<li class=""><a href="<c:url value="/apps" />">Aplicacoes</a></li>
+				<li class=""><a href="<c:url value="/apps" />">Aplicações</a></li>
 				<li class=""><a href="<c:url value="/games" />">Games</a></li>
                 <c:if test="${!account.logged}">
 					<li class=""><a href="<c:url value="/user/register" />">Registrar</a></li>

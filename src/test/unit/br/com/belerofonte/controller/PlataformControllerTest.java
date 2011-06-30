@@ -1,8 +1,6 @@
 package br.com.belerofonte.controller;
 
 
-import static org.junit.Assert.fail;
-
 import java.util.List;
 
 import org.junit.After;
@@ -96,11 +94,5 @@ public class PlataformControllerTest {
 		
 		Plataform plataform = (Plataform) this.result.included().get("plataform");
 		Assert.assertNotNull(plataform);
-	}
-	
-	@Test
-	public void shouldReturnJsonWithPlataforms() {
-		this.controller.plataformsJson();
-		fail("Nao implementado");
 	}
 }

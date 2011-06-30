@@ -1,23 +1,29 @@
 package br.com.belerofonte.controller;
 
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import br.com.belerofonte.common.Given;
 import br.com.belerofonte.dao.ApplicationFileDAO;
+import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
-import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.util.test.MockResult;
+import br.com.caelum.vraptor.util.test.MockSerializationResult;
 
 public class FileControllerJsonTest {
 	private FileController controller;
-	private Result result;
+	private MockSerializationResult result;
 	@Mock
 	private ApplicationFileDAO applicationFileDAO;
 	@Mock
@@ -25,8 +31,8 @@ public class FileControllerJsonTest {
 
 	@Before
 	public void setup() throws IOException {
+		this.result = new MockSerializationResult();
 		MockitoAnnotations.initMocks(this);
-		this.result = new MockResult();
 		this.controller = new FileController(this.applicationFileDAO,this.service, this.result);
 	}
 
@@ -35,14 +41,46 @@ public class FileControllerJsonTest {
 	}
 
 	@Test
-	public void shouldReturnJsonWithTopDownloads() {
-		this.controller.topDownloadsJson();
-		fail("Nao implementado");
+	public void shouldReturnJsonWithTopDownloads() throws Exception {
+		ApplicationFile file = Given.file(1L, "Name", "nameOfFile.file", "Description", "contentType", 
+				0L, 13134L, null, Given.category(1l, "Category"), Given.plataform(1l, "Plataform"), 
+				Given.user(1l, "Name", "username", "email@email.com", "password", "password"));
+		
+		String expectedResult = "{\"topDownloads\": [{\"id\": 1,\"name\": \"Name\",\"nameOfFile\": " +
+				"\"nameOfFile.file\",\"description\": \"Description\",\"sizeOfFile\": 13134,\"contentType\": " +
+				"\"contentType\",\"plataform\": {\"id\": 1,\"name\": \"Plataform\"},\"applicationCategory\": " +
+				"{\"id\": 1,\"name\": \"Category\"},\"numberOfDownloads\": 0,\"user\": {\"id\": 1,\"name\": " +
+				"\"Name\",\"username\": \"username\",\"email\": \"email@email.com\",\"password\": " +
+				"\"password\",\"confirmPassword\": \"password\"}}]}";
+		
+		Mockito.when(this.applicationFileDAO.topDownloads(10)).thenReturn(fileListingWillContain(file));
+		
+		this.controller.topDownloadsJson();	
+			
+		Assert.assertThat(this.result.serializedResult(), is(equalTo(expectedResult)));
+	}
+
+	private List<ApplicationFile> fileListingWillContain(final ApplicationFile file) {
+		return Arrays.asList(file);
 	}
 
 	@Test
-	public void shouldReturnJsonWithRecentApplications() {
+	public void shouldReturnJsonWithRecentApplications() throws Exception {
+		ApplicationFile file = Given.file(1L, "Name", "nameOfFile.file", "Description", "contentType", 
+				0L, 13134L, null, Given.category(1l, "Category"), Given.plataform(1l, "Plataform"), 
+				Given.user(1l, "Name", "username", "email@email.com", "password", "password"));
+		
+		String expectedResult = "{\"recentApps\": [{\"id\": 1,\"name\": \"Name\",\"nameOfFile\": " +
+				"\"nameOfFile.file\",\"description\": \"Description\",\"sizeOfFile\": 13134,\"contentType\": " +
+				"\"contentType\",\"plataform\": {\"id\": 1,\"name\": \"Plataform\"},\"applicationCategory\": " +
+				"{\"id\": 1,\"name\": \"Category\"},\"numberOfDownloads\": 0,\"user\": {\"id\": 1,\"name\": " +
+				"\"Name\",\"username\": \"username\",\"email\": \"email@email.com\",\"password\": " +
+				"\"password\",\"confirmPassword\": \"password\"}}]}";
+		
+		Mockito.when(this.applicationFileDAO.recentApplications(10)).thenReturn(fileListingWillContain(file));
+		
 		this.controller.recentApplicationsJson();
-		fail("Nao implementado");
+		
+		Assert.assertThat(this.result.serializedResult(), is(equalTo(expectedResult)));
 	}
 }

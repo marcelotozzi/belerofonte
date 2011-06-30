@@ -7,11 +7,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
 import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
-import br.com.belerofonte.model.User;
 import br.com.belerofonte.util.UploadedFileTest;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
@@ -30,7 +30,7 @@ public class FileServiceTest {
 		this.uploadedFile = new UploadedFileTest();
 		this.proprertiesLoader = new PropertiesLoader();
 		this.account = new Account();
-		this.account.performLogin(new User());
+		this.account.performLogin(Given.user(null, "Usernam", "username", "email@email.com", "password", "password"));
 		this.service = new FileService(this.applicationFileDAO, this.proprertiesLoader, this.account);
 	}
 

@@ -50,7 +50,9 @@ public class FileService {
 	}
 
 	private File checksTheUsersDirectory(UploadedFile uploadedFile) {
-		String dir = loader.getValue("folderFiles")+this.account.getUser().getUsername();
+		String dir = loader.getValue("folderFiles")
+				+ this.account.getUser().getUsername()
+				+ loader.getValue("appFolder");
 		if(!new File(dir).exists()){
 			new File(dir).mkdir();
 		}
@@ -71,7 +73,10 @@ public class FileService {
 	public Download searchAndDownloadFile(Long id) {
 		ApplicationFile appFile = this.applicationFileDAO.load(id);
 		
-		File file = new File(loader.getValue("folderFiles") + appFile.getUser().getUsername() +"/" + appFile.getNameOfFile());
+		File file = new File(loader.getValue("folderFiles") 
+				+ appFile.getUser().getUsername() 
+				+ loader.getValue("appFolder") 
+				+ appFile.getNameOfFile());
 		
 		Download download = new FileDownload(file, appFile.getContentType(), appFile.getNameOfFile());
 		

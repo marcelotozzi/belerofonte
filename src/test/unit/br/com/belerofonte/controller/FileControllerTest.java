@@ -12,11 +12,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
 import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
-import br.com.belerofonte.model.User;
 import br.com.belerofonte.service.FileService;
 import br.com.belerofonte.util.UploadedFileTest;
 import br.com.caelum.vraptor.Result;
@@ -40,7 +40,7 @@ public class FileControllerTest {
 		this.uploadFile = new UploadedFileTest();
 		this.result = new MockResult();
 		this.account = new Account();
-		this.account.performLogin(new User());
+		this.account.performLogin(Given.user(null, "Usernam", "username", "email@email.com", "password", "password"));
 		this.proprertiesLoader = new PropertiesLoader();
 		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, this.account);
 		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result);
@@ -53,7 +53,7 @@ public class FileControllerTest {
 	@Test
 	public void shouldCreateApplicationFile() throws FileNotFoundException, IOException {
 		ApplicationFile appFile = new ApplicationFile();
-			
+		
 		this.controller.create(this.uploadFile, appFile);
 
 		Mockito.verify(this.applicationFileDAO).save(appFile);

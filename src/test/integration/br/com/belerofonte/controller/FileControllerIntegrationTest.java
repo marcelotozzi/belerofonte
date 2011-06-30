@@ -50,8 +50,7 @@ public class FileControllerIntegrationTest extends DaoTest {
 		this.account = new Account();
 		this.account.performLogin(Given.userPersisted(null, "Name", "username", "name@email.com", "password", "password"));
 		this.fileService = new FileService(this.fileDAO, this.propertyLoader, this.account);
-		this.controller = new FileController(this.fileDAO, this.fileService,
-				this.result);
+		this.controller = new FileController(this.fileDAO, this.fileService, this.result);
 	}
 
 	@After
@@ -61,15 +60,17 @@ public class FileControllerIntegrationTest extends DaoTest {
 
 	@Test
 	public void shouldCreateAndUploadFile() {
-		ApplicationFile appFile = Given.file(null, "Name", null, "Description",
-				null, null, null, null,
+		ApplicationFile appFile = Given.file(null, "Name", "nameOfFile.file", "Description",
+				"contentType", 1L, 1212L, Calendar.getInstance(),
 				Given.categoryPersisted(null, "Category"),
 				Given.plataformPersisted(null, "Plataform"),
 				Given.userPersisted(null, "Name", "username", "email@email.com", "password", "password"));
-
+		
 		this.controller.create(this.uploadFile, appFile);
 
-		File file = new File(this.propertyLoader.getValue("folderFiles")+this.account.getUser().getUsername()+"/image.jpg");
+		File file = new File(this.propertyLoader.getValue("folderFiles")
+				+this.account.getUser().getUsername()
+				+this.propertyLoader.getValue("appFolder")+"/image.jpg");
 		Download fileUploaded = new FileDownload(file, "image/jpeg");
 
 		Assert.assertNotNull(fileUploaded);
