@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 
 import br.com.belerofonte.components.Account;
 import br.com.belerofonte.components.PropertiesLoader;
@@ -25,6 +26,7 @@ public class FileService {
 	private final ApplicationFileDAO applicationFileDAO;
 	private final PropertiesLoader loader;
 	private final Account account;
+	private static final Logger log = Logger.getLogger(FileService.class);
 
 	public FileService(ApplicationFileDAO applicationFileDAO,
 			PropertiesLoader loader, Account account) {
@@ -35,17 +37,19 @@ public class FileService {
 
 	public void create(UploadedFile uploadedFile, ApplicationFile applicationFile) {			
 		File filedestiny = checksTheUsersDirectory(uploadedFile);
-		
+		//TODO refatorar geração de arquivo para um objeto
 		try {
 			IOUtils.copyLarge(uploadedFile.getFile(), new FileOutputStream(filedestiny));	
 			
 			this.applicationFileDAO.save(fillAtributes(uploadedFile, applicationFile, filedestiny));		
 		} catch (FileNotFoundException e) {
-			// TODO inserir log
-			e.printStackTrace();
+			// TODO inserir log // lançar exception para controller
+			//throw new IllegalStateException("Arquivo nao encontrado", e);
+			log.error("Arquivo nao encontrado", e);
 		} catch (IOException e) {
-			// TODO inserir log
-			e.printStackTrace();
+			// TODO inserir log // lançar exception para controller
+			//throw new IllegalStateException("Arquivo nao encontrado", e);
+			log.error("Problemas com IO", e);
 		}
 	}
 
