@@ -1,4 +1,4 @@
-package br.com.belerofonte.components;
+package br.com.belerofonte.infra;
 
 import java.io.IOException;
 import java.io.InputStream;

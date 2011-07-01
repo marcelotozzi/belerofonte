@@ -12,8 +12,10 @@ import org.mockito.MockitoAnnotations;
 
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
-import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
+import br.com.belerofonte.infra.Downloader;
+import br.com.belerofonte.infra.PropertiesLoader;
+import br.com.belerofonte.infra.Uploader;
 import br.com.belerofonte.model.User;
 import br.com.belerofonte.service.FileService;
 import br.com.caelum.vraptor.Result;
@@ -32,6 +34,10 @@ public class FileControllerDownloadTest {
 	private PropertiesLoader proprertiesLoader;
 	private Account account;
 	private Validator validator;
+	@Mock
+	private Uploader uploader;
+	@Mock
+	private Downloader downloader;
 	
 	@Before
 	public void setUp(){
@@ -41,7 +47,8 @@ public class FileControllerDownloadTest {
 		this.account = new Account();
 		this.account.performLogin(new User());
 		this.proprertiesLoader = new PropertiesLoader();
-		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, this.account);
+		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, 
+				this.account, this.uploader, this.downloader);
 		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result, this.validator);
 	}
 

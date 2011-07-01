@@ -15,8 +15,10 @@ import org.mockito.MockitoAnnotations;
 
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
-import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
+import br.com.belerofonte.infra.Downloader;
+import br.com.belerofonte.infra.PropertiesLoader;
+import br.com.belerofonte.infra.Uploader;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
 import br.com.belerofonte.util.UploadedFileTest;
@@ -37,6 +39,9 @@ public class FileControllerTest {
 	@Mock
 	private ApplicationFileDAO applicationFileDAO;
 	private Validator validator;
+	@Mock
+	private Downloader downloader;
+	private Uploader uploader;
 
 	@Before
 	public void setUp() throws Exception {
@@ -47,7 +52,9 @@ public class FileControllerTest {
 		this.account = new Account();
 		this.account.performLogin(Given.user(null, "Usernam", "username", "email@email.com", "password", "password"));
 		this.proprertiesLoader = new PropertiesLoader();
-		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, this.account);
+		this.uploader = new Uploader(this.proprertiesLoader);
+		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, 
+				this.account, this.uploader, this.downloader);
 		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result, this.validator);
 	}
 

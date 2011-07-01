@@ -13,9 +13,11 @@ import org.junit.Test;
 
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
-import br.com.belerofonte.components.PropertiesLoader;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.dao.DaoTest;
+import br.com.belerofonte.infra.Downloader;
+import br.com.belerofonte.infra.PropertiesLoader;
+import br.com.belerofonte.infra.Uploader;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
 import br.com.belerofonte.util.UploadedFileTest;
@@ -39,6 +41,8 @@ public class FileControllerIntegrationTest extends DaoTest {
 	private Result result;
 	private Account account;
 	private Validator validator;
+	private Downloader downloader;
+	private Uploader uploader;
 
 	@Before
 	public void setUp() throws Exception {
@@ -52,8 +56,10 @@ public class FileControllerIntegrationTest extends DaoTest {
 		this.result = new MockResult();
 		this.validator = new MockValidator();
 		this.account = new Account();
+		this.uploader = new Uploader(this.propertyLoader);
+		this.downloader = new Downloader();
 		this.account.performLogin(Given.userPersisted(null, "Name", "username", "name@email.com", "password", "password"));
-		this.fileService = new FileService(this.fileDAO, this.propertyLoader, this.account);
+		this.fileService = new FileService(this.fileDAO, this.propertyLoader, this.account, this.uploader, this.downloader);
 		this.controller = new FileController(this.fileDAO, this.fileService, this.result, this.validator);
 	}
 

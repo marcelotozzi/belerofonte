@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-import br.com.belerofonte.components.PropertiesLoader;
+import br.com.belerofonte.infra.PropertiesLoader;
 
 public class CommonWebSteps {
 	String serverUrl;
