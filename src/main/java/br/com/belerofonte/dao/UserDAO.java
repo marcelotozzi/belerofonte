@@ -51,4 +51,8 @@ public class UserDAO {
 	public List<User> list() {
 		return this.session.createCriteria(User.class).addOrder(Order.asc("username")).list();
 	}
+
+	public boolean containsUserWithUsername(String username) {
+		return !this.session.createCriteria(User.class).add(Restrictions.eq("username", username)).list().isEmpty();
+	}
 }

@@ -11,6 +11,8 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
 
 @Resource
@@ -19,22 +21,40 @@ public class PlataformController {
 
 	private PlataformDAO plataformDAO;
 	private Result result;
+	private Validator validator;
 
-	public PlataformController(PlataformDAO plataformDAO, Result result) {
+	public PlataformController(PlataformDAO plataformDAO, Result result, Validator validator) {
 		this.plataformDAO = plataformDAO;
 		this.result = result;
+		this.validator = validator;
 	}
 
 	@Post
 	@Path("/admin/plataform")
-	public void create(Plataform plataform) {
+	public void create(final Plataform plataform) {
+		this.validator.checking(new Validations() {{
+			 boolean plataformNameDoesNotExist = !plataformDAO.containsPlataformWithName(plataform.getName());
+			 that(plataformNameDoesNotExist, "name", "plataform_name_already_exists");
+			    
+			 that(!plataform.getName().isEmpty(), "name", "plataform_name_not_reported");			   
+		}});
+		validator.onErrorRedirectTo(this).form();
+		
 		this.plataformDAO.save(plataform);	
 		this.result.redirectTo(PlataformController.class).plataforms();
 	}
 
 	@Put
 	@Path("/admin/plataform")
-	public void update(Plataform plataform) {
+	public void update(final Plataform plataform) {
+		this.validator.checking(new Validations() {{
+			 boolean plataformNameDoesNotExist = !plataformDAO.containsPlataformWithName(plataform.getName());
+			 that(plataformNameDoesNotExist, "name", "plataform_name_already_exists");
+			    
+			 that(!plataform.getName().isEmpty(), "name", "plataform_name_not_reported");			   
+		}});
+		validator.onErrorRedirectTo(this).edit(plataform.getId());
+		
 		this.plataformDAO.update(plataform);
 		this.result.redirectTo(PlataformController.class).plataforms();
 	}
@@ -48,7 +68,7 @@ public class PlataformController {
 	
 	@NoInterceptMethod
 	@Get
-	@Path("/admin/plataform/{id}")
+	@Path("/plataform/{id}")
 	public void show(Long id) {
 		Plataform plataform = this.plataformDAO.load(id);
 		this.result.include("plataform", plataform);
@@ -65,7 +85,7 @@ public class PlataformController {
 	}
 	
 	@NoInterceptMethod
-	@Path("/admin/plataforms")
+	@Path("/plataforms")
 	public void plataforms(){		
 		this.result.include("plataforms", this.plataformDAO.list());
 	}

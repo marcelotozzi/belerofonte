@@ -20,10 +20,12 @@ import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
 import br.com.belerofonte.util.UploadedFileTest;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.util.test.MockResult;
+import br.com.caelum.vraptor.util.test.MockValidator;
 
 public class FileControllerIntegrationTest extends DaoTest {
 
@@ -36,6 +38,7 @@ public class FileControllerIntegrationTest extends DaoTest {
 	private PropertiesLoader propertyLoader;
 	private Result result;
 	private Account account;
+	private Validator validator;
 
 	@Before
 	public void setUp() throws Exception {
@@ -47,10 +50,11 @@ public class FileControllerIntegrationTest extends DaoTest {
 		this.fileDAO = new ApplicationFileDAO(this.s);
 		this.propertyLoader = new PropertiesLoader();
 		this.result = new MockResult();
+		this.validator = new MockValidator();
 		this.account = new Account();
 		this.account.performLogin(Given.userPersisted(null, "Name", "username", "name@email.com", "password", "password"));
 		this.fileService = new FileService(this.fileDAO, this.propertyLoader, this.account);
-		this.controller = new FileController(this.fileDAO, this.fileService, this.result);
+		this.controller = new FileController(this.fileDAO, this.fileService, this.result, this.validator);
 	}
 
 	@After

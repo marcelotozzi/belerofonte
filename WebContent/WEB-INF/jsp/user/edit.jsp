@@ -13,6 +13,9 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Edite seus dados</h3>
+					<c:forEach var="error" items="${errors}">
+    					${error.category} - ${error.message}<br />
+					</c:forEach>
 					<form id="editUser" method="post" action="<c:url value="/user" />">
 						<input type="hidden" name="user.id" value="${user.id}"><br/>
 						Nome: <input type="text" name="user.name" value="${user.name}"><br/>

@@ -47,4 +47,8 @@ public class ApplicationCategoryDAO {
 	public List<ApplicationCategory> list() {
 		return this.session.createCriteria(ApplicationCategory.class).addOrder(Order.asc("name")).list();
 	}
+
+	public boolean containsCategoryWithName(String name) {
+		return !this.session.createCriteria(ApplicationCategory.class).add(Restrictions.eq("name", name)).list().isEmpty();
+	}
 }

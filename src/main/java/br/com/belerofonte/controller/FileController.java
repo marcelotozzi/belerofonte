@@ -1,5 +1,8 @@
 package br.com.belerofonte.controller;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+
 import br.com.belerofonte.annotation.InterceptResource;
 import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.dao.ApplicationFileDAO;
@@ -9,8 +12,10 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
 
 @Resource
@@ -20,16 +25,27 @@ public class FileController {
 	private final ApplicationFileDAO applicationFileDAO;
 	private final FileService applicationFileService;
 	private final Result result;
+	private final Validator validator;
 
-	public FileController(ApplicationFileDAO applicationFileDAO, FileService applicationFileService, Result result) {
+	public FileController(ApplicationFileDAO applicationFileDAO, FileService applicationFileService, 
+			Result result, Validator validator) {
 		this.applicationFileDAO = applicationFileDAO;
 		this.applicationFileService  = applicationFileService;
 		this.result = result;
+		this.validator = validator;
 	}
 
 	@Post
 	@Path("/admin/file/create")
 	public void create(final UploadedFile uploadedFile, final ApplicationFile file) {
+		this.validator.checking(new Validations(){{
+			that(!file.getName().isEmpty(), "name", "name_not_reported");			   
+		    that(!file.getDescription().isEmpty(), "description", "description_not_reported");	
+		    that(file.getApplicationCategory(), is(notNullValue()), "category", "category_not_reported");
+		    that(file.getPlataform(), is(notNullValue()), "plataform", "plataform_not_reported");
+		}});
+		this.validator.onErrorRedirectTo(this).form();
+		
 		this.applicationFileService.create(uploadedFile,file);
 		this.result.redirectTo(FileController.class).show(file.getId());
 	}
@@ -39,7 +55,16 @@ public class FileController {
 	}
 
 	public void update(final ApplicationFile applicationFile) {
+		this.validator.checking(new Validations(){{
+			that(!applicationFile.getName().isEmpty(), "name", "name_not_reported");			   
+		    that(!applicationFile.getDescription().isEmpty(), "description", "description_not_reported");	
+		    that(applicationFile.getApplicationCategory(), is(notNullValue()), "category", "category_not_reported");
+		    that(applicationFile.getPlataform(), is(notNullValue()), "plataform", "plataform_not_reported");
+		}});
+		this.validator.onErrorRedirectTo(this).form();
+		
 		this.applicationFileDAO.update(applicationFile);
+		this.result.redirectTo(AccountController.class).account();
 	}
 	
 	@Path("file/register")

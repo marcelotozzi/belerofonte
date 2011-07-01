@@ -13,6 +13,9 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Registre uma plataforma</h3>
+					<c:forEach var="error" items="${errors}">
+    					${error.category} - ${error.message}<br />
+					</c:forEach>
 					<form id="newPlataform" method="POST" action="<c:url value="/admin/plataform" />">
 						Nome: <input type="text" name="plataform.name"><br/>
 						<input type="submit" value="Registrar"> 

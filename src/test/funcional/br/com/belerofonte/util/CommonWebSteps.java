@@ -73,12 +73,12 @@ public class CommonWebSteps {
 
 	public void givenImInThePlataformPage() {
 		this.givenImInTheAdminPage();
-		navigateToPage("admin/plataforms");
+		navigateToPage("plataforms");
 	}
 
 	public void givenImInTheCategoriesPage() {
 		givenImInTheAdminPage();
-		clickTheLink("Categorias");
+		navigateToPage("categories");
 	}
 
 	public void select(String id, String name) {

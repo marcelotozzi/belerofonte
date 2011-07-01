@@ -13,6 +13,9 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Edite >> ${category.name}</h3>
+					<c:forEach var="error" items="${errors}">
+    					${error.category} - ${error.message}<br />
+					</c:forEach>
 					<form id="editCategory" method="post" action="<c:url value="/admin/category" />">
 						<input type="hidden" name="category.id" value="${category.id}"><br/>
 						Nome: <input type="text" name="category.name" value="${category.name}"><br/>

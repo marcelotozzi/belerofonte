@@ -16,7 +16,9 @@ import org.mockito.MockitoAnnotations;
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.dao.PlataformDAO;
 import br.com.belerofonte.model.Plataform;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.util.test.MockSerializationResult;
+import br.com.caelum.vraptor.util.test.MockValidator;
 
 public class PlataformControllerJsonTest {
 	
@@ -24,12 +26,14 @@ public class PlataformControllerJsonTest {
 	private PlataformDAO plataformDAO;
 	private PlataformController controller;
 	private MockSerializationResult result;
+	private Validator validator;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		this.result = new MockSerializationResult();
-		this.controller = new PlataformController(this.plataformDAO, this.result);
+		this.validator = new MockValidator();
+		this.controller = new PlataformController(this.plataformDAO, this.result, this.validator);
 	}
 	
 	@Test

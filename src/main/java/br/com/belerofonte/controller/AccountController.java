@@ -1,5 +1,7 @@
 package br.com.belerofonte.controller;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import br.com.belerofonte.annotation.InterceptResource;
 import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.components.Account;
@@ -10,7 +12,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.caelum.vraptor.validator.ValidationMessage;
+import br.com.caelum.vraptor.validator.Validations;
 
 @Resource
 @InterceptResource
@@ -35,16 +37,23 @@ public class AccountController {
 	@NoInterceptMethod
 	@Post
 	@Path("/account/authenticates")	
-	public void authenticates(User user) {
-		User authenticated = this.userDAO.findByUsernameAndPassword(user);
-		    
-		if (authenticated != null) {
-			this.account.performLogin(authenticated);
-			result.redirectTo(AccountController.class).account();
-		}else{
-			this.validator.add(new ValidationMessage("erro","Login ou senha inv‡lido"));
-			validator.onErrorUsePageOf(AccountController.class).form();
-		}
+	public void authenticates(final User user) {
+		this.validator.checking(new Validations(){{
+			that(!user.getUsername().isEmpty(),"username","username_not_reported");
+			that(!user.getPassword().isEmpty(), "password", "password_not_reported");
+		}});
+		this.validator.onErrorRedirectTo(this).form();
+		
+		final User authenticated = this.userDAO.findByUsernameAndPassword(user);
+
+		this.validator.checking(new Validations(){{
+			that(authenticated, is(notNullValue()), "login", "invalid_login_or_password");
+		}});
+		this.validator.onErrorRedirectTo(this).form();
+		
+		this.account.performLogin(authenticated);
+		
+		this.result.redirectTo(AccountController.class).account();
 	}
 
 	@Path("/account/logoff")

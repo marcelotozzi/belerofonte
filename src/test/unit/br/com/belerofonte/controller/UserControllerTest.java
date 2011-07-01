@@ -12,7 +12,9 @@ import br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
 import br.com.belerofonte.dao.UserDAO;
 import br.com.belerofonte.model.User;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.util.test.MockResult;
+import br.com.caelum.vraptor.util.test.MockValidator;
 
 public class UserControllerTest {
 
@@ -21,14 +23,16 @@ public class UserControllerTest {
 	private UserDAO userDAO;
 	private MockResult result;
 	private Account account;
+	private Validator validator;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		this.result = new MockResult();
+		this.validator = new MockValidator();
 		this.account = new Account();
 		this.account.performLogin(Given.user(1L, "Name", "marcelocont", "tozzi@gmail.com", "senha", "senha"));
-		this.controller = new UserController(userDAO, account, result);
+		this.controller = new UserController(userDAO, account, result, this.validator);
 	}
 
 	@After

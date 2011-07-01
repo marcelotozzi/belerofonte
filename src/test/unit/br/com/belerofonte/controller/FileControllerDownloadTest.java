@@ -17,8 +17,10 @@ import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.User;
 import br.com.belerofonte.service.FileService;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.util.test.MockResult;
+import br.com.caelum.vraptor.util.test.MockValidator;
 
 public class FileControllerDownloadTest {
  
@@ -29,16 +31,18 @@ public class FileControllerDownloadTest {
 	private FileService applicationFileService;
 	private PropertiesLoader proprertiesLoader;
 	private Account account;
+	private Validator validator;
 	
 	@Before
 	public void setUp(){
 		MockitoAnnotations.initMocks(this);
 		this.result = new MockResult();
+		this.validator = new MockValidator();
 		this.account = new Account();
 		this.account.performLogin(new User());
 		this.proprertiesLoader = new PropertiesLoader();
 		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, this.account);
-		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result);
+		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result, this.validator);
 	}
 
 	@Test

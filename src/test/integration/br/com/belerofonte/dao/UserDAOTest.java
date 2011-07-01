@@ -173,4 +173,11 @@ public class UserDAOTest extends DaoTest {
 		
 		Assert.assertEquals(3, users.size());
 	}
+	
+	@Test
+	public void shouldCheckIfContainsUserWithUsername(){
+		this.userDAO.save(Given.user(null, "Remove1", "Remove1", "Remove1@gmail.com", "senha1", "senha1"));
+		
+		Assert.assertEquals(true, this.userDAO.containsUserWithUsername("Remove1"));
+	}
 }

@@ -12,6 +12,8 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.validator.Validations;
 
 @Resource
 @InterceptResource
@@ -20,11 +22,13 @@ public class UserController {
 	private Account account;
 	private UserDAO userDAO;
 	private Result result;
+	private Validator validator;
 
-	public UserController(UserDAO userDAO, Account account, Result result) {
+	public UserController(UserDAO userDAO, Account account, Result result, Validator validator) {
 		this.account = account;
 		this.userDAO = userDAO;
 		this.result = result;
+		this.validator = validator;
 	}
 
 	@NoInterceptMethod
@@ -35,7 +39,20 @@ public class UserController {
 	@NoInterceptMethod
 	@Post
 	@Path("user")
-	public void create(User user) {
+	public void create(final User user) {
+		validator.checking(new Validations() {{
+		    boolean usernameDoesNotExist = !userDAO.containsUserWithUsername(user.getUsername());
+		    that(usernameDoesNotExist, "username", "username_already_exists");
+		    
+		    that(!user.getName().isEmpty(), "Name", "name_not_reported");			   
+		    that(user.getUsername().matches("[a-z0-9_]+"), "username", "invalid_username");
+		    that(!user.getEmail().isEmpty(), "email", "email_not_reported");
+		    that(!user.getPassword().isEmpty(), "password", "password_not_reported");
+		    that(!user.getConfirmPassword().isEmpty(), "confirm_password", "password_not_reported");
+		    that(user.getPassword().equals(user.getConfirmPassword()), "equals_password", "password_not_equals");
+		}});
+		validator.onErrorRedirectTo(this).form();
+		
 		this.userDAO.save(user);
 		this.account.performLogin(this.userDAO.findByUsername(user.getUsername()));
 		this.result.redirectTo(AccountController.class).account();
@@ -43,7 +60,17 @@ public class UserController {
 
 	@Put
 	@Path("user")
-	public void update(User user) {
+	public void update(final User user) {
+		validator.checking(new Validations() {{
+		    that(!user.getName().isEmpty(), "Name", "name_not_reported");			   
+		    that(user.getUsername().matches("[a-z0-9_]+"), "username", "invalid_username");
+		    that(!user.getEmail().isEmpty(), "email", "email_not_reported");
+		    that(!user.getPassword().isEmpty(), "password", "password_not_reported");
+		    that(!user.getConfirmPassword().isEmpty(), "confirm_password", "password_not_reported");
+		    that(user.getPassword().equals(user.getConfirmPassword()), "equals_password", "password_not_equals");
+		}});
+		validator.onErrorRedirectTo(this).edit(user.getId());
+		
 		this.userDAO.update(user);
 		this.result.redirectTo(UserController.class).show(this.account.getUser().getId());
 	}

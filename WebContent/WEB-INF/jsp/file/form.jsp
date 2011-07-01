@@ -14,6 +14,9 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Registre uma aplicação</h3>
+						<c:forEach var="error" items="${errors}">
+    						${error.category} - ${error.message}<br />
+						</c:forEach>
 						<form id="newFile" enctype="multipart/form-data" method="post" action="<c:url value='/admin/file/create' />">
 							Informe os dados do arquivo<br/><br/>
 							Nome: <input type="text" name="file.name" ><br/><br/>

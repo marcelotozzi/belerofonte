@@ -13,6 +13,9 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Registre-se</h3>
+					<c:forEach var="error" items="${errors}">
+    					${error.category} - ${error.message}<br />
+					</c:forEach>
 					<form id="newUser" method="POST" action="<c:url value="/user" />">
 						Nome: <input type="text" name="user.name"><br/>
 						Username: <input type="text" name="user.username"><br/>

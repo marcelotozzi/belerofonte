@@ -125,4 +125,11 @@ public class ApplicationCategoryDAOTest extends DaoTest{
 		
 		Assert.assertEquals(3, categories.size());
 	}
+	
+	@Test
+	public void shouldCheckIfContainsCategoryWithName(){
+		this.applicationCategoryDAO.save(Given.category(null, "Category1"));
+		
+		Assert.assertEquals(true, this.applicationCategoryDAO.containsCategoryWithName("Category1"));
+	}
 }

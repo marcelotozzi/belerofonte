@@ -2,6 +2,7 @@ package br.com.belerofonte.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Calendar;
 
 import junit.framework.Assert;
 
@@ -20,8 +21,10 @@ import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
 import br.com.belerofonte.util.UploadedFileTest;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.util.test.MockResult;
+import br.com.caelum.vraptor.util.test.MockValidator;
 
 public class FileControllerTest {
 
@@ -33,17 +36,19 @@ public class FileControllerTest {
 	private Account account;
 	@Mock
 	private ApplicationFileDAO applicationFileDAO;
+	private Validator validator;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		this.uploadFile = new UploadedFileTest();
 		this.result = new MockResult();
+		this.validator = new MockValidator();
 		this.account = new Account();
 		this.account.performLogin(Given.user(null, "Usernam", "username", "email@email.com", "password", "password"));
 		this.proprertiesLoader = new PropertiesLoader();
 		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, this.account);
-		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result);
+		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result, this.validator);
 	}
 
 	@After
@@ -52,7 +57,11 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldCreateApplicationFile() throws FileNotFoundException, IOException {
-		ApplicationFile appFile = new ApplicationFile();
+		ApplicationFile appFile = Given.file(null, "Name", "image.jpg", "description", "image/jpg", 0L, 1343L, 
+				Calendar.getInstance(), 
+				Given.category(null, "Category"), 
+				Given.plataform(null, "Plataform"),
+				Given.user(null, "Name", "username", "email@email.com", "password", "password"));
 		
 		this.controller.create(this.uploadFile, appFile);
 
@@ -61,7 +70,11 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldUpdateApplicationFile() {
-		ApplicationFile appFile = new ApplicationFile();
+		ApplicationFile appFile =  Given.file(null, "Name", "image.jpg", "description", "image/jpg", 0L, 1343L, 
+				Calendar.getInstance(), 
+				Given.category(null, "Category"), 
+				Given.plataform(null, "Plataform"),
+				Given.user(null, "Name", "username", "email@email.com", "password", "password"));
 
 		this.controller.update(appFile);
 

@@ -59,7 +59,7 @@ public class LoginSpec {
 	public void shouldNotLoginInAppLikeInvalidUser() {
 		cw.login("invalid", "invalid");
 
-		cw.checkMessage("Login ou senha inv‡lido");
+		cw.checkMessage("Login ou senha invalido");
 	}
 	
 	@Test 

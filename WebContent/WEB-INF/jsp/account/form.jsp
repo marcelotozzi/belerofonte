@@ -13,8 +13,7 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<c:forEach var="error" items="${errors}">
-    					${error.message} - ${error.category}<br />
-						<br>
+    					${error.category} - ${error.message}<br />
 					</c:forEach>
 					<h3>Login</h3>
 					<form id="formLogin" action="<c:url value="authenticates"/>" method="POST"> 

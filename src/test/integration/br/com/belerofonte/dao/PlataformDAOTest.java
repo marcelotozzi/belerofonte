@@ -123,4 +123,11 @@ public class PlataformDAOTest extends DaoTest {
 		
 		Assert.assertEquals(3, plataforms.size());
 	}
+	
+	@Test
+	public void shouldCheckIfContainsPlataformWithUsername(){
+		this.plataformDAO.save(Given.plataform(null,"Plataform1"));
+		
+		Assert.assertEquals(true, this.plataformDAO.containsPlataformWithName("Plataform1"));
+	}
 }

@@ -47,4 +47,8 @@ public class PlataformDAO {
 	public List<Plataform> list() {
 		return this.session.createCriteria(Plataform.class).addOrder(Order.asc("name")).list();
 	}
+
+	public boolean containsPlataformWithName(String name) {
+		return !this.session.createCriteria(Plataform.class).add(Restrictions.eq("name", name)).list().isEmpty();
+	}
 }

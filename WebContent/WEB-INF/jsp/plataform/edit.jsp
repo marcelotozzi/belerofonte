@@ -13,6 +13,9 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Edite >> ${plataform.name}</h3>
+					<c:forEach var="error" items="${errors}">
+    					${error.category} - ${error.message}<br />
+					</c:forEach>
 					<form id="editPlataform" method="post" action="<c:url value="/admin/plataform" />">
 						<input type="hidden" name="plataform.id" value="${plataform.id}"><br/>
 						Nome: <input type="text" name="plataform.name" value="${plataform.name}"><br/>

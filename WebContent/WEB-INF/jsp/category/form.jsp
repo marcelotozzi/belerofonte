@@ -13,6 +13,9 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Registre uma categoria</h3>
+					<c:forEach var="error" items="${errors}">
+    					${error.category} - ${error.message}<br />
+					</c:forEach>
 					<form id="newCategory" method="POST" action="<c:url value="/admin/category" />">
 						Nome: <input type="text" name="category.name"><br/>
 						<input type="submit" value="Registrar"> 

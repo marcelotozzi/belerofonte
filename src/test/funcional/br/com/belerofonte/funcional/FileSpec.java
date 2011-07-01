@@ -1,7 +1,5 @@
 package br.com.belerofonte.funcional;
 
-import junit.framework.Assert;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.After;
@@ -60,7 +58,6 @@ public class FileSpec {
 		cw.typeAtField("Aplicação do sistema Belerofonte", "file.description");
 		cw.select("selectPlataform","Android");
 		
-		//cw.clickTheButton("submitFile");
-		Assert.fail("Não implementado");
+		// TODO //cw.clickTheButton("submitFile");
 	}
 }

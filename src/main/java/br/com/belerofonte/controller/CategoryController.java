@@ -11,6 +11,8 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
 
 @Resource
@@ -19,22 +21,40 @@ public class CategoryController {
 
 	private ApplicationCategoryDAO categoryDAO;
 	private Result result;
+	private Validator validator;
 
-	public CategoryController(ApplicationCategoryDAO categoryDAO, Result result) {
+	public CategoryController(ApplicationCategoryDAO categoryDAO, Result result, Validator validator) {
 		this.categoryDAO = categoryDAO;
 		this.result = result;
+		this.validator = validator;
 	}
 
 	@Post
 	@Path("/admin/category")
-	public void create(ApplicationCategory category) {
+	public void create(final ApplicationCategory category) {
+		this.validator.checking(new Validations() {{
+			 boolean categoryNameDoesNotExist = !categoryDAO.containsCategoryWithName(category.getName());
+			 that(categoryNameDoesNotExist, "name", "category_name_already_exists");
+			    
+			 that(!category.getName().isEmpty(), "name", "category_name_not_reported");			   
+		}});
+		validator.onErrorRedirectTo(this).form();
+		
 		this.categoryDAO.save(category);
 		this.result.redirectTo(CategoryController.class).categories();
 	}
 
 	@Put
 	@Path("/admin/category")
-	public void update(ApplicationCategory category) {
+	public void update(final ApplicationCategory category) {
+		this.validator.checking(new Validations() {{
+			 boolean categoryNameDoesNotExist = !categoryDAO.containsCategoryWithName(category.getName());
+			 that(categoryNameDoesNotExist, "name", "category_name_already_exists");
+			    
+			 that(!category.getName().isEmpty(), "name", "category_name_not_reported");			   
+		}});
+		validator.onErrorRedirectTo(this).edit(category.getId());
+		
 		this.categoryDAO.update(category);
 		this.result.redirectTo(CategoryController.class).categories();
 	}
@@ -48,7 +68,7 @@ public class CategoryController {
 
 	@NoInterceptMethod
 	@Get
-	@Path("/admin/category/{id}")
+	@Path("/category/{id}")
 	public void show(Long id) {
 		ApplicationCategory category = this.categoryDAO.load(id);
 		this.result.include("category", category);
@@ -65,7 +85,7 @@ public class CategoryController {
 	}
 
 	@NoInterceptMethod
-	@Path("/admin/categories")
+	@Path("/categories")
 	public void categories(){		
 		this.result.include("categories", this.categoryDAO.list());
 	}

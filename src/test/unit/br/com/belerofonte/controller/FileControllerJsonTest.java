@@ -19,7 +19,9 @@ import br.com.belerofonte.common.Given;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.util.test.MockSerializationResult;
+import br.com.caelum.vraptor.util.test.MockValidator;
 
 public class FileControllerJsonTest {
 	private FileController controller;
@@ -28,12 +30,14 @@ public class FileControllerJsonTest {
 	private ApplicationFileDAO applicationFileDAO;
 	@Mock
 	private FileService service;
+	private Validator validator;
 
 	@Before
 	public void setup() throws IOException {
 		this.result = new MockSerializationResult();
+		this.validator = new MockValidator();
 		MockitoAnnotations.initMocks(this);
-		this.controller = new FileController(this.applicationFileDAO,this.service, this.result);
+		this.controller = new FileController(this.applicationFileDAO,this.service, this.result, this.validator);
 	}
 
 	@After
