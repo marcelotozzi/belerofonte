@@ -57,9 +57,9 @@ public class FileControllerIntegrationTest extends DaoTest {
 		this.validator = new MockValidator();
 		this.account = new Account();
 		this.uploader = new Uploader(this.propertyLoader);
-		this.downloader = new Downloader();
+		this.downloader = new Downloader(this.propertyLoader);
 		this.account.performLogin(Given.userPersisted(null, "Name", "username", "name@email.com", "password", "password"));
-		this.fileService = new FileService(this.fileDAO, this.propertyLoader, this.account, this.uploader, this.downloader);
+		this.fileService = new FileService(this.fileDAO, this.account, this.uploader, this.downloader);
 		this.controller = new FileController(this.fileDAO, this.fileService, this.result, this.validator);
 	}
 

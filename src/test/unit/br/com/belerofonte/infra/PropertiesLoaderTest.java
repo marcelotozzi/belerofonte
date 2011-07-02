@@ -1,4 +1,4 @@
-package br.com.belerofonte.components;
+package br.com.belerofonte.infra;
 
 
 import junit.framework.Assert;

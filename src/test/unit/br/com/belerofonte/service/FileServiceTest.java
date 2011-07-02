@@ -37,8 +37,7 @@ public class FileServiceTest {
 		this.account = new Account();
 		this.uploader = new Uploader(this.proprertiesLoader);
 		this.account.performLogin(Given.user(null, "Usernam", "username", "email@email.com", "password", "password"));
-		this.service =  new FileService(this.applicationFileDAO, this.proprertiesLoader, 
-				this.account, this.uploader, this.downloader);
+		this.service =  new FileService(this.applicationFileDAO, this.account, this.uploader, this.downloader);
 	}
 
 	@After

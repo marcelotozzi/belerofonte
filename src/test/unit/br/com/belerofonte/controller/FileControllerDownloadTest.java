@@ -31,13 +31,12 @@ public class FileControllerDownloadTest {
 	private FileController controller;
 	private Result result;
 	private FileService applicationFileService;
-	private PropertiesLoader proprertiesLoader;
 	private Account account;
 	private Validator validator;
 	@Mock
 	private Uploader uploader;
-	@Mock
 	private Downloader downloader;
+	private PropertiesLoader proprertiesLoader;
 	
 	@Before
 	public void setUp(){
@@ -47,15 +46,15 @@ public class FileControllerDownloadTest {
 		this.account = new Account();
 		this.account.performLogin(new User());
 		this.proprertiesLoader = new PropertiesLoader();
-		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, 
-				this.account, this.uploader, this.downloader);
+		this.downloader = new Downloader(this.proprertiesLoader);
+		this.applicationFileService = new FileService(this.applicationFileDAO, this.account, this.uploader, this.downloader);
 		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result, this.validator);
 	}
 
 	@Test
 	public void shouldDownloadFile(){		
 		Mockito.when(this.applicationFileDAO.load(20))
-		.thenReturn(Given.file(null, "Name", "image.jpg", "description", "image/jpg", 0L, 1343L, 
+		.thenReturn(Given.file(20L, "Name", "image.jpg", "description", "image/jpg", 0L, 1343L, 
 				Calendar.getInstance(), 
 				Given.category(null, "Category"), 
 				Given.plataform(null, "Plataform"),

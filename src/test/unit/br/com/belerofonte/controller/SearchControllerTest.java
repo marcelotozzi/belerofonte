@@ -1,67 +1,39 @@
 package br.com.belerofonte.controller;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import br.com.belerofonte.common.Given;
-import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.SearchService;
-import br.com.caelum.vraptor.util.test.MockSerializationResult;
+import br.com.caelum.vraptor.Result;
 
 public class SearchControllerTest {
-
 	private SearchController controller;
-	private MockSerializationResult result;
 	@Mock
 	private SearchService searchService;
+	@Mock
+	private Result result;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		this.result = new MockSerializationResult();
-		this.controller = new SearchController(searchService, result);
+		this.controller = new SearchController(this.searchService, this.result);
 	}
 
 	@After
-	public void tearDown() {
+	public void tearDown() throws Exception {
 	}
 
 	@Test
-	public void shouldSearchJson() throws Exception {
-		ApplicationFile file = Given.file(1L, "Name", "nameOfFile.file", "Description", "contentType", 
-				0L, 13134L, null, Given.category(1l, "Category"), Given.plataform(1l, "Plataform"), 
-				Given.user(1l, "Name", "username", "email@email.com", "password", "password"));
-		
+	public void shouldSearch() {
 		String seek = "Name";
+			
+		this.controller.searchResult(seek);
 		
-		String expectedResult = "{\"files\": [{\"id\": 1,\"name\": \"Name\",\"nameOfFile\": " +
-		"\"nameOfFile.file\",\"description\": \"Description\",\"sizeOfFile\": 13134,\"contentType\": " +
-		"\"contentType\",\"plataform\": {\"id\": 1,\"name\": \"Plataform\"},\"applicationCategory\": " +
-		"{\"id\": 1,\"name\": \"Category\"},\"numberOfDownloads\": 0,\"user\": {\"id\": 1,\"name\": " +
-		"\"Name\",\"username\": \"username\",\"email\": \"email@email.com\",\"password\": " +
-		"\"password\",\"confirmPassword\": \"password\"}}]}";
-		
-		Mockito.when(this.searchService.search(seek)).thenReturn(this.fileListingWillContain(file));
-		
-		this.controller.textSearchJson(seek);
-		
-		Assert.assertThat(this.result.serializedResult(), is(equalTo(expectedResult)));
-	}
-	
-	
-	
-	private List<ApplicationFile> fileListingWillContain(final ApplicationFile file) {
-		return Arrays.asList(file);
+		Mockito.verify(this.result).include("word",seek);
+		Mockito.verify(this.result).include("files", this.searchService.search(seek));
 	}
 }

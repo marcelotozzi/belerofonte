@@ -10,11 +10,9 @@ import org.apache.log4j.Logger;
 import br.com.belerofonte.components.Account;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.infra.Downloader;
-import br.com.belerofonte.infra.PropertiesLoader;
 import br.com.belerofonte.infra.Uploader;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.caelum.vraptor.interceptor.download.Download;
-import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
@@ -24,16 +22,14 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 public class FileService {
 
 	private final ApplicationFileDAO applicationFileDAO;
-	private final PropertiesLoader loader;
 	private final Account account;
 	private final Uploader uploader;
 	private final Downloader downloader;
 	private static final Logger log = Logger.getLogger(FileService.class);
 
-	public FileService(ApplicationFileDAO applicationFileDAO,
-			PropertiesLoader loader, Account account, Uploader uploader, Downloader downloader) {
+	public FileService(ApplicationFileDAO applicationFileDAO, Account account, Uploader uploader, 
+			Downloader downloader) {
 		this.applicationFileDAO = applicationFileDAO;
-		this.loader = loader;
 		this.account = account;
 		this.uploader = uploader;
 		this.downloader = downloader;
@@ -41,9 +37,9 @@ public class FileService {
 
 	public void create(UploadedFile uploadedFile, ApplicationFile applicationFile) {			
 		try {		
-			File filedestiny  = this.uploader.forUser(this.account.getUser()).copyFile(uploadedFile);
+			File fileDestiny = this.uploader.forUser(this.account.getUser()).copyFile(uploadedFile);
 			
-			ApplicationFile user = fillAtributes(uploadedFile, applicationFile, filedestiny);
+			ApplicationFile user = fillAtributes(uploadedFile, applicationFile, fileDestiny);
 			
 			this.applicationFileDAO.save(user);		
 		} catch (FileNotFoundException e) {
@@ -65,17 +61,13 @@ public class FileService {
 		return applicationFile;
 	}
 
-	public Download searchAndDownloadFile(Long id) {
+	public Download searchAndDownloadFile(Long id) {			
 		ApplicationFile appFile = this.applicationFileDAO.load(id);
 		
-		File file = new File(loader.getValue("folderFiles") 
-				+ appFile.getUser().getUsername() 
-				+ loader.getValue("appFolder") 
-				+ appFile.getNameOfFile());
-		
-		Download download = new FileDownload(file, appFile.getContentType(), appFile.getNameOfFile());
+		Download download = this.downloader.getFileTheUser(appFile); 
 		
 		this.increasingNumberOfDownloads(appFile);
+		
 		return download;
 	}
 

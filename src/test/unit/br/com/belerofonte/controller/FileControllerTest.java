@@ -53,8 +53,7 @@ public class FileControllerTest {
 		this.account.performLogin(Given.user(null, "Usernam", "username", "email@email.com", "password", "password"));
 		this.proprertiesLoader = new PropertiesLoader();
 		this.uploader = new Uploader(this.proprertiesLoader);
-		this.applicationFileService = new FileService(this.applicationFileDAO, this.proprertiesLoader, 
-				this.account, this.uploader, this.downloader);
+		this.applicationFileService = new FileService(this.applicationFileDAO, this.account, this.uploader, this.downloader);
 		this.controller = new FileController(this.applicationFileDAO, this.applicationFileService, this.result, this.validator);
 	}
 
