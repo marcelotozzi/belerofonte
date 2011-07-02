@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
 
@@ -12,6 +14,7 @@ import br.com.caelum.vraptor.ioc.Component;
 public class PropertiesLoader {
 	private Properties props;
 	private String nameOfFileProperties = "/files.properties";
+	private static final Logger log = Logger.getLogger(PropertiesLoader.class);
 
 	public PropertiesLoader() {
 		props = new Properties();
@@ -19,9 +22,9 @@ public class PropertiesLoader {
 		try {
 			props.load(in);
 			in.close();
+			log.debug("Carregado arquivo " + this.nameOfFileProperties);
 		} catch (IOException e) {
-			// TODO inserir log
-			e.printStackTrace();
+			log.error("Arquivo n‹o encontrado" + this.nameOfFileProperties, e);
 		}
 	}
 

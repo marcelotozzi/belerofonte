@@ -43,10 +43,8 @@ public class FileService {
 			
 			this.applicationFileDAO.save(user);		
 		} catch (FileNotFoundException e) {
-			// TODO inserir log // lançar exception para controller
 			log.error("Arquivo nao encontrado", e);
 		} catch (IOException e) {
-			// TODO inserir log // lançar exception para controller
 			log.error("Problemas com IO", e);
 		}
 	}

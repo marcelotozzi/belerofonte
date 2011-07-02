@@ -34,7 +34,6 @@ public class FileSearcher {
 		try {
 			luceneQuery = parser.parse("name.orderBy_name:" + text);
 		} catch (ParseException e) {
-			// TODO inserir log // lançar log para controller
 			log.error("Erro no parse de name.orderBy_name:", e);
 		}
 

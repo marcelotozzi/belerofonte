@@ -1,9 +1,9 @@
 OK ---- Validação de parametros nos controllers
 OK ---- Testes de retorno dos jsons
+OK ---- Logs
 
 - Cadastra/Edição/ Exclusão de imagem no Perfil
 - Cadastra/Edição/ Exclusão de imagem na Aplicação
-- Logs
 - Opção de exclusão de apps
 - Logica para recuperar senha
 - Validação de campos via javascript
@@ -11,3 +11,4 @@ OK ---- Testes de retorno dos jsons
 - Refatorar lista de TODO'S no codigo
 - Coverage
 - Refatorar testes
+- Testes de aceitação
