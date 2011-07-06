@@ -1,6 +1,8 @@
 package br.com.belerofonte.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 
 import junit.framework.Assert;
@@ -66,6 +68,10 @@ public class FileControllerIntegrationTest extends DaoTest {
 	@After
 	public void tearDown() throws Exception {
 		tx.rollback();
+		StringBuilder dir  = new StringBuilder(this.propertyLoader.getValue("folderFiles"));
+		dir.append(this.account.getUser().getUsername());
+		File path = new File(dir.toString());
+		Given.deleteDir(path);  
 	}
 
 	@Test
@@ -89,7 +95,9 @@ public class FileControllerIntegrationTest extends DaoTest {
 	}
 	
 	@Test
-	public void shouldDownloadFile(){
+	public void shouldDownloadFile() throws FileNotFoundException, IOException{
+		UploadedFile uploadedFile = new UploadedFileTest();
+		this.uploader.forUser(this.account.getUser()).copyFile(uploadedFile);
 		Given.filePersisted(null, "Imagem", "Twitter.apk", "Description", "contentType", 
 				0L, 13134L, Calendar.getInstance(), "Category", "Plataform", "username");
 

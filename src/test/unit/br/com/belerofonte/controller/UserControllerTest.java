@@ -1,5 +1,7 @@
 package br.com.belerofonte.controller;
 
+import java.io.File;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,6 +47,10 @@ public class UserControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
+		StringBuilder dir  = new StringBuilder(this.propertiesLoader.getValue("folderFiles"));
+		dir.append("username");
+		File path = new File(dir.toString());
+		Given.deleteDir(path);
 	}
 
 	@Test
@@ -69,7 +75,7 @@ public class UserControllerTest {
 
 	@Test
 	public void shouldUpdateUser() {
-		User user = Given.user(1L, "Name", "marcelocontro", "tozzi@gmail.com", "senha", "senha");
+		User user = Given.user(1L, "Name", "username", "tozzi@gmail.com", "senha", "senha");
 
 		UploadedFile photo = new UploadedPhotoTest();
 		this.controller.update(user, photo);

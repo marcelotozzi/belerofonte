@@ -1,5 +1,7 @@
 package br.com.belerofonte.service;
 
+import java.io.File;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,6 +44,10 @@ public class FileServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
+		StringBuilder dir  = new StringBuilder(this.proprertiesLoader.getValue("folderFiles"));
+		dir.append(this.account.getUser().getUsername());
+		File path = new File(dir.toString());
+		Given.deleteDir(path);  
 	}
 
 	@Test

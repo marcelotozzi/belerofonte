@@ -1,5 +1,6 @@
 package br.com.belerofonte.controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
@@ -59,6 +60,10 @@ public class FileControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
+		StringBuilder dir  = new StringBuilder(this.proprertiesLoader.getValue("folderFiles"));
+		dir.append(this.account.getUser().getUsername());
+		File path = new File(dir.toString());
+		Given.deleteDir(path);  
 	}
 
 	@Test
