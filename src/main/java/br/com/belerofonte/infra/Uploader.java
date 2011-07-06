@@ -24,11 +24,18 @@ public class Uploader {
 	}
 
 	public Uploader forUser(User user) {
+		// -------- TODO Uploader refatorar geração de pastas -----------
 		this.user = user;
+		this.dir = this.loader.getValue("folderFiles") + this.user.getUsername();
+		if (!new File(dir).exists()) {
+			new File(dir).mkdir();
+		}
+			
 		this.dir = this.loader.getValue("folderFiles") + this.user.getUsername() + this.loader.getValue("appFolder");
 		if (!new File(dir).exists()) {
 			new File(dir).mkdir();
 		}
+		// -------- TODO Uploader -----------
 		return this;
 	}
 

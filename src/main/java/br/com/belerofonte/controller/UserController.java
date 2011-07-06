@@ -1,10 +1,13 @@
 package br.com.belerofonte.controller;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import br.com.belerofonte.annotation.InterceptResource;
 import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.components.Account;
 import br.com.belerofonte.dao.UserDAO;
 import br.com.belerofonte.model.User;
+import br.com.belerofonte.service.UserService;
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -13,6 +16,7 @@ import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.validator.Validations;
 
 @Resource
@@ -23,12 +27,14 @@ public class UserController {
 	private UserDAO userDAO;
 	private Result result;
 	private Validator validator;
+	private UserService userService;
 
-	public UserController(UserDAO userDAO, Account account, Result result, Validator validator) {
+	public UserController(UserDAO userDAO, Account account, Result result, Validator validator, UserService userService) {
 		this.account = account;
 		this.userDAO = userDAO;
 		this.result = result;
 		this.validator = validator;
+		this.userService = userService;
 	}
 
 	@NoInterceptMethod
@@ -60,8 +66,9 @@ public class UserController {
 
 	@Put
 	@Path("user")
-	public void update(final User user) {
+	public void update(final User user, final UploadedFile photo) {
 		validator.checking(new Validations() {{
+			that(photo, is(notNullValue()), "photo", "photo_not_reported");
 		    that(!user.getName().isEmpty(), "Name", "name_not_reported");			   
 		    that(user.getUsername().matches("[a-z0-9_]+"), "username", "invalid_username");
 		    that(!user.getEmail().isEmpty(), "email", "email_not_reported");
@@ -71,7 +78,8 @@ public class UserController {
 		}});
 		validator.onErrorRedirectTo(this).edit(user.getId());
 		
-		this.userDAO.update(user);
+		this.userService.update(user, photo);
+		
 		this.result.redirectTo(UserController.class).show(this.account.getUser().getId());
 	}
 

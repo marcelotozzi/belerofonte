@@ -10,12 +10,12 @@
         </appender>
 
         <category name="org.vraptor">
-                <priority value="INFO" />
+                <priority value="ERROR" />
                 <appender-ref ref="stdout" />
         </category>
 
 		<category name="br.com.belerofonte">
-                <priority value="INFO" />
+                <priority value="ERROR" />
                 <appender-ref ref="stdout" />
         </category>
         
@@ -25,12 +25,12 @@
         </category>
 
 		<category name="br.com.caelum.vraptor">
-                <priority value="INFO" />
+                <priority value="ERROR" />
                 <appender-ref ref="stdout" />
         </category>
         
         <category name="org.springframework">
-                <priority value="INFO" />
+                <priority value="ERROR" />
                 <appender-ref ref="stdout" />
         </category>
  		

@@ -70,7 +70,7 @@ public class FileControllerIntegrationTest extends DaoTest {
 
 	@Test
 	public void shouldCreateAndUploadFile() {
-		ApplicationFile appFile = Given.file(null, "Name", "nameOfFile.file", "Description",
+		ApplicationFile appFile = Given.file(null, "Name", "Twitter.apk", "Description",
 				"contentType", 1L, 1212L, Calendar.getInstance(),
 				Given.categoryPersisted(null, "Category"),
 				Given.plataformPersisted(null, "Plataform"),
@@ -80,17 +80,17 @@ public class FileControllerIntegrationTest extends DaoTest {
 
 		File file = new File(this.propertyLoader.getValue("folderFiles")
 				+this.account.getUser().getUsername()
-				+this.propertyLoader.getValue("appFolder")+"/image.jpg");
-		Download fileUploaded = new FileDownload(file, "image/jpeg");
+				+this.propertyLoader.getValue("appFolder")+"/Twitter.apk");
+		Download fileUploaded = new FileDownload(file, "application/octet-stream");
 
 		Assert.assertNotNull(fileUploaded);
 		Assert.assertNotNull(file);
-		Assert.assertEquals("image.jpg", file.getName());
+		Assert.assertEquals("Twitter.apk", file.getName());
 	}
 	
 	@Test
 	public void shouldDownloadFile(){
-		Given.filePersisted(null, "Imagem", "image.jpg", "Description", "contentType", 
+		Given.filePersisted(null, "Imagem", "Twitter.apk", "Description", "contentType", 
 				0L, 13134L, Calendar.getInstance(), "Category", "Plataform", "username");
 
 		Download down = this.controller.downloadFile(this.fileDAO.findByName("Imagem").getId());

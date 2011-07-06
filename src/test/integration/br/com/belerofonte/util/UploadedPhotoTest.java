@@ -7,23 +7,27 @@ import java.io.InputStream;
 
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
-public class UploadedFileTest implements UploadedFile {
+public class UploadedPhotoTest implements UploadedFile {
 
+	@Override
 	public String getContentType() {
-		return "application/octet-stream";
+		return "image/jpeg";
 	}
 
+	@Override
 	public InputStream getFile() {
 		try {
 			return new FileInputStream(new File(
-					"/Users/marcelotozzi/Desktop/Twitter.apk"));
+					"/Users/marcelotozzi/Desktop/image.jpg"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
+	@Override
 	public String getFileName() {
-		return "Twitter.apk";
+		return "image.jpg";
 	}
+
 }

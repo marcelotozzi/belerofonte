@@ -54,7 +54,7 @@ public class FileControllerDownloadTest {
 	@Test
 	public void shouldDownloadFile(){		
 		Mockito.when(this.applicationFileDAO.load(20))
-		.thenReturn(Given.file(20L, "Name", "image.jpg", "description", "image/jpg", 0L, 1343L, 
+		.thenReturn(Given.file(20L, "Name", "Twitter.apk", "description", "application/octet-stream", 0L, 1343L, 
 				Calendar.getInstance(), 
 				Given.category(null, "Category"), 
 				Given.plataform(null, "Plataform"),

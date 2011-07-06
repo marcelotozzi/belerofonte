@@ -253,7 +253,7 @@ public class AccessInterceptorTest {
 			throws SecurityException, NoSuchMethodException {
 		Assert.assertTrue(this.interceptor.accepts(DefaultResourceMethod
 				.instanceFor(UserController.class, UserController.class
-						.getDeclaredMethod("update", User.class))));
+						.getDeclaredMethod("update", User.class, UploadedFile.class))));
 	}
 
 	@Test

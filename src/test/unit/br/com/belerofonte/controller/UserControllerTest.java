@@ -11,8 +11,12 @@ import org.mockito.MockitoAnnotations;
 import br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
 import br.com.belerofonte.dao.UserDAO;
+import br.com.belerofonte.infra.PropertiesLoader;
 import br.com.belerofonte.model.User;
+import br.com.belerofonte.service.UserService;
+import br.com.belerofonte.util.UploadedPhotoTest;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.util.test.MockResult;
 import br.com.caelum.vraptor.util.test.MockValidator;
 
@@ -24,6 +28,8 @@ public class UserControllerTest {
 	private MockResult result;
 	private Account account;
 	private Validator validator;
+	private UserService service;
+	private PropertiesLoader propertiesLoader;
 
 	@Before
 	public void setUp() throws Exception {
@@ -31,8 +37,10 @@ public class UserControllerTest {
 		this.result = new MockResult();
 		this.validator = new MockValidator();
 		this.account = new Account();
-		this.account.performLogin(Given.user(1L, "Name", "marcelocont", "tozzi@gmail.com", "senha", "senha"));
-		this.controller = new UserController(userDAO, account, result, this.validator);
+		this.account.performLogin(Given.user(1L, "Name", "username", "tozzi@gmail.com", "senha", "senha"));
+		this.propertiesLoader = new PropertiesLoader();
+		this.service = new UserService(userDAO, propertiesLoader, account);
+		this.controller = new UserController(userDAO, account, result, this.validator, this.service);
 	}
 
 	@After
@@ -41,7 +49,7 @@ public class UserControllerTest {
 
 	@Test
 	public void shouldRegisterAUser() {
-		User user = Given.user(1L, "Name", "marcelocontro", "tozzi@gmail.com", "senha", "senha");
+		User user = Given.user(1L, "Name", "username", "tozzi@gmail.com", "senha", "senha");
 
 		this.controller.create(user);
 
@@ -63,7 +71,8 @@ public class UserControllerTest {
 	public void shouldUpdateUser() {
 		User user = Given.user(1L, "Name", "marcelocontro", "tozzi@gmail.com", "senha", "senha");
 
-		this.controller.update(user);
+		UploadedFile photo = new UploadedPhotoTest();
+		this.controller.update(user, photo);
 
 		Mockito.verify(this.userDAO).update(user);
 	}

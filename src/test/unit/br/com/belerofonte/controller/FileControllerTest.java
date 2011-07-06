@@ -63,7 +63,7 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldCreateApplicationFile() throws FileNotFoundException, IOException {
-		ApplicationFile appFile = Given.file(null, "Name", "image.jpg", "description", "image/jpg", 0L, 1343L, 
+		ApplicationFile appFile = Given.file(null, "Name", "Twitter.apk", "description", "application/octet-stream", 0L, 1343L, 
 				Calendar.getInstance(), 
 				Given.category(null, "Category"), 
 				Given.plataform(null, "Plataform"),
@@ -76,7 +76,7 @@ public class FileControllerTest {
 
 	@Test
 	public void shouldUpdateApplicationFile() {
-		ApplicationFile appFile =  Given.file(null, "Name", "image.jpg", "description", "image/jpg", 0L, 1343L, 
+		ApplicationFile appFile =  Given.file(null, "Name", "Twitter.apk", "description", "application/octet-stream", 0L, 1343L, 
 				Calendar.getInstance(), 
 				Given.category(null, "Category"), 
 				Given.plataform(null, "Plataform"),
