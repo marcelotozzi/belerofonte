@@ -1,4 +1,7 @@
-package br.com.belerofonte.controller;
+package integration.br.com.belerofonte.controller;
+
+import integration.br.com.belerofonte.dao.DaoTest;
+import integration.br.com.belerofonte.util.UploadedFileTest;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,16 +16,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.belerofonte.common.Given;
+import unit.br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
+import br.com.belerofonte.controller.FileController;
 import br.com.belerofonte.dao.ApplicationFileDAO;
-import br.com.belerofonte.dao.DaoTest;
 import br.com.belerofonte.infra.Downloader;
 import br.com.belerofonte.infra.PropertiesLoader;
 import br.com.belerofonte.infra.Uploader;
 import br.com.belerofonte.model.ApplicationFile;
 import br.com.belerofonte.service.FileService;
-import br.com.belerofonte.util.UploadedFileTest;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.download.Download;

@@ -1,4 +1,4 @@
-package br.com.belerofonte.service;
+package unit.br.com.belerofonte.service;
 
 
 import org.junit.After;
@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import br.com.belerofonte.components.FileSearcher;
+import br.com.belerofonte.service.SearchService;
 
 public class SearchServiceTest {
 	

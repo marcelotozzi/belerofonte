@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry kind="src" path="src/test/integration"/>
+	<classpathentry excluding="resources/|resources/" kind="src" path="src/test"/>
 	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/test/unit"/>
-	<classpathentry kind="src" path="src/test/funcional"/>
+	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/apache-mime4j-0.6.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/commons-codec-1.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/commons-httpclient-3.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/commons-io-1.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/commons-lang-2.5.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/cssparser-0.9.5.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/htmlunit-2.5-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/htmlunit-2.8.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/htmlunit-core-js-2.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/htmlunit-core-js-2.8.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/httpclient-4.0.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/httpcore-4.0.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/httpmime-4.0.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/json-20080701.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/mockito-core-1.8.5.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/nekohtml-1.9.14.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/sac-1.3.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/selenium-java-2.0b1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/xalan-2.7.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/xerces-2.6.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/testlibs/xercesImpl-2.9.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="testlibs/apache-mime4j-0.6.jar"/>
+	<classpathentry kind="lib" path="testlibs/commons-codec-1.4.jar"/>
+	<classpathentry kind="lib" path="testlibs/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="testlibs/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="testlibs/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="testlibs/cssparser-0.9.5.jar"/>
+	<classpathentry kind="lib" path="testlibs/ejb3-persistence-1.0.1.GA.jar"/>
+	<classpathentry kind="lib" path="testlibs/hibernate-3.3.2.jar"/>
+	<classpathentry kind="lib" path="testlibs/hibernate-annotations-3.4.0.jar"/>
+	<classpathentry kind="lib" path="testlibs/hibernate3.jar"/>
+	<classpathentry kind="lib" path="testlibs/htmlunit-2.5-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="testlibs/htmlunit-2.8.jar"/>
+	<classpathentry kind="lib" path="testlibs/htmlunit-core-js-2.4.jar"/>
+	<classpathentry kind="lib" path="testlibs/htmlunit-core-js-2.8.jar"/>
+	<classpathentry kind="lib" path="testlibs/httpclient-4.0.2.jar"/>
+	<classpathentry kind="lib" path="testlibs/httpcore-4.0.1.jar"/>
+	<classpathentry kind="lib" path="testlibs/httpmime-4.0.1.jar"/>
+	<classpathentry kind="lib" path="testlibs/json-20080701.jar"/>
+	<classpathentry kind="lib" path="testlibs/mockito-core-1.8.5.jar"/>
+	<classpathentry kind="lib" path="testlibs/nekohtml-1.9.14.jar"/>
+	<classpathentry kind="lib" path="testlibs/sac-1.3.jar"/>
+	<classpathentry kind="lib" path="testlibs/selenium-java-2.0b1.jar"/>
+	<classpathentry kind="lib" path="testlibs/xalan-2.7.1.jar"/>
+	<classpathentry kind="lib" path="testlibs/xerces-2.6.2.jar"/>
+	<classpathentry kind="lib" path="testlibs/xercesImpl-2.9.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

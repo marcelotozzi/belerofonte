@@ -1,4 +1,4 @@
-package br.com.belerofonte.controller;
+package unit.br.com.belerofonte.controller;
 
 import org.junit.After;
 import org.junit.Before;
@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import br.com.belerofonte.controller.SearchController;
 import br.com.belerofonte.service.SearchService;
 import br.com.caelum.vraptor.Result;
 

@@ -1,4 +1,4 @@
-package br.com.belerofonte.dao;
+package integration.br.com.belerofonte.dao;
 
 
 import java.util.List;
@@ -13,7 +13,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.belerofonte.common.Given;
+import unit.br.com.belerofonte.common.Given;
+import br.com.belerofonte.dao.ApplicationCategoryDAO;
 import br.com.belerofonte.model.ApplicationCategory;
 
 public class ApplicationCategoryDAOTest extends DaoTest{

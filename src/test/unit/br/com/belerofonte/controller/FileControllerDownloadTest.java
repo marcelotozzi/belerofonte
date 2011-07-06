@@ -1,4 +1,4 @@
-package br.com.belerofonte.controller;
+package unit.br.com.belerofonte.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,8 +14,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import br.com.belerofonte.common.Given;
+import unit.br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
+import br.com.belerofonte.controller.FileController;
 import br.com.belerofonte.dao.ApplicationFileDAO;
 import br.com.belerofonte.infra.Downloader;
 import br.com.belerofonte.infra.PropertiesLoader;

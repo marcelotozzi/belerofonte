@@ -1,4 +1,4 @@
-package br.com.belerofonte.util;
+package integration.br.com.belerofonte.util;
 
 import java.io.File;
 import java.io.FileInputStream;

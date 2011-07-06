@@ -1,4 +1,7 @@
-package br.com.belerofonte.funcional;
+package funcional.br.com.belerofonte.funcional;
+
+import funcional.br.com.belerofonte.util.CommonWebSteps;
+import integration.br.com.belerofonte.dao.DaoTest;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -6,10 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.belerofonte.common.Given;
-import br.com.belerofonte.dao.DaoTest;
+import unit.br.com.belerofonte.common.Given;
 import br.com.belerofonte.dao.UserDAO;
-import br.com.belerofonte.util.CommonWebSteps;
 
 public class LoginSpec {
 	private CommonWebSteps cw;

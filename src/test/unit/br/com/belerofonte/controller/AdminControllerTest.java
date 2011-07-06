@@ -1,8 +1,10 @@
-package br.com.belerofonte.controller;
+package unit.br.com.belerofonte.controller;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import br.com.belerofonte.controller.AdminController;
 
 public class AdminControllerTest {
 	private AdminController controller;

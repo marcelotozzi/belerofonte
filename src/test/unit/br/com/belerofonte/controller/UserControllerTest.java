@@ -1,4 +1,6 @@
-package br.com.belerofonte.controller;
+package unit.br.com.belerofonte.controller;
+
+import integration.br.com.belerofonte.util.UploadedPhotoTest;
 
 import java.io.File;
 
@@ -10,13 +12,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import br.com.belerofonte.common.Given;
+import unit.br.com.belerofonte.common.Given;
 import br.com.belerofonte.components.Account;
+import br.com.belerofonte.controller.UserController;
 import br.com.belerofonte.dao.UserDAO;
 import br.com.belerofonte.infra.PropertiesLoader;
 import br.com.belerofonte.model.User;
 import br.com.belerofonte.service.UserService;
-import br.com.belerofonte.util.UploadedPhotoTest;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.util.test.MockResult;

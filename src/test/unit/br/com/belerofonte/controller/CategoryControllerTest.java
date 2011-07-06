@@ -1,4 +1,4 @@
-package br.com.belerofonte.controller;
+package unit.br.com.belerofonte.controller;
 
 import java.util.List;
 
@@ -10,7 +10,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import br.com.belerofonte.common.Given;
+import unit.br.com.belerofonte.common.Given;
+import br.com.belerofonte.controller.CategoryController;
 import br.com.belerofonte.dao.ApplicationCategoryDAO;
 import br.com.belerofonte.model.ApplicationCategory;
 import br.com.caelum.vraptor.Result;

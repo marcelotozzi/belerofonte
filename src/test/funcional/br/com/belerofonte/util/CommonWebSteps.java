@@ -1,4 +1,4 @@
-package br.com.belerofonte.util;
+package funcional.br.com.belerofonte.util;
 
 import java.util.List;
 

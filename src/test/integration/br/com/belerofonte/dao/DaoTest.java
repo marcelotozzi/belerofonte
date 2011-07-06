@@ -1,4 +1,4 @@
-package br.com.belerofonte.dao;
+package integration.br.com.belerofonte.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

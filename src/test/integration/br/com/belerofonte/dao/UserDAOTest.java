@@ -1,4 +1,4 @@
-package br.com.belerofonte.dao;
+package integration.br.com.belerofonte.dao;
 
 import java.util.List;
 
@@ -12,7 +12,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.belerofonte.common.Given;
+import unit.br.com.belerofonte.common.Given;
+import br.com.belerofonte.dao.UserDAO;
 import br.com.belerofonte.model.User;
 
 public class UserDAOTest extends DaoTest {

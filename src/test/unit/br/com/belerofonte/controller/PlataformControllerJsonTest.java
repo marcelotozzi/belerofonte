@@ -1,4 +1,4 @@
-package br.com.belerofonte.controller;
+package unit.br.com.belerofonte.controller;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -13,7 +13,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import br.com.belerofonte.common.Given;
+import unit.br.com.belerofonte.common.Given;
+import br.com.belerofonte.controller.PlataformController;
 import br.com.belerofonte.dao.PlataformDAO;
 import br.com.belerofonte.model.Plataform;
 import br.com.caelum.vraptor.Validator;

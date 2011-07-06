@@ -1,10 +1,11 @@
-package br.com.belerofonte.components;
+package unit.br.com.belerofonte.components;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.belerofonte.common.Given;
+import unit.br.com.belerofonte.common.Given;
+import br.com.belerofonte.components.Account;
 
 public class AccountTest {
 

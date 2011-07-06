@@ -1,4 +1,4 @@
-package br.com.belerofonte.model;
+package unit.br.com.belerofonte.model;
 
 
 import java.util.Arrays;
@@ -8,6 +8,9 @@ import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import br.com.belerofonte.model.ApplicationCategory;
+import br.com.belerofonte.model.ApplicationFile;
 
 public class ApplicationCategoryTest {
 

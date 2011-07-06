@@ -1,4 +1,4 @@
-package br.com.belerofonte.components;
+package unit.br.com.belerofonte.components;
 
 import java.util.List;
 
@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import br.com.belerofonte.components.AccessInterceptor;
+import br.com.belerofonte.components.Account;
 import br.com.belerofonte.controller.AccountController;
 import br.com.belerofonte.controller.AdminController;
 import br.com.belerofonte.controller.CategoryController;
