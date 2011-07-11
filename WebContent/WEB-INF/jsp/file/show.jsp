@@ -14,8 +14,8 @@
 				<div class="box clearfix" id="dashboard">
 					<h2>${file.name}</h2>
 					Descrição: ${file.description} <br/>
-					Plataforma: ${file.plataform.name} <br/>
-					Categoria: ${file.applicationCategory.name} <br/>
+					Plataforma: <a href="<c:url value="/plataform/${file.plataform.id}"/>">${file.plataform.name}</a><br/>
+					Categoria: <a href="<c:url value="/category/${file.applicationCategory.id}"/>">${file.applicationCategory.name}</a> <br/>
 					Numero de Downloads: ${file.numberOfDownloads}<br/><br/>
 					
 					<a target="_blank" href="<c:url value="/file/download/${file.id}"/>">DOWNLOAD</a>

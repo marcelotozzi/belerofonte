@@ -1,8 +1,8 @@
 OK ---- Validação de parametros nos controllers
 OK ---- Testes de retorno dos jsons
 OK ---- Logs
+OK ---- Cadastra/Edição/ Exclusão de imagem no Perfil
 
-- Cadastra/Edição/ Exclusão de imagem no Perfil
 - Cadastra/Edição/ Exclusão de imagem na Aplicação
 - Opção de exclusão de apps
 - Logica para recuperar senha

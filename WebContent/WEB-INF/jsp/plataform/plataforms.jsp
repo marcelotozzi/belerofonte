@@ -13,12 +13,19 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Plataformas</h3>
-					<a href="admin/plataform/register">Adicionar</a>
+					<c:if test="${account.logged}">
+						<a href="admin/plataform/register">Adicionar</a>
 					<br/><br/>
+					</c:if>
 					<ul>
 					<c:forEach var="plat" items="${plataforms}">
 						<li>
-							<p><a href="<c:url value="/admin/plataform/${plat.id}" />">${plat.name}</a> - <a href="<c:url value="plataform/edit/${plat.id}" />">Editar</a></p>
+							<p>
+								<a href="<c:url value="/plataform/${plat.id}" />">${plat.name}</a> 
+								<c:if test="${account.logged}">
+									- <a href="<c:url value="admin/plataform/edit/${plat.id}" />">Editar</a>
+								</c:if>
+							</p>
 						</li><br/>
 					</c:forEach>
 					</ul>

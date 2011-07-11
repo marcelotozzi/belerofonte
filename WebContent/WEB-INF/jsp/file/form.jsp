@@ -13,28 +13,27 @@
 		<div id="content">
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Registre uma aplicação</h3>
+					<div class="newApplication">
+						<h3>Registre uma aplicação</h3>
 						<c:forEach var="error" items="${errors}">
     						${error.category} - ${error.message}<br />
 						</c:forEach>
 						<form id="newFile" enctype="multipart/form-data" method="post" action="<c:url value='/admin/file/create' />">
 							Informe os dados do arquivo<br/><br/>
-							Nome: <input type="text" name="file.name" ><br/><br/>
-							Descrição: <input type="text" name="file.description"><br/><br/>
-							Plataforma: 
-							<select id="selectPlataform">
-							</select>
-							Categoria:
-							<select id="selectCategory">
-							</select>
+							<label class="labelApplication">Nome:</label><input class="inputApplication" type="text" name="file.name" ><br/>
+							<label class="labelApplication">Descrição:</label><input class="inputApplication" type="text" name="file.description"><br/><br/>
 							
 							<input type="hidden" name="file.plataform.id" id="filePlataform">
-							<input type="hidden" name="file.applicationCategory.id" id="fileCategory">
+							Plataforma: <select id="selectPlataform"></select><br/><br/>
 							
-							<input type="file" name="uploadedFile" id="uploadedFile"/>
+							<input type="hidden" name="file.applicationCategory.id" id="fileCategory">
+							Categoria: <select id="selectCategory"></select><br/><br/>
+							
+							<input type="file" name="uploadedFile" id="uploadedFile"/><br/><br/>
 													
 							<input type="submit" id="submitFile"/>
 						</form>
+					</div>
 				</div>
 			</div>
 		</div>

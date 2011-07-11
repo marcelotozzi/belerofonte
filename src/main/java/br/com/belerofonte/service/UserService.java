@@ -32,8 +32,8 @@ public class UserService {
 	private PropertiesLoader propertiesLoader;
 	private Account account;
 	private User user;
-	private int width = 100;
-	private int height = 100;
+	private int width = 180;
+	private int height = 190;
 
 	public UserService(UserDAO userDAO, PropertiesLoader propertiesLoader,
 			Account account) {
@@ -104,6 +104,7 @@ public class UserService {
 					FileOutputStream fos = new FileOutputStream(thumbnail);
 					ImageIO.write(imageScaled, "JPG", fos);
 					fos.close();
+					bufImage.flush();
 					input.close();
 				}
 
@@ -136,5 +137,20 @@ public class UserService {
 				(int) (w * scale), (int) (h * scale), null);
 		g2.dispose();
 		return scaled;
+	}
+
+	public String takePhotoOfTheUserProfile(User user) {
+		String thumb = this.propertiesLoader.getValue("folderFiles")
+		+ user.getUsername()
+		+ this.propertiesLoader.getValue("thumbFolder") 
+		+ "thumb_" + user.getId() + ".jpg";
+		
+		if (!new File(thumb).exists()) {
+			return null;
+		}else{
+			String link = "/files/"+ user.getUsername() + this.propertiesLoader.getValue("thumbFolder") 
+			+ "thumb_" + user.getId() +".jpg";
+			return link;
+		}
 	}
 }

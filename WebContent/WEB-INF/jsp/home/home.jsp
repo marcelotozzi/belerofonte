@@ -13,12 +13,12 @@
 		<div id="content">
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<div class="newapps">
+					<div class="userinfo">
 						<h3>Novidades</h3>
 						<ul id="recentApps">
 						</ul>
 					</div>
-					<div class="mostdownloaded">
+					<div class="userphoto">
 						<h3>Mais baixados</h3>
 						<ul id="topDownloads">
 						</ul>

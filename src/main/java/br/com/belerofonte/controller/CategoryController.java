@@ -29,8 +29,7 @@ public class CategoryController {
 		this.validator = validator;
 	}
 
-	@Post
-	@Path("/admin/category")
+	@Post("/admin/category")
 	public void create(final ApplicationCategory category) {
 		this.validator.checking(new Validations() {{
 			 boolean categoryNameDoesNotExist = !categoryDAO.containsCategoryWithName(category.getName());
@@ -44,8 +43,7 @@ public class CategoryController {
 		this.result.redirectTo(CategoryController.class).categories();
 	}
 
-	@Put
-	@Path("/admin/category")
+	@Put("/admin/category")
 	public void update(final ApplicationCategory category) {
 		this.validator.checking(new Validations() {{
 			 boolean categoryNameDoesNotExist = !categoryDAO.containsCategoryWithName(category.getName());
@@ -59,16 +57,14 @@ public class CategoryController {
 		this.result.redirectTo(CategoryController.class).categories();
 	}
 
-	@Delete
-	@Path("/admin/category/{id}")
+	@Delete("/admin/category/{id}")
 	public void delete(Long id) {
 		this.categoryDAO.remove(this.categoryDAO.load(id));
 		this.result.redirectTo(CategoryController.class).categories();
 	}
 
 	@NoInterceptMethod
-	@Get
-	@Path("/category/{id}")
+	@Get("/category/{id}")
 	public void show(Long id) {
 		ApplicationCategory category = this.categoryDAO.load(id);
 		this.result.include("category", category);

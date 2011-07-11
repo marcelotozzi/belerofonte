@@ -29,8 +29,7 @@ public class PlataformController {
 		this.validator = validator;
 	}
 
-	@Post
-	@Path("/admin/plataform")
+	@Post("/admin/plataform")
 	public void create(final Plataform plataform) {
 		this.validator.checking(new Validations() {{
 			 boolean plataformNameDoesNotExist = !plataformDAO.containsPlataformWithName(plataform.getName());
@@ -44,8 +43,7 @@ public class PlataformController {
 		this.result.redirectTo(PlataformController.class).plataforms();
 	}
 
-	@Put
-	@Path("/admin/plataform")
+	@Put("/admin/plataform")
 	public void update(final Plataform plataform) {
 		this.validator.checking(new Validations() {{
 			 boolean plataformNameDoesNotExist = !plataformDAO.containsPlataformWithName(plataform.getName());
@@ -59,16 +57,14 @@ public class PlataformController {
 		this.result.redirectTo(PlataformController.class).plataforms();
 	}
 
-	@Delete
-	@Path("/admin/plataform/{id}")
+	@Delete("/admin/plataform/{id}")
 	public void delete(Long id) {
 		this.plataformDAO.remove(this.plataformDAO.load(id));
 		this.result.redirectTo(PlataformController.class).plataforms();
 	}
 	
 	@NoInterceptMethod
-	@Get
-	@Path("/plataform/{id}")
+	@Get("/plataform/{id}")
 	public void show(Long id) {
 		Plataform plataform = this.plataformDAO.load(id);
 		this.result.include("plataform", plataform);

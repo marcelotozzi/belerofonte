@@ -35,8 +35,7 @@ public class AccountController {
 	}
 
 	@NoInterceptMethod
-	@Post
-	@Path("/account/authenticates")	
+	@Post("/account/authenticates")	
 	public void authenticates(final User user) {
 		this.validator.checking(new Validations(){{
 			that(!user.getUsername().isEmpty(),"username","username_not_reported");

@@ -12,18 +12,20 @@
 		<div id="content">
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Registre-se</h3>
-					<c:forEach var="error" items="${errors}">
-    					${error.category} - ${error.message}<br />
-					</c:forEach>
-					<form id="newUser" method="POST" action="<c:url value="/user" />">
-						Nome: <input type="text" name="user.name"><br/>
-						Username: <input type="text" name="user.username"><br/>
-						Email: <input type="text" name="user.email"><br/>
-						Senha: <input type="password" name="user.password"><br/>
-						Confirma Senha: <input type="password" name="user.confirmPassword"><br/>
-						<input type="submit" value="Registrar"> 
-					</form>	
+					<div class="userinfo">
+						<h3>Registre-se</h3>
+						<c:forEach var="error" items="${errors}">
+	    					${error.category} - ${error.message}<br />
+						</c:forEach>
+						<form id="newUser" method="POST" action="<c:url value="/user" />">
+							<label class="labelRegister">Nome:</label><input class="inputRegister" type="text" name="user.name"><br/>
+							<label class="labelRegister">Username:</label><input class="inputRegister" type="text" name="user.username"><br/>
+							<label class="labelRegister">Email:</label><input class="inputRegister" type="text" name="user.email"><br/>
+							<label class="labelRegister">Senha:</label><input class="inputRegister" type="password" name="user.password"><br/>
+							<label class="labelRegister">Repita Senha:</label><input class="inputRegister" type="password" name="user.confirmPassword"><br/>
+							<label class="labelRegister"></label><input class="inputRegister" type="submit" value="Registrar"> 
+						</form>
+					</div>	
 				</div>
 			</div>
 		</div>

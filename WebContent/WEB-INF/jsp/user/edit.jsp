@@ -12,18 +12,32 @@
 		<div id="content">
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h3>Edite seus dados</h3>
 					<c:forEach var="error" items="${errors}">
     					${error.category} - ${error.message}<br />
 					</c:forEach>
-					<form id="editUser" method="post" action="<c:url value="/user" />">
-						<input type="hidden" name="user.id" value="${user.id}"><br/>
-						Nome: <input type="text" name="user.name" value="${user.name}"><br/>
-						Username: <input type="text" name="user.username" value="${user.username}"><br/>
-						Email: <input type="text" name="user.email" value="${user.email}"><br/>
-						Nova senha: <input type="password" name="user.password" value="${user.password}"><br/>
-						Confirma nova senha: <input type="password" name="user.confirmPassword" value="${user.confirmPassword}"><br/>
-						<button type="submit" value="put" name="_method">Alterar</button> 
+					<form id="editUser" method="post" enctype="multipart/form-data" action="<c:url value="/user" />">
+						<div class="userinfo">
+							<h3>Edite seus dados</h3>
+							<input type="hidden" name="user.id" value="${user.id}"><br/>
+							<label class="labelEdit">Nome:</label><input class="inputEdit" type="text" name="user.name" value="${user.name}"><br/>
+							<label class="labelEdit">Username:</label><input class="inputEdit" type="text" name="user.username" value="${user.username}"><br/>
+							<label class="labelEdit">Email:</label><input class="inputEdit" type="text" name="user.email" value="${user.email}"><br/>
+							<label class="labelEdit">Nova senha:</label><input class="inputEdit" type="password" name="user.password" value="${user.password}"><br/>
+							<label class="labelEdit">Repita senha:</label><input class="inputEdit" type="password" name="user.confirmPassword" value="${user.confirmPassword}"><br/>
+							
+							<button type="submit" value="put" name="_method">Alterar</button> 
+						</div>
+						<div class="userphoto">
+							<h3>Foto</h3>
+							<c:if test="${!empty urlPhoto}">
+								<img class="userAvatar" alt="${user.username}" src="/belerofonte${urlPhoto}">
+							</c:if>
+							<c:if test="${empty urlPhoto}">
+								<img class="userAvatar" alt="${user.username}" src="/belerofonte/image/avatar.jpg">
+							</c:if>
+							<br/><br/>
+							<input type="file" id="photo" name="photo" value="${photo}" >
+						</div>
 					</form>
 				</div>
 			</div>

@@ -12,10 +12,36 @@
 		<div id="content">
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<h2>${user.name}</h2>
-					Nome: ${user.name}"<br/>
-					Username: ${user.username}"<br/>
-					SEmail: ${user.email}"<br/>
+					<div class="userinfo">
+						<h3>${user.name}</h3>
+						<label class="labelShow">Nome:</label>
+						<label>${user.name}</label><br/>
+						<label class="labelShow">Username:</label>
+						<label>${user.username}</label><br/>
+						<label class="labelShow">Email:</label>
+						<label>${user.email}</label><br/><br/>
+						<div class="userApps">
+							<h3>Aplicações</h3>
+							<c:if test="${empty user.files}">
+								Não existem aplicações cadastradas.<br/><br/>
+							</c:if>
+							<c:forEach items="${user.files}" var="file">
+								<li>
+									<p><a href="<c:url value="/file/show/${file.id}" />">${file.name}</a>   ${file.numberOfDownloads} downloads</p>
+								</li><br/>
+							</c:forEach>
+						</div>	
+					</div>
+					<div class="userphoto">
+						<h3>Foto</h3>
+						<c:if test="${!empty urlPhoto}">
+							<img class="userAvatar" alt="${user.username}" src="/belerofonte${urlPhoto}">
+						</c:if>
+						<c:if test="${empty urlPhoto}">
+							<img class="userAvatar" alt="${user.username}" src="/belerofonte/image/avatar.jpg">
+						</c:if>
+						<br/><br/>
+					</div>
 				</div>
 			</div>
 		</div>

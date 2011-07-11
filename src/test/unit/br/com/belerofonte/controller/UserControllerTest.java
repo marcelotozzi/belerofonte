@@ -105,7 +105,7 @@ public class UserControllerTest {
 
 		this.controller.show(1L);
 		
-		User user = (User) this.result.included().get("person");
+		User user = (User) this.result.included().get("user");
 		Assert.assertNotNull(user);
 	}
 	

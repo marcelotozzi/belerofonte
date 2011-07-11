@@ -13,13 +13,17 @@
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
 					<h3>Categorias</h3>
-					<a href="admin/category/register">Adicionar</a>
-					<br/><br/>
+					<c:if test="${account.logged}">
+						<a href="admin/category/register">Adicionar</a>
+						<br/><br/>
+					</c:if>
 					<ul>
 					<c:forEach var="cat" items="${categories}">
 						<li>
-							<p><a href="<c:url value="category/${cat.id}" />">${cat.name}</a> - 
-												<a href="<c:url value="category/edit/${cat.id}" />">Editar</a></p>
+							<p>
+								<a href="<c:url value="category/${cat.id}" />">${cat.name}</a> 
+								<c:if test="${account.logged}">- <a href="<c:url value="admin/category/edit/${cat.id}" />">Editar</a></c:if>
+							</p>
 						</li><br/>
 					</c:forEach>
 					</ul>

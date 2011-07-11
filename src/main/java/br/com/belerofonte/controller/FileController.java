@@ -35,8 +35,7 @@ public class FileController {
 		this.validator = validator;
 	}
 
-	@Post
-	@Path("/admin/file/create")
+	@Post("/admin/file/create")
 	public void create(final UploadedFile uploadedFile, final ApplicationFile file) {
 		this.validator.checking(new Validations(){{
 			that(!file.getName().isEmpty(), "name", "name_not_reported");			   

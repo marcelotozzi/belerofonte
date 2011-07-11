@@ -8,3 +8,5 @@ bin
 build
 files
 files/**/*
+indexes
+indexes/**/*

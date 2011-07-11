@@ -17,7 +17,7 @@
     <div id="local-nav">
     	<div class="container">
         	<div>
-            	<form method="post" action="<c:url value="http://localhost:8080/belerofonte/search" />">
+            	<form method="post" action="<c:url value="/search" />">
                     <div>
                         <input type="text" value="" id="seek" name="seek">
                     	<input type="submit" value="Pesquisar"> 

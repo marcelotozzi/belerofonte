@@ -1,7 +1,5 @@
 package br.com.belerofonte.controller;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
 import br.com.belerofonte.annotation.InterceptResource;
 import br.com.belerofonte.annotation.NoInterceptMethod;
 import br.com.belerofonte.components.Account;
@@ -43,8 +41,7 @@ public class UserController {
 	}
 
 	@NoInterceptMethod
-	@Post
-	@Path("user")
+	@Post("user")
 	public void create(final User user) {
 		validator.checking(new Validations() {{
 		    boolean usernameDoesNotExist = !userDAO.containsUserWithUsername(user.getUsername());
@@ -64,12 +61,10 @@ public class UserController {
 		this.result.redirectTo(AccountController.class).account();
 	}
 
-	@Put
-	@Path("user")
+	@Put("user")
 	public void update(final User user, final UploadedFile photo) {
 		validator.checking(new Validations() {{
-			that(photo, is(notNullValue()), "photo", "photo_not_reported");
-		    that(!user.getName().isEmpty(), "Name", "name_not_reported");			   
+			that(!user.getName().isEmpty(), "Name", "name_not_reported");			   
 		    that(user.getUsername().matches("[a-z0-9_]+"), "username", "invalid_username");
 		    that(!user.getEmail().isEmpty(), "email", "email_not_reported");
 		    that(!user.getPassword().isEmpty(), "password", "password_not_reported");
@@ -83,24 +78,26 @@ public class UserController {
 		this.result.redirectTo(UserController.class).show(this.account.getUser().getId());
 	}
 
-	@Delete
-	@Path("/user/{id}")
+	@Delete("/user/{id}")
 	public void delete(Long id) {
 		this.userDAO.remove(this.userDAO.load(id));
 		this.result.redirectTo(UserController.class).show(this.account.getUser().getId());
 	}
 
 	@NoInterceptMethod
-	@Get
-	@Path("/user/{id}/{login}")
+	@Get("/user/{id}")
 	public void show(Long id) {
-		User person = this.userDAO.load(id);
-		this.result.include("person", person);
+		User user = this.userDAO.load(id);
+		String photo = this.userService.takePhotoOfTheUserProfile(user);
+		result.include("urlPhoto", photo);
+		this.result.include("user", user);
 	}
 
 	@Path("/user/edit/{id}")
 	public void edit(Long id) {
 		 User user = this.userDAO.load(id);
+		 String photo = this.userService.takePhotoOfTheUserProfile(user);
+		 result.include("urlPhoto", photo);
 		 result.include("user", user);
 	}
 

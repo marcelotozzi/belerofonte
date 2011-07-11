@@ -12,17 +12,20 @@
 		<div id="content">	
 			<div class="container">
 				<div class="box clearfix" id="dashboard">
-					<c:forEach var="error" items="${errors}">
-    					${error.category} - ${error.message}<br />
-					</c:forEach>
-					<h3>Login</h3>
-					<form id="formLogin" action="<c:url value="authenticates"/>" method="POST"> 
-						Login <input type="text" name="user.username"><br>
-						Senha <input type="password" name="user.password"><br>
-						<input type="submit" value="Login">
-					</form>	
-					<span>Esqueceu a senha? Clique <a href="#">aqui</a>.</span><br><br>
-					<span>Não é usuário? <a href="#">Cadastre-se!</a></span>
+					<div class="loginform">
+						<h3>Login</h3>
+						<c:forEach var="error" items="${errors}">
+	    					${error.category} - ${error.message}<br />
+						</c:forEach>
+						<form id="formLogin" action="<c:url value="authenticates"/>" method="POST"> 
+							<label class="labelLogin">Login: </label><input class="inputLogin" type="text" name="user.username"><br>
+							<label class="labelLogin">Senha: </label><input class="inputLogin" type="password" name="user.password"><br>
+							<label class="labelLogin"></label><input class="inputLogin" type="submit" value="Login">
+						</form>	
+						<br/>
+						<span>Esqueceu a senha? Clique <a href="#">aqui</a>.</span><br><br>
+						<span>Não é usuário? <a href="#">Cadastre-se!</a></span>
+					</div>
 				</div>
 			</div>
 		</div>

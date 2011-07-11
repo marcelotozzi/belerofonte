@@ -20,6 +20,6 @@ public class PropertiesLoaderTest {
 	@Test
 	public void shouldLoadProperties(){
 		String loaded = this.propertiesLoader.getValue("folderFiles");
-		Assert.assertEquals("/Users/marcelotozzi/Desktop/files/", loaded);
+		Assert.assertEquals("/Users/marcelotozzi/Dev/Java/workspaces/workspace_belerofonte/belerofonte/WebContent/files/", loaded);
 	}
 }
